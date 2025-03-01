@@ -275,7 +275,7 @@ p {
   margin-bottom: 2rem;
 }
 
-#experience ul > li h3 {
+#experience ul>li h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
@@ -283,7 +283,7 @@ p {
   color: #60a5fa;
 }
 
-#experience ul > li p {
+#experience ul>li p {
   margin-bottom: 0.5rem;
 }
 
@@ -386,7 +386,7 @@ p {
   justify-self: end;
 }
 
-#skills{
+#skills {
   display: grid;
   padding: 5rem 7rem;
 }
@@ -396,7 +396,7 @@ p {
   text-align: center;
 }
 
-#skills ul{
+#skills ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
@@ -433,7 +433,8 @@ p {
   width: 100%;
 }
 
-#contact input, #contact textarea {
+#contact input,
+#contact textarea {
   padding: 0.5rem 0.75rem;
   background: #1f2937;
   color: #D1D5DB;
@@ -451,11 +452,13 @@ p {
   max-height: 10rem;
 }
 
-#contact input::placeholder, #contact textarea::placeholder {
+#contact input::placeholder,
+#contact textarea::placeholder {
   color: #9ca3af;
 }
 
-#contact input:focus, #contact textarea:focus {
+#contact input:focus,
+#contact textarea:focus {
   outline: none;
   border: 2px solid #3B82F6;
 }
@@ -467,6 +470,7 @@ p {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  font-size: inherit;
 }
 
 #contact button:hover {
@@ -477,10 +481,18 @@ p {
 }
 
 footer {
+  display: flex;
   background: #111827;
   color: #D1D5DB;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.875rem;
   text-align: center;
-  padding: 2rem 1rem;
 }
 
 @media (max-width: 768px) {
@@ -540,14 +552,14 @@ footer {
   }
 
   #experience {
-    padding: 2rem;
+    padding: 5rem 2rem;
   }
 
   #experience ul li {
     padding: 1rem;
   }
 
-  #experience ul > li h3 {
+  #experience ul>li h3 {
     font-size: 1rem;
   }
 
@@ -573,7 +585,7 @@ footer {
   }
 
   #projects {
-    padding: 2rem;
+    padding: 5rem 2rem;
   }
 
   #projects h2 {
@@ -610,8 +622,8 @@ footer {
     padding: initial;
   }
 
-  #skills{
-    padding: 2rem;
+  #skills {
+    padding: 5rem 2rem;
   }
 
   #skills h2 {
@@ -619,7 +631,7 @@ footer {
     text-align: center;
   }
 
-  #skills ul{
+  #skills ul {
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     gap: 1rem;
   }
@@ -634,7 +646,7 @@ footer {
   }
 
   #contact {
-    padding: 2rem;
+    padding: 5rem 2rem;
   }
 
   #contact h2 {
@@ -646,7 +658,8 @@ footer {
     max-width: 20rem;
   }
 
-  #contact input, #contact textarea {
+  #contact input,
+  #contact textarea {
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
   }
@@ -662,6 +675,10 @@ footer {
   }
 
   footer {
-    padding: 1rem;
+    padding: 0.5rem;
+  }
+
+  footer p {
+    font-size: 0.75rem;
   }
 }
