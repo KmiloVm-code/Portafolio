@@ -146,6 +146,7 @@ p {
   border-radius: 9999px;
   cursor: pointer;
   font-size: 1.2rem;
+  transition: all 0.3s ease;
 }
 
 .cta:hover {
@@ -178,6 +179,7 @@ p {
   width: 48px;
   height: 48px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .linkedin:hover {
@@ -406,10 +408,18 @@ p {
 }
 
 #skills img {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   object-fit: fill;
-  border-radius: 50%;
+  border-radius: 100%;
+  border: 2px solid #3b82f6;
+  background-color: #D1D5DB;
+  transition: all 0.3s ease;
+}
+
+#skills img:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
 }
 
 #contact {
@@ -471,6 +481,7 @@ p {
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: inherit;
+  transition: all 0.3s ease;
 }
 
 #contact button:hover {
