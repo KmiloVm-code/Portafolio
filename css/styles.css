@@ -39,6 +39,14 @@ body {
   display: none;
 }
 
+input::placeholder {
+  opacity: 0.5;
+}
+
+textarea::placeholder {
+  opacity: 0.5;
+}
+
 nav a {
   color: #fff;
   text-decoration: none;
@@ -404,6 +412,70 @@ p {
   border-radius: 50%;
 }
 
+#contact {
+  display: grid;
+  padding: 5rem 7rem;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+#contact h2 {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+#contact form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 28rem;
+  width: 100%;
+}
+
+#contact input, #contact textarea {
+  padding: 0.5rem 0.75rem;
+  background: #1f2937;
+  color: #D1D5DB;
+  border: none;
+  border-radius: 0.5rem;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+#contact textarea {
+  min-height: 7rem;
+  max-height: 10rem;
+}
+
+#contact input::placeholder, #contact textarea::placeholder {
+  color: #9ca3af;
+}
+
+#contact input:focus, #contact textarea:focus {
+  outline: none;
+  border: 2px solid #3B82F6;
+}
+
+#contact button {
+  padding: 1rem 2rem;
+  background: #3B82F6;
+  color: #D1D5DB;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+#contact button:hover {
+  background: #2563EB;
+  color: #D1D5DB;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
 footer {
   background: #111827;
   color: #D1D5DB;
@@ -559,6 +631,34 @@ footer {
 
   #skills h3 {
     display: none;
+  }
+
+  #contact {
+    padding: 2rem;
+  }
+
+  #contact h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  #contact form {
+    max-width: 20rem;
+  }
+
+  #contact input, #contact textarea {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  #contact textarea {
+    min-height: 5rem;
+    max-height: 7rem;
+  }
+
+  #contact button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
   }
 
   footer {

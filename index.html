@@ -17,7 +17,7 @@
       <a href="#experience">Experiencia</a>
       <a href="#projects">Proyectos</a>
       <a href="#skills">Habilidades</a>
-      <a href="#contacto">Contáctame</a>
+      <a href="#contact">Contáctame</a>
     </nav>
 
     <nav class="mobile">
@@ -37,6 +37,9 @@
         <li>
           <a href="#habilidades">Habilidades</a>
         </li>
+        <li>
+          <a href="#contact">Contáctame</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -52,7 +55,7 @@
           ver mi trabajo
         </button>
 
-        <button class="cta" onclick="window.location.href='#contacto'">
+        <button class="cta" onclick="window.location.href='#contact'">
           Contáctame
         </button>
       </article>
@@ -138,7 +141,7 @@
         <main>
           <h3>E-commerce</h3>
           <p>Desarrollo de una tienda virtual para la venta de productos.
-          Este proyecto fue desarrollado con ReactJs y Tailwind CSS. Se utilizó un CMS para la gestión de productos y
+            Este proyecto fue desarrollado con ReactJs y Tailwind CSS. Se utilizó un CMS para la gestión de productos y
             pedidos.
           </p>
         </main>
@@ -156,7 +159,8 @@
         </header>
         <main>
           <h3>E-commerce</h3>
-          <p>Desarrollo de una tienda virtual para la venta de productos Se utilizó un CMS para la gestión de productos y
+          <p>Desarrollo de una tienda virtual para la venta de productos Se utilizó un CMS para la gestión de productos
+            y
             pedidos.
           </p>
         </main>
@@ -241,25 +245,15 @@
       </ul>
     </section>
 
-    <section>
+    <section id="contact">
+      <h2>Contáctame</h2>
       <form method="post" action="/">
-        <fieldset>
-          <legend id="contacto">Contáctame</legend>
+        <input type="text" placeholder="Su nombre" name="name" required>
 
-          <label style="display: block;">Nombre:
-            <input type="text" name="name" required>
-          </label>
+        <input type="email" placeholder="Su Email" name="email" required>
 
-          <label style="display: block;">Email:
-            <input type="email" name="email" required>
-          </label>
-
-          <label>Mensaje:
-            <textarea name="message" required></textarea>
-          </label>
-
-          <button type="submit">Enviar</button>
-        </fieldset>
+        <textarea name="message" placeholder="Mensaje" required></textarea>
+        <button type="submit">Enviar</button>
       </form>
     </section>
   </main>
