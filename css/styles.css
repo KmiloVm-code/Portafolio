@@ -35,8 +35,13 @@ body {
   opacity: 1;
 }
 
-.svg-icon {
+.menu {
   display: none;
+}
+
+.menu svg:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
 input::placeholder {
@@ -258,8 +263,8 @@ p {
   text-align: start;
   margin-bottom: 1rem;
   text-wrap: pretty;
-  max-width: 740px;
   justify-self: start;
+  max-width: 70ch;
 }
 
 #experience {
@@ -407,17 +412,25 @@ p {
   text-align: center;
 }
 
-#skills img {
+#skills figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   width: 4rem;
   height: 4rem;
-  object-fit: fill;
+  border: 2px solid #3B82F6;
   border-radius: 100%;
-  border: 2px solid #3b82f6;
-  background-color: #D1D5DB;
+  background: #fff;
   transition: all 0.3s ease;
 }
 
-#skills img:hover {
+#skills svg {
+  max-width: 3rem;
+  height: 3rem;
+}
+
+#skills figure:hover {
   transform: scale(1.05);
   transition: all 0.3s ease;
 }
@@ -506,12 +519,12 @@ footer p {
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .desktop a {
     display: none;
   }
 
-  .svg-icon {
+  .menu {
     display: block;
     position: absolute;
     left: 1rem;
@@ -519,7 +532,26 @@ footer p {
     cursor: pointer;
   }
 
-  .mobile {}
+  .menu line {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  .menu.active .line1 {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .menu.active .line2 {
+    opacity: 0;
+  }
+
+  .menu.active .line3 {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .active {
+    display: flex;
+  }
 
   nav a {
     margin: 0 0.5rem;
@@ -634,7 +666,7 @@ footer p {
   }
 
   #skills {
-    padding: 5rem 2rem;
+    padding: 5rem 3rem;
   }
 
   #skills h2 {
@@ -643,13 +675,18 @@ footer p {
   }
 
   #skills ul {
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 0.5rem 1rem;
   }
 
-  #skills img {
+  #skills figure {
     width: 3rem;
     height: 3rem;
+  }
+
+  #skills svg {
+    max-width: 2rem;
+    height: 2rem;
   }
 
   #skills h3 {
