@@ -80,7 +80,7 @@ nav ul li {
 section {
   background: linear-gradient(155deg, rgba(17, 24, 39, 1) 0%, rgba(30, 58, 138, 1) 50%, rgba(17, 24, 39, 1) 100%);
   display: flex;
-  padding: 5rem 7rem;
+  padding: 0 7rem;
 }
 
 .hero {
@@ -400,7 +400,7 @@ p {
 
 #certifications div {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   gap: 2rem;
 }
 
@@ -414,9 +414,12 @@ p {
 }
 
 #certifications header {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 0.5rem;
+  background: #374151;
+  border-radius: 50%;
+  padding: 0.5rem;
   overflow: hidden;
 }
 
@@ -452,6 +455,7 @@ p {
   justify-self: start;
   background: transparent;
   padding: 0;
+  align-self: flex-end;
 }
 
 #certifications a {
@@ -625,6 +629,10 @@ footer p {
     font-size: 1rem;
   }
 
+  .hero {
+    padding: 0;
+  }
+
   h1 {
     font-size: 2.5rem;
     line-height: 1.5;
@@ -735,20 +743,16 @@ footer p {
     padding: 5rem 2rem;
   }
 
-  #certifications div {
+    #certifications div {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
   #certifications aside {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
-  }
-
-  #certifications header {
-    width: 3rem;
-    height: 3rem;
+    justify-items: center;
+    gap: 1rem;
+    text-align: center;
   }
 
   #certifications p:nth-child(2) {
@@ -767,7 +771,8 @@ footer p {
   }
 
   #certifications footer {
-    justify-self: start;
+    grid-column: 1 / -1;
+    justify-self: center;
   }
 
   #certifications a {
