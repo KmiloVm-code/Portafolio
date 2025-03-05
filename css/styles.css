@@ -630,7 +630,7 @@ footer p {
   }
 
   .hero {
-    padding: 0;
+    padding: 0 1rem;
   }
 
   h1 {
@@ -644,8 +644,12 @@ footer p {
   }
 
   .cta {
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1rem;
     font-size: 1rem;
+  }
+
+  .cta+button {
+    margin-left: 0.5rem;
   }
 
   .social button {
