@@ -329,17 +329,22 @@ p {
 
 #projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
   padding: 5rem 7rem;
 }
 
 #projects h2 {
-  grid-column: 1 / -1;
   text-align: center;
 }
 
+#projects div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
 #projects aside {
+  display: grid;
+  grid-template-rows: 12rem;
   border-radius: 0.5rem;
   background: #1f2937;
 }
@@ -369,6 +374,7 @@ p {
   padding: 0 1rem 1rem 1rem;
   border-radius: 0 0 0.5rem 0.5rem;
   background: #1f2937;
+  align-self: flex-end;
 }
 
 #projects footer small {
@@ -461,7 +467,17 @@ p {
 #certifications a {
   color: #60a5fa;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #60a5fa;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+#certifications a:hover {
+  background: #60a5fa;
+  color: #D1D5DB;
+  transition: all 0.3s ease;
 }
 
 #skills {
@@ -470,14 +486,12 @@ p {
 }
 
 #skills h2 {
-  grid-column: 1 / -1;
   text-align: center;
 }
 
 #skills ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
   justify-items: center;
   align-items: center;
   text-align: center;
@@ -711,11 +725,16 @@ footer p {
   }
 
   #projects h2 {
-    grid-column: 1 / -1;
     text-align: center;
   }
 
+  #projects div {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
   #projects aside {
+    grid-template-rows: auto;
     border-radius: 0.5rem;
     background: #1f2937;
   }
