@@ -4,6 +4,13 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .desktop {
@@ -83,18 +90,20 @@ section {
   padding: 0 7rem;
 }
 
-.hero {
+#hero {
   min-height: 100vh;
   position: relative;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
   align-items: center;
+  text-align: center;
   overflow: hidden;
+  padding: 0 2rem;
 }
 
 h1 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-weight: 700;
   font-size: 4.5rem;
   text-align: center;
@@ -208,11 +217,6 @@ p {
   transition: all 0.3s ease;
 }
 
-.arrow-down {
-  margin-top: 4rem;
-  cursor: pointer;
-}
-
 .lucide-chevron-down path {
   stroke: #D1D5DB;
 }
@@ -221,6 +225,7 @@ p {
   width: 2rem;
   height: 2rem;
   animation: bounce 2s infinite;
+  margin-top: 5rem;
 }
 
 @keyframes bounce {
@@ -239,11 +244,18 @@ p {
 
 #aboutme {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   padding: 5rem 7rem;
   justify-items: center;
   align-items: center;
   margin: auto;
+}
+
+#aboutme article {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rem;
+  justify-content: center;
+  align-items: center;
 }
 
 #aboutme h2 {
@@ -260,11 +272,8 @@ p {
 }
 
 #aboutme p {
-  text-align: start;
-  margin-bottom: 1rem;
-  text-wrap: pretty;
-  justify-self: start;
   max-width: 70ch;
+  margin: 0;
 }
 
 #experience {
@@ -336,9 +345,9 @@ p {
   text-align: center;
 }
 
-#projects div {
+#projects article {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
 }
 
@@ -404,15 +413,17 @@ p {
   padding: 5rem 7rem;
 }
 
-#certifications div {
+#certifications article {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
+  max-width: 100%; /* Asegúrate de que no exceda el ancho */
+  margin: 0 auto;
 }
 
 #certifications aside {
   display: grid;
-  grid-template-columns: 80px 2fr;
+  grid-template-columns: auto 1fr;
   gap: 0 1.5rem;
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -426,7 +437,6 @@ p {
   background: #374151;
   border-radius: 50%;
   padding: 0.5rem;
-  overflow: hidden;
 }
 
 #certifications img {
@@ -452,7 +462,7 @@ p {
 
 #certifications p:nth-child(4) {
   font-size: inherit;
-  line-height: inherit;
+  line-height: 1.75rem;
   margin-bottom: 1.25rem;
 }
 
@@ -490,11 +500,17 @@ p {
 }
 
 #skills ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0;
+}
+
+#skills ul li {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
 #skills figure {
@@ -508,6 +524,7 @@ p {
   border-radius: 1rem;
   background: #fff;
   transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
 }
 
 #skills svg {
@@ -604,7 +621,7 @@ footer p {
   text-align: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .desktop a {
     display: none;
   }
@@ -677,14 +694,24 @@ footer p {
     padding: 5rem 2rem;
   }
 
+  #aboutme article {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #aboutme h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
   #aboutme img {
     width: 200px;
     height: 200px;
   }
 
   #aboutme p {
-    justify-self: center;
-    font-size: 1rem;
+    max-width: 100%;
+    margin: 0;
   }
 
   #experience {
@@ -728,7 +755,7 @@ footer p {
     text-align: center;
   }
 
-  #projects div {
+  #projects article {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
@@ -767,7 +794,7 @@ footer p {
     padding: 5rem 2rem;
   }
 
-    #certifications div {
+    #certifications article {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
@@ -813,13 +840,11 @@ footer p {
   }
 
   #skills ul {
-    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-    gap: 0.5rem 1rem;
+    gap: 1rem;
   }
 
   #skills figure {
-    width: 3rem;
-    height: 3rem;
+    margin: 0;
   }
 
   #skills svg {
