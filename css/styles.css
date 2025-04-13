@@ -127,7 +127,8 @@ h2 {
   font-size: 2.25rem;
   font-weight: 700;
   margin: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+  line-height: 1.5;
   background: linear-gradient(to bottom, #6c5ce7, #a29bfe);
   -webkit-background-clip: text;
   background-clip: text;
