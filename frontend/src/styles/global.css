@@ -1,1 +1,147 @@
 @import "tailwindcss";
+
+/* ================================
+  RESET & BASE
+=================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Inter', 'Open Sans', 'Roboto', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  line-height: 1.6;
+}
+
+/* ================================
+  VARIABLES: PALETA DE COLORES
+=================================== */
+:root {
+  /* Fondo */
+  --color-bg: #1A202C;
+  --color-card: #2D3748;
+
+  /* Texto */
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E0;
+
+  /* Acentos */
+  --accent-primary: #00BCD4;
+  /* Cian */
+  --accent-secondary: #B8860B;
+  /* Dorado */
+
+  /* Líneas / Bordes */
+  --border-color: #4A5568;
+
+  /* Iconos */
+  --icon-default: #E2E8F0;
+}
+
+/* ================================
+  TIPOGRAFÍA
+=================================== */
+
+/* Títulos grandes */
+h1,
+.heading-xl {
+  font-family: 'Montserrat', 'Poppins', 'Inter', sans-serif;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Encabezados y subtítulos */
+h2,
+h3,
+h4,
+.heading-lg,
+.heading-md {
+  font-family: 'Inter', 'Open Sans', 'Lato', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Texto del cuerpo */
+p,
+span,
+li,
+a,
+input,
+label,
+textarea {
+  font-family: 'Inter', 'Open Sans', 'Roboto', sans-serif;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* Texto destacado */
+strong,
+b {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ================================
+  BOTONES & ELEMENTOS INTERACTIVOS
+=================================== */
+
+button,
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: var(--color-bg);
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+button:hover,
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Botón secundario (Contacto) */
+.btn-secondary {
+  background-color: var(--accent-secondary);
+  color: var(--color-bg);
+}
+
+/* ================================
+  TARJETAS Y CONTENEDORES
+=================================== */
+
+.card,
+.container-section {
+  background-color: var(--color-card);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+/* ================================
+  ICONOS
+=================================== */
+.icon {
+  color: var(--icon-default);
+  display: inline-block;
+}
+
+/* ================================
+  LINKS
+=================================== */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
