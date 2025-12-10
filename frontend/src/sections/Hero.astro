@@ -1,0 +1,56 @@
+---
+import Console from "../components/Console.astro";
+---
+
+<section
+  class="relative h-dvh min-h-[600px] flex items-center overflow-hidden mx-auto px-6 md:px-10"
+>
+  {/* Background Image Layer */}
+  <div
+    class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60"
+    style={{
+      backgroundImage:
+        "url('/hero-background.webp')",
+    }}
+  >
+  </div>
+
+  {/* Dark Gradient Overlay for readability */}
+  <div
+    class="absolute inset-0 z-0 bg-linear-to-r from-[#050a14] via-[#050a14]/80 to-[#050a14]/30"
+  >
+  </div>
+  <div
+    class="absolute inset-0 z-0 bg-linear-to-t from-[#050a14] via-transparent to-transparent"
+  >
+  </div>
+
+  {/* Content */}
+  <div
+    class="container relative flex flex-col h-full justify-center z-10 mx-auto"
+  >
+    <h1 class="text-5xl md:text-7xl font-bold text-tertiary">Andrés Camilo</h1>
+    <h2 class="text-3xl md:text-5xl font-light text-secondary mb-4">
+      Full-Stack Developer
+    </h2>
+    <p
+      class="text-lg md:text-xl w-full sm:w-4/5 lg:w-1/2 mt-2 text-primary prose mx-auto sm:mx-0 mb-8"
+    >
+      Desarrollador web especializado en aplicaciones web y móviles, enfocado en
+      diseñar experiencias de usuario intuitivas, rendimiento eficiente y
+      soluciones escalables. Combino diseño centrado en el usuario y buenas
+      prácticas de ingeniería para convertir ideas en productos digitales
+      atractivos y robustos.
+    </p>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+      <a
+        href="#contacto"
+        class="btn-line w-full sm:w-auto text-center hover:bg-accent hover:text-primary px-6 py-3"
+        >ver mis proyectos</a
+      >
+    </div>
+
+    {/* Code Overlay Layer (Decorative) */}
+    <Console />
+  </div>
+</section>

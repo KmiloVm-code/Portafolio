@@ -1,0 +1,54 @@
+---
+
+---
+
+<div
+  class="absolute top-1/2 right-0 -translate-y-1/2 p-4 hidden lg:block opacity-20 pointer-events-none z-10 font-mono text-cyan-500 text-xs overflow-hidden select-none bg-[#050a14]/50"
+>
+  <pre>{`
+╔════════════════════════════════════════╗
+║       ANDRES CAMILO // BUILD LOG       ║
+╚════════════════════════════════════════╝
+
+class Developer {
+  constructor(name) {
+    this.name = 'Andres Camilo';
+    this.role = 'Full Stack Web Developer';
+    this.passion = {
+      frontEnd: 'Creating intuitive user interfaces',
+      backEnd: 'Building robust server-side applications',
+      devOps: 'Ensuring smooth deployments and scalability',
+    };
+  }
+
+  async createExperience() {
+    const design = await this.concept();
+    const code = this.implement(design);
+    return code.deploy();
+  }
+  concept() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('Innovative Design Concepts');
+      }, 1000);
+    });
+  }
+  // Optimizing the future
+  // One line at a time...
+} `}<span class="cursor">|</span></pre>
+</div>
+
+<style>
+  .cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
