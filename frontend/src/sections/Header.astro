@@ -1,0 +1,103 @@
+---
+const items = [
+  { name: "Sobre mí", href: "#sobre-mi" },
+  { name: "Experiencia", href: "#experiencia" },
+  { name: "Proyectos", href: "#proyectos" },
+  { name: "Habilidades", href: "#habilidades" },
+  { name: "Contacto", href: "#contacto" },
+];
+---
+
+<header
+  class="fixed top-0 left-0 w-full px-6 md:px-10 shadow-md z-20 transition-colors backdrop-blur-md bg-bg/30"
+>
+  <div class="container relative mx-auto flex items-center justify-between py-4 bg-transparent">
+    <a href="#hero" id="logo" class="text-xl font-bold">
+      Andrés <span class="text-accent">Camilo</span>
+    </a>
+
+    <nav class="menu hidden md:flex fixed md:static top-[60px] md:top-0 left-0 flex-col md:flex-row h-screen md:h-auto w-full md:w-auto gap-6 text-primary font-medium bg-bg md:bg-transparent p-6 md:p-0 items-center justify-start md:justify-center pt-10 md:pt-0 z-50">
+      {
+        items.map((item) => (
+          <a href={item.href} class="items hover:text-accent text-lg md:text-base">
+            {item.name}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      id="mobile-menu-button"
+      class="md:hidden cursor-pointer"
+      aria-label="Menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-primary md:hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  const button = document.getElementById("mobile-menu-button");
+  const menu = document.querySelector(".menu");
+  const header = document.querySelector("header");
+  const icon = button?.querySelector("svg");
+
+  function closeMenu() {
+    if (menu) {
+      menu.classList.add("hidden");
+      menu.classList.remove("flex");
+    }
+
+    // Reset icon to hamburger
+    if (icon) {
+      icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+    }
+
+    // Remove background from header
+    if (header) {
+      header.classList.remove("bg-bg/90");
+    }
+  }
+
+  button?.addEventListener("click", () => {
+    if (menu) {
+      menu.classList.toggle("hidden");
+      menu.classList.toggle("flex");
+    }
+
+    if (icon) {
+      const isMenuOpen = !menu?.classList.contains("hidden");
+      icon.innerHTML = isMenuOpen
+        ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>`
+        : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+    }
+
+    if (header) {
+      if (!menu?.classList.contains("hidden")) {
+        header.classList.add("bg-bg/90");
+      } else {
+        header.classList.remove("bg-bg/90");
+      }
+    }
+  });
+
+  const items = document.querySelectorAll(".menu .items");
+  items.forEach((item) => {
+    item.addEventListener("click", closeMenu);
+  });
+
+  const logo = document.getElementById("logo");
+  logo?.addEventListener("click", closeMenu);
+</script>

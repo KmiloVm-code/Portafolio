@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../sections/Header.astro";
 import Hero from "../sections/Hero.astro";
 
 ---
@@ -13,6 +14,11 @@ import Hero from "../sections/Hero.astro";
     <title>Astro</title>
   </head>
   <body>
+    <Header />
     <Hero />
+    <section id="sobre-mi" class="h-full">
+      <h2>Welcome to the Home Page</h2>
+      <p>This is the main content of the home page.</p>
+    </section>
   </body>
 </Layout>
