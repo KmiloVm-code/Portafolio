@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Aboutme from "../sections/Aboutme.astro";
 import Header from "../sections/Header.astro";
 import Hero from "../sections/Hero.astro";
-
 ---
 
 <Layout title="Home">
@@ -11,14 +11,18 @@ import Hero from "../sections/Hero.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+
     <title>Astro</title>
   </head>
   <body>
     <Header />
     <Hero />
-    <section id="sobre-mi" class="h-full">
-      <h2>Welcome to the Home Page</h2>
-      <p>This is the main content of the home page.</p>
-    </section>
+    <Aboutme />
   </body>
 </Layout>

@@ -16,6 +16,7 @@
 
   /* Acentos */
   --color-accent: #00BCD4;
+  --color-accent-hover: #26C6DA;
   --color-accent-gold: #B8860B;
 
   /* Líneas / Bordes */
@@ -62,13 +63,13 @@ strong, b {
 =================================== */
 @layer components {
   .btn-primary {
-    @apply px-5 py-3 rounded-lg font-semibold uppercase cursor-pointer;
-    background-color: var(--accent-primary);
+    @apply px-5 py-4 rounded-lg font-semibold uppercase cursor-pointer;
+    background-color: var(--color-accent);
     color: var(--color-bg);
   }
 
   .btn-secondary {
-    @apply px-5 py-3 rounded-lg font-semibold uppercase cursor-pointer;
+    @apply px-5 py-4 rounded-lg font-semibold uppercase cursor-pointer;
     background-color: var(--color-accent-gold);
     color: var(--color-bg);
   }
