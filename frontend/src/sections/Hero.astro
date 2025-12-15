@@ -10,8 +10,7 @@ import Console from "../components/Console.astro";
   <div
     class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60"
     style={{
-      backgroundImage:
-        "url('/hero-background.webp')",
+      backgroundImage: "url('/hero-background.webp')",
     }}
   >
   </div>
@@ -28,14 +27,20 @@ import Console from "../components/Console.astro";
 
   {/* Content */}
   <div
-    class="container relative flex flex-col h-full justify-center z-10 mx-auto"
+    class="container relative flex flex-col h-full justify-center z-10 mx-auto mt-0 md:mt-10"
   >
-    <h1 class="text-5xl md:text-7xl font-bold text-tertiary">Andrés Camilo</h1>
-    <h2 class="text-3xl md:text-5xl font-light text-secondary mb-4">
+    <h1
+      class="font-bold text-tertiary tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4.5rem)]"
+    >
+      Andrés Camilo
+    </h1>
+    <h2
+      class="font-light text-secondary leading-snug mb-4 text-[clamp(1.5rem,3.6vw,3rem)]"
+    >
       Full-Stack Developer
     </h2>
     <p
-      class="text-lg md:text-xl w-full sm:w-4/5 lg:w-1/2 mt-2 text-primary prose mx-auto sm:mx-0 mb-8"
+      class="text-primary leading-relaxed mt-2 mb-8 text-[clamp(1rem,1.2vw,1.25rem)] w-full sm:w-4/5 lg:w-1/2 max-w-[65ch]"
     >
       Desarrollador web especializado en aplicaciones web y móviles, enfocado en
       diseñar experiencias de usuario intuitivas, rendimiento eficiente y
@@ -46,7 +51,7 @@ import Console from "../components/Console.astro";
     <div class="flex flex-col sm:flex-row sm:items-center gap-4">
       <a
         href="#projects"
-        class="btn-line w-full sm:w-auto text-center hover:bg-accent hover:text-primary px-6 py-3"
+        class="btn-line w-full sm:w-auto text-center hover:bg-accent hover:text-primary px-6 py-3 text-base sm:text-lg"
         >ver mis proyectos</a
       >
     </div>
