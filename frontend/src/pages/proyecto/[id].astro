@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import ArrowLeft from "@/assets/svg/arrow-left.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { id: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { data, slug } = project;
+const { title, description, technologies, image, project_url, repository_url } =
+  data;
+---
+
+<Layout title={`Proyecto - ${title}`}>
+  <div class="inset-0 z-60 overflow-y-auto">
+    <div class="relative h-[50vh] w-full mb-8">
+      <div class="absolute top-0 left-0 z-20 flex gap-4">
+        <a
+          href="/"
+          onclick="history.back(); return false;"
+          class="flex items-center gap-2 bg-bg/60 hover:bg-bg/80 text-primary hover:text-accent px-4 py-2 m-4 rounded-full border border-accent/30 hover:border-accent/50 shadow-md hover:shadow-accent/30 transition-all duration-300"
+        >
+          <ArrowLeft class="w-4 h-4" />
+          Volver
+        </a>
+      </div>
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover object-top"
+        transition:name={`image-${slug}`}
+        loading="eager"
+        decoding="async"
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-t from-bg via-bg/60 to-transparent z-0"
+      >
+      </div>
+      <h1
+        transition:name={`title-${slug}`}
+        class="absolute bottom-0 left-0 w-full p-6 md:p12"
+      >
+        {title}
+      </h1>
+    </div>
+    <p class="text-center mt-4 text-secondary">
+      Detalles del proyecto se mostrarán aquí.
+    </p>
+  </div>
+</Layout>

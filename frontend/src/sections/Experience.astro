@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Briefcase } from "@lucide/astro";
+import Briefcase from "@/assets/svg/briefcase-business.astro";
 
 const experienceItems = await getCollection("experience");
 ---
@@ -31,7 +31,7 @@ const experienceItems = await getCollection("experience");
 
             {/* Timeline Icon */}
             <div class="flex items-center justify-center border-secondary/40 text-secondary/40 left-0 md:left-1/2 md:-translate-x-1/2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-bg border group-hover:border-accent shadow-[0_0_10px_rgba(0,0,0,0.5)] md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 group-hover:shadow-accent transition-all duration-300">
-              <Briefcase class="w-5 h-5 group-hover:text-accent transition-colors duration-300" />
+              <Briefcase size="20" class="group-hover:text-accent transition-colors duration-300" />
             </div>
 
             {/* Timeline Content */}

@@ -4,27 +4,13 @@ import Aboutme from "../sections/Aboutme.astro";
 import Experience from "../sections/Experience.astro";
 import Header from "../sections/Header.astro";
 import Hero from "../sections/Hero.astro";
+import Projects from "../sections/Projects.astro";
 ---
 
 <Layout title="Home">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
-
-    <title>Astro</title>
-  </head>
-  <body>
     <Header />
     <Hero />
     <Aboutme />
     <Experience />
-  </body>
+    <Projects />
 </Layout>

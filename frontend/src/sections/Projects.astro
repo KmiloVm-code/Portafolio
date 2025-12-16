@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+const projectItems = await getCollection("projects");
+import ArrowRight from "@/assets/svg/arrow-right.astro";
+---
+
+<section
+  id="proyectos"
+  class="py-20 px-6 md:px-12 lg:px-24 bg-bg text-primary"
+>
+  <div class="container max-w-7xl mx-auto">
+    <div class="flex flex-col items-center mb-16 text-center">
+      {/* Section Header */}
+      <h1 class="text-4xl font-bold mb-4 text-center">Proyectos Destacados</h1>
+      <p
+        class="text-lg text-center max-w-2xl mx-auto prose text-secondary text-pretty"
+      >
+        Una selección de proyectos que demuestran mis habilidades y experiencia
+        en desarrollo web.
+      </p>
+    </div>
+
+    {/* Projects Grid */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        projectItems.map((item) => {
+          const { data, slug } = item;
+          const { title, description, image } = data;
+          return (
+            <article class="border border-accent/30 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 hover:scale-[1.02] hover:border-accent/50 transition-all duration-300 bg-slate-900/30 backdrop-blur-sm cursor-pointer group">
+              <a class="flex flex-col h-full" 
+              href={`/proyecto/${slug}`}>
+                <img
+                src={image}
+                alt={title}
+                class="w-full h-48 object-cover object-top transform group-hover:scale-105 transition-transform duration-300"
+                transition:name={`image-${slug}`}
+              />
+              <div class="p-6 flex flex-col grow">
+                <h2
+                  transition:name={`title-${slug}`}
+                  class="text-xl font-bold mb-2 group-hover:text-accent"
+                >
+                  {title}
+                </h2>
+                <p class="text-sm text-secondary paragraph mb-4">
+                  {description}
+                </p>
+                <div class="mt-auto text-sm text-transparent group-hover:text-accent transition-colors duration-300 font-medium">
+                  Ver detalles
+                  <ArrowRight size="12" class="inline-block" />
+                </div>
+              </div>
+            </a>
+          </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
