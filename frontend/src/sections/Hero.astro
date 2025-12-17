@@ -1,5 +1,6 @@
 ---
 import Console from "../components/Console.astro";
+import ArrowRight from "@/assets/svg/arrow-right.astro";
 ---
 
 <section
@@ -50,10 +51,11 @@ import Console from "../components/Console.astro";
     </p>
     <div class="flex flex-col sm:flex-row sm:items-center gap-4">
       <a
-        href="#projects"
-        class="btn-line w-full sm:w-auto text-center hover:bg-accent hover:text-primary px-6 py-3 text-base sm:text-lg"
-        >ver mis proyectos</a
-      >
+        href="#proyectos"
+        class="btn-line w-full sm:w-auto text-center hover:bg-accent hover:text-primary px-6 py-3 gap-2 flex items-center justify-center font-medium transition-all duration-300 group"
+        >Ver Mis Proyectos
+        <ArrowRight size="20" class="stroke-2 group-hover:translate-x-1 transition-transform duration-300" />
+      </a>
     </div>
 
     {/* Code Overlay Layer (Decorative) */}
