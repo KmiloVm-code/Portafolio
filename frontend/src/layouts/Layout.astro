@@ -27,5 +27,31 @@ const { title = "Portafolio de Camilo" } = Astro.props;
     <main id="main-content">
       <slot />
     </main>
+
+    <script>
+      document.addEventListener("astro:page-load", () => {
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+        anchorLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const href = link.getAttribute("href");
+
+            if (!href || href === "#") return;
+
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

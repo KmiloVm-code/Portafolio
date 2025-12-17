@@ -40,8 +40,8 @@ const {
       <!-- Navigation  -->
       <div class="absolute top-0 left-0 md:top-10 md:left-10 z-20 flex gap-4">
         <a
-          href="/"
-          onclick="history.back(); return false;"
+          id="back-button"
+          href="/#proyectos"
           class="flex items-center gap-2 bg-bg/60 hover:bg-bg/80 text-sm font-medium text-primary hover:text-accent px-4 py-2 m-4 rounded-full backdrop-blur-md border border-white/10 group transition-all duration-300"
         >
           <ArrowLeft
@@ -193,4 +193,24 @@ const {
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const backBtn = document.getElementById(
+        "back-button"
+      ) as HTMLAnchorElement;
+
+      if (backBtn) {
+        backBtn.addEventListener("click", (e) => {
+          const hasHistory = window.history.length > 1;
+          const isInternal = document.referrer.includes(window.location.host);
+
+          if (hasHistory && isInternal) {
+            e.preventDefault();
+            window.history.back();
+          }
+        });
+      }
+    });
+  </script>
 </Layout>
