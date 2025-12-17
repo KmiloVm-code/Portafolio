@@ -25,11 +25,11 @@ const experience = defineCollection({
 const projects = defineCollection({
   schema: z.object({
     title: z.string(),
-    technologies: z.string(),
+    technologies: z.array(z.string()),
     repository_url: z.string().url().optional(),
     project_url: z.string().url().optional(),
     description: z.string(),
-    image: z.string().optional(),
+    images: z.array(z.string()).optional(),
   }),
 });
 
