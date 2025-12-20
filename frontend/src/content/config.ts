@@ -4,9 +4,8 @@ const certifications = defineCollection({
   schema: z.object({
     title: z.string(),
     company: z.string(),
+    badge_url: z.string().url(),
     date_issued: z.number(),
-    description: z.string(),
-    url: z.string().url().optional(),
     certificate_url: z.string().url().optional(),
   }),
 });
@@ -33,8 +32,29 @@ const projects = defineCollection({
   }),
 });
 
+const studies = defineCollection({
+  schema: z.object({
+    tittle: z.string(),
+    university: z.string(),
+    year_start: z.number(),
+    year_end: z.number().optional(),
+    finish: z.boolean(),
+  }),
+});
+
+const courses = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    university: z.string(),
+    year: z.number(),
+    hours: z.number().optional(),
+  }),
+});
+
 export const collections = {
   certifications,
   experience,
   projects,
+  studies,
+  courses,
 };
