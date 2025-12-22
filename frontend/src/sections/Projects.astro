@@ -25,7 +25,7 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
           const { title, description, images } = data;
           return (
             <article
-              class="border border-accent/30 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 hover:scale-[1.02] hover:border-accent/50 transition-all duration-300 bg-slate-900/30 backdrop-blur-sm cursor-pointer group"
+              class="border border-border/30 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 hover:scale-[1.02] hover:border-accent-hover/50 transition-all duration-300 bg-card/30 backdrop-blur-sm cursor-pointer group"
               transition:name={`project-${slug}`}
             >
               <a class="flex flex-col h-full" href={`/proyecto/${slug}`}>
@@ -38,7 +38,7 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
                 <div class="p-6 flex flex-col grow">
                   <h2
                     transition:name={`title-${slug}`}
-                    class="text-xl font-bold mb-2 group-hover:text-accent"
+                    class="text-xl font-bold mb-2 group-hover:text-accent-hover transition-colors duration-300"
                   >
                     {title}
                   </h2>
@@ -48,9 +48,9 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
                   >
                     {description}
                   </p>
-                  <div class="mt-auto text-sm text-transparent group-hover:text-accent transition-colors duration-300 font-medium">
+                  <div class="mt-auto text-sm text-transparent group-hover:text-accent-hover transition-colors duration-300 font-medium">
                     Ver detalles
-                    <ArrowRight size="12" class="inline-block" />
+                    <ArrowRight size="12" class="inline-block text-transparent group-hover:text-icon-secondary transition-colors duration-300" />
                   </div>
                 </div>
               </a>

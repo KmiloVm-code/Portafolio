@@ -42,7 +42,7 @@ const {
         <a
           id="back-button"
           href="/#proyectos"
-          class="flex items-center gap-2 bg-bg/60 hover:bg-bg/80 text-sm font-medium text-primary hover:text-accent px-4 py-2 m-4 rounded-full backdrop-blur-md border border-white/10 group transition-all duration-300"
+          class="flex items-center gap-2 bg-bg/60 hover:bg-bg/80 text-sm font-medium text-primary hover:text-accent-hover px-4 py-2 m-4 rounded-full backdrop-blur-md border border-border/10 group transition-all duration-300"
         >
           <ArrowLeft
             size="16"
@@ -69,7 +69,7 @@ const {
       <article class="absolute bottom-0 left-0 w-full p-6 md:p-12">
         <div class="container mx-auto">
           <span
-            class="text-accent text-sm border border-accent/20 rounded bg-cyan-950/50 py-1 px-3 mb-4 inline-block backdrop-blur-md"
+            class="text-accent text-sm border border-accent-hover/20 rounded bg-cyan-950/50 py-1 px-3 mb-4 inline-block backdrop-blur-md"
           >
             Web Full Stack
           </span>
@@ -93,7 +93,7 @@ const {
         </h3>
         {
           images?.map((image) => (
-            <div class="rounded-xl overflow-hidden border border-accent/30 group hover:border-accent/50 transition-all duration-300">
+            <div class="rounded-xl overflow-hidden border border-border/30 group hover:border-accent-hover/50 transition-all duration-300">
               <img
                 src={image}
                 alt={`${title} - Imagen de proyecto`}
@@ -125,7 +125,7 @@ const {
         <ul class="list-none text-secondary mb-8 flex flex-wrap gap-4">
           {
             technologies.map((tech) => (
-              <span class="bg-slate-900/30 backdrop-blur-sm border border-accent/20 rounded-lg px-4 py-3 text-sm m-0 hover:bg-slate-900/50 hover:border-accent/50 transition-colors duration-300 select-none">
+              <span class="bg-card/30 backdrop-blur-sm border border-border/20 rounded-lg px-4 py-3 text-sm m-0 hover:bg-card/50 hover:border-accent-hover/50 transition-colors duration-300 select-none">
                 {tech}
               </span>
             ))
@@ -134,7 +134,7 @@ const {
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
-            class="p-8 bg-slate-900/30 backdrop-blur-sm border border-accent/20 rounded-lg"
+            class="p-8 bg-card/30 backdrop-blur-sm border border-border/20 rounded-lg"
           >
             <h3 class="text-xl font-bold mb-4 text-primary">
               Desafíos Superados
@@ -147,7 +147,7 @@ const {
 
           <!-- Results Achieved -->
           <div
-            class="p-8 bg-slate-900/30 backdrop-blur-sm border border-accent/20 rounded-lg"
+            class="p-8 bg-card/30 backdrop-blur-sm border border-border/20 rounded-lg"
           >
             <h3 class="text-xl font-bold mb-4 text-primary">
               Resultados Obtenidos
@@ -161,7 +161,7 @@ const {
 
         <!-- Links -->
         <div
-          class="flex flex-col sm:flex-row gap-4 pt-8 border-t border-slate-800/50"
+          class="flex flex-col sm:flex-row gap-4 pt-8 border-t border-border/50"
         >
           {
             project_url && (
@@ -169,7 +169,7 @@ const {
                 href={project_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex-1 bg-accent  shadow-md hover:shadow-accent/50 hover:-translate-y-1 text-bg font-bold px-6 py-3 rounded-lg text-center transition-all duration-300 gap-2 flex justify-center items-center"
+                class="flex-1 bg-accent  shadow-md hover:shadow-accent-hover/50 hover:-translate-y-1 text-bg font-bold px-6 py-3 rounded-lg text-center transition-all duration-300 gap-2 flex justify-center items-center"
               >
                 Ver Demo en Vivo
                 <ExternalLink size="20" class="inline-block stroke-2" />
@@ -182,7 +182,7 @@ const {
                 href={repository_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex-1 bg-slate-900/30 hover:border-primary hover:-translate-y-1 text-primary border border-primary/30 font-bold px-6 py-3 rounded-lg text-center transition-all duration-300 gap-2 flex justify-center items-center"
+                class="flex-1 bg-card/30 hover:border-accent-hover/50 hover:-translate-y-1 text-primary border border-border/30 font-bold px-6 py-3 rounded-lg text-center transition-all duration-300 gap-2 flex justify-center items-center"
               >
                 <GitHubIcon size="20" class="inline-block stroke-2" />
                 Ver Código en GitHub

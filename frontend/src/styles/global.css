@@ -7,7 +7,8 @@
 @theme {
 /* Fondo */
   --color-bg: #040a14;
-  --color-card: #070e1b;
+  --color-bg-alt: #070D18;
+  --color-card: #0f172b;
 
   /* Texto */
   --color-primary: #F8FAFC;
@@ -17,13 +18,15 @@
   /* Acentos */
   --color-accent: #00BCD4;
   --color-accent-hover: #26C6DA;
-  --color-accent-gold: #B8860B;
 
   /* Líneas / Bordes */
-  --color-border: #4A5568;
+  --color-border: #1d293d;
+  --color-border-alt: #00c951;
 
   /* Iconos */
   --color-icon: #E2E8F0;
+  --color-icon-secondary: #00BCD4;
+  --color-icon-tertiary: #040a14;
 }
 
 /* ================================
