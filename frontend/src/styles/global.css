@@ -58,6 +58,10 @@ strong, b {
   font-family: 'Montserrat', 'Poppins', 'Inter', sans-serif;
 }
 
+textarea {
+  field-sizing: content;
+}
+
 /* ================================
   CLASES UTILITARIAS PERSONALIZADAS
 =================================== */
