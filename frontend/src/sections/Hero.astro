@@ -27,9 +27,7 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
   </div>
 
   <!-- Content -->
-  <div
-    class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10"
-  >
+  <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10">
     <h1
       class="font-bold text-tertiary tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4.5rem)]"
     >
@@ -51,10 +49,14 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
     </p>
     <div class="flex flex-col sm:flex-row sm:items-center gap-4">
       <a
-        href="#proyectos"
+        href="/"
+        data-section="proyectos"
         class="btn-line w-full sm:w-auto text-center hover:bg-accent-hover hover:text-bg px-6 py-3 gap-2 flex items-center justify-center font-semibold transition-all duration-300 group"
         >Ver Mis Proyectos
-        <ArrowRight size="20" class="stroke-2 text-icon-secondary group-hover:text-icon-tertiary group-hover:translate-x-1 transition-all duration-300" />
+        <ArrowRight
+          size="20"
+          class="stroke-2 text-icon-secondary group-hover:text-icon-tertiary group-hover:translate-x-1 transition-all duration-300"
+        />
       </a>
     </div>
 
@@ -62,3 +64,25 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
     <Console />
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('a[data-section]').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+      event.preventDefault();
+      const sectionId = anchor.getAttribute('data-section');
+      if (!sectionId) return;
+
+      scrollToSection(sectionId);
+    });
+  });
+  // Smooth scroll to section without changing the URL
+  function scrollToSection(sectionId: string) {
+    const targetElement = document.getElementById(sectionId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }
+</script>

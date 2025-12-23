@@ -1,10 +1,10 @@
 ---
 const items = [
-  { name: "Sobre mí", href: "#sobre-mi" },
-  { name: "Experiencia", href: "#experiencia" },
-  { name: "Proyectos", href: "#proyectos" },
-  { name: "Estudios", href: "#studies" },
-  { name: "Contacto", href: "#contacto" },
+  { name: "Sobre mí", href: "#sobre-mi", section: "sobre-mi" },
+  { name: "Experiencia", href: "#experiencia", section: "experiencia" },
+  { name: "Proyectos", href: "#proyectos", section: "proyectos" },
+  { name: "Estudios", href: "#studies", section: "studies" },
+  { name: "Contacto", href: "#contacto", section: "contacto" },
 ];
 ---
 
@@ -14,7 +14,7 @@ const items = [
   <div
     class="container relative mx-auto max-w-7xl flex items-center justify-between py-4 bg-transparent"
   >
-    <a href="#hero" id="logo" class="text-xl font-bold">
+    <a href="/" id="logo" class="text-xl font-bold" data-section="hero">
       Andrés <span class="text-accent">Camilo</span>
     </a>
 
@@ -24,8 +24,9 @@ const items = [
       {
         items.map((item) => (
           <a
-            href={item.href}
-            class="items hover:text-accent-hover text-lg md:text-base"
+            href="/"
+            data-section={item.section}
+            class="nav-item hover:text-accent-hover text-lg md:text-base transition-colors duration-300"
           >
             {item.name}
           </a>
@@ -56,11 +57,19 @@ const items = [
 </header>
 
 <script>
+  import { navigate } from "astro:transitions/client";
+
   document.addEventListener("astro:page-load", () => {
     const button = document.getElementById("mobile-menu-button");
     const menu = document.querySelector(".menu");
     const header = document.querySelector("header");
     const icon = button?.querySelector("svg");
+    const navItems = document.querySelectorAll(".nav-item");
+    const logo = document.getElementById("logo");
+
+    // Sections to observe for active state
+    const sectionIds = ["hero", "sobre-mi", "experiencia", "proyectos", "studies", "contacto"];
+    let currentSection = "hero";
 
     function closeMenu() {
       if (menu) {
@@ -68,17 +77,99 @@ const items = [
         menu.classList.remove("flex");
       }
 
-      // Reset icon to hamburger
       if (icon) {
         icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
       }
 
-      // Remove background from header
       if (header) {
         header.classList.remove("bg-bg/90");
       }
     }
 
+    // Function to update the navbar active state
+    function updateActiveNav(sectionId: string) {
+      currentSection = sectionId;
+      navItems.forEach((item) => {
+        const itemSection = item.getAttribute("data-section");
+        if (itemSection === sectionId) {
+          item.classList.add("text-accent", "font-semibold");
+        } else {
+          item.classList.remove("text-accent", "font-semibold");
+        }
+      });
+    }
+
+    // Smooth scroll to section without changing the URL
+    function scrollToSection(sectionId: string) {
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        updateActiveNav(sectionId);
+      }
+    }
+
+    // Handle clicks on navigation items
+    navItems.forEach((item) => {
+      item.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const sectionId = item.getAttribute("data-section");
+        
+        // Si estamos en la página principal, solo hacer scroll
+        if (window.location.pathname === "/" || window.location.pathname === "") {
+          if (sectionId) {
+            scrollToSection(sectionId);
+            closeMenu();
+          }
+        } else {
+          // Si estamos en otra página, navegar a la principal con View Transitions
+          if (sectionId) {
+            sessionStorage.setItem("scrollToSection", sectionId);
+            await navigate("/");
+          }
+        }
+      });
+    });
+
+    // Handle click on the logo
+    logo?.addEventListener("click", async (e) => {
+      e.preventDefault();
+      
+      if (window.location.pathname === "/" || window.location.pathname === "") {
+        scrollToSection("hero");
+        closeMenu();
+      } else {
+        sessionStorage.setItem("scrollToSection", "hero");
+        await navigate("/");
+      }
+    });
+
+    // Intersection Observer to detect visible section and update active state
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          updateActiveNav(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) {
+        sectionObserver.observe(section);
+      }
+    });
+
+    // Handle mobile menu
     button?.addEventListener("click", () => {
       if (menu) {
         menu.classList.toggle("hidden");
@@ -101,12 +192,9 @@ const items = [
       }
     });
 
-    const items = document.querySelectorAll(".menu .items");
-    items.forEach((item) => {
-      item.addEventListener("click", closeMenu);
+    // Clean up observer when the page changes (View Transitions)
+    document.addEventListener("astro:before-swap", () => {
+      sectionObserver.disconnect();
     });
-
-    const logo = document.getElementById("logo");
-    logo?.addEventListener("click", closeMenu);
   });
 </script>

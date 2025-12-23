@@ -39,17 +39,16 @@ const {
     >
       <!-- Navigation  -->
       <div class="absolute top-0 left-0 md:top-10 md:left-10 z-20 flex gap-4">
-        <a
+        <button
           id="back-button"
-          href="/#proyectos"
-          class="flex items-center gap-2 bg-bg/60 hover:bg-bg/80 text-sm font-medium text-primary hover:text-accent-hover px-4 py-2 m-4 rounded-full backdrop-blur-md border border-border/10 group transition-all duration-300"
+          class="flex items-center gap-2 bg-bg/60 hover:bg-bg/80 text-sm font-medium text-primary hover:text-accent-hover px-4 py-2 m-4 rounded-full backdrop-blur-md border border-border/10 group transition-all duration-300 cursor-pointer"
         >
           <ArrowLeft
             size="16"
             class="group-hover:-translate-x-1 transition-transform"
           />
           Volver
-        </a>
+        </button>
       </div>
 
       <!-- project image  -->
@@ -195,20 +194,16 @@ const {
   </section>
 
   <script>
+    import { navigate } from "astro:transitions/client";
+    
     document.addEventListener("astro:page-load", () => {
-      const backBtn = document.getElementById(
-        "back-button"
-      ) as HTMLAnchorElement;
+      const backBtn = document.getElementById("back-button");
 
       if (backBtn) {
-        backBtn.addEventListener("click", (e) => {
-          const hasHistory = window.history.length > 1;
-          const isInternal = document.referrer.includes(window.location.host);
-
-          if (hasHistory && isInternal) {
-            e.preventDefault();
-            window.history.back();
-          }
+        backBtn.addEventListener("click", async () => {
+          // Always navigate to the home page with View Transitions and scroll to projects
+          sessionStorage.setItem("scrollToSection", "proyectos");
+          await navigate("/");
         });
       }
     });

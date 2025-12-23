@@ -29,28 +29,20 @@ const { title = "Portafolio de Camilo" } = Astro.props;
     </main>
 
     <script>
-      document.addEventListener("astro:page-load", () => {
-        const anchorLinks = document.querySelectorAll('a[href^="#"]');
-
-        anchorLinks.forEach((link) => {
-          link.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            const href = link.getAttribute("href");
-
-            if (!href || href === "#") return;
-
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-              targetElement.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }
-          });
-        });
+      // Handle scroll after View Transitions
+        document.addEventListener("astro:after-swap", () => {
+        const pendingSection = sessionStorage.getItem("scrollToSection");
+        if (pendingSection) {
+          sessionStorage.removeItem("scrollToSection");
+          const targetElement = document.getElementById(pendingSection);
+          if (targetElement) {
+            // Scroll instantáneo para no interferir con la View Transition
+            targetElement.scrollIntoView({
+              behavior: "instant",
+              block: "start",
+            });
+          }
+        }
       });
     </script>
   </body>
