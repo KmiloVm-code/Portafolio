@@ -6,6 +6,8 @@ import Images from "@/assets/svg/images.astro";
 import ExternalLink from "@/assets/svg/external-link.astro";
 import GitHubIcon from "@/assets/svg/github.astro";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
   return projects.map((project) => ({

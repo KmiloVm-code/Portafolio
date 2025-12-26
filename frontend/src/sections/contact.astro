@@ -162,9 +162,35 @@ import Linkedin from "@/assets/svg/linkedin.astro";
     }
   };
 
-  form?.addEventListener('submit', (event) => {
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
-    toggleSuccess(true);
+
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get('name') ?? '').trim(),
+      email: String(formData.get('email') ?? '').trim(),
+      message: String(formData.get('message') ?? '').trim(),
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json().catch(() => null);
+      if (!response.ok) {
+        throw new Error(result?.error || 'No se pudo enviar el mensaje.');
+      }
+
+      toggleSuccess(true);
+    } catch (error) {
+      console.error(error);
+      alert('No se pudo enviar el mensaje. Intenta de nuevo en unos minutos.');
+    }
   });
 
   sendAnotherBtn?.addEventListener('click', (event) => {

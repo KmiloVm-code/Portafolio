@@ -9,9 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.1",
     "@astrojs/ts-plugin": "^1.10.6",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.4",
+    "resend": "^6.6.0",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
