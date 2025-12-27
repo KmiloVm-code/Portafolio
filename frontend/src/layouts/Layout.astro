@@ -1,13 +1,81 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import Analytics from '@vercel/analytics/astro';
+import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
 
 interface Props {
-  title: string;
+  title?: string;
+  description?: string;
+  canonical?: string; // admite absoluta o relativa
+  image?: string; // URL absoluta o ruta (ideal: absoluta)
+  noindex?: boolean;
+  ogType?: "website" | "article";
 }
 
-const { title = "Portafolio de Camilo" } = Astro.props;
+const {
+  title = "Portafolio de Andrés Camilo | Desarrollador Full Stack",
+  description = "Portafolio de Andrés Camilo: proyectos, experiencia y tecnologías.",
+  canonical,
+  image = "/og.jpg",
+  noindex = false,
+  ogType = "website",
+} = Astro.props;
+
+const site = Astro.site;
+
+// Canonical: si viene relativo, lo resolvemos contra `site` cuando exista
+const canonicalUrl = canonical
+  ? site
+    ? new URL(canonical, site)
+    : new URL(canonical, Astro.url)
+  : site
+    ? new URL(Astro.url.pathname, site)
+    : Astro.url;
+
+// OG image: siempre absoluta si existe `site`
+const ogImageUrl =
+  image?.startsWith("http")
+    ? image
+    : site
+      ? new URL(image || "/og.jpg", site).toString()
+      : image;
+
+const robots = noindex ? "noindex, nofollow" : "index, follow";
+
+const authorName = "Camilo";
+const siteName = "Portafolio de Camilo";
+
+// JSON-LD (WebSite + WebPage + Person) en @graph
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": site ? new URL("#person", site).toString() : "#person",
+      name: authorName,
+      url: site?.toString?.(),
+    },
+    {
+      "@type": "WebSite",
+      "@id": site ? new URL("#website", site).toString() : "#website",
+      name: siteName,
+      url: site?.toString?.(),
+      inLanguage: "es",
+      publisher: { "@id": site ? new URL("#person", site).toString() : "#person" },
+    },
+    {
+      "@type": "WebPage",
+      "@id": canonicalUrl.toString(),
+      url: canonicalUrl.toString(),
+      name: title,
+      description,
+      inLanguage: "es",
+      isPartOf: { "@id": site ? new URL("#website", site).toString() : "#website" },
+      about: { "@id": site ? new URL("#person", site).toString() : "#person" },
+      primaryImageOfPage: ogImageUrl ? { "@type": "ImageObject", url: ogImageUrl } : undefined,
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -15,13 +83,45 @@ const { title = "Portafolio de Camilo" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <title>{title}</title>
+
+    <meta name="description" content={description} />
+    <meta name="author" content={authorName} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#0b0f19" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" href={canonicalUrl} hreflang="es" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta property="og:image:alt" content={`Vista previa: ${title}`} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:url" content={canonicalUrl.toString()} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+
+    <!-- Datos estructurados -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
+
     <ClientRouter />
     <Analytics />
   </head>
@@ -32,7 +132,7 @@ const { title = "Portafolio de Camilo" } = Astro.props;
 
     <script>
       // Handle scroll after View Transitions
-        document.addEventListener("astro:after-swap", () => {
+      document.addEventListener("astro:after-swap", () => {
         const pendingSection = sessionStorage.getItem("scrollToSection");
         if (pendingSection) {
           sessionStorage.removeItem("scrollToSection");
