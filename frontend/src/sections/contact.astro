@@ -12,11 +12,7 @@ import Linkedin from "@/assets/svg/linkedin.astro";
           class="text-xs font-bold font-mono text-accent tracking-widest uppercase"
           >Let's Build Something</span
         >
-        <h1
-          class="text-5xl md:text-7xl font-bold leading-tight"
-        >
-          Contacto
-        </h1>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight">Contacto</h1>
         <p class="text-xl">
           Estoy disponible para nuevos proyectos y colaboraciones estratégicas.
           Cuéntame tu visión y busquemos la mejor forma de ejecutarla.
@@ -50,8 +46,17 @@ import Linkedin from "@/assets/svg/linkedin.astro";
         <div
           class="bg-card/30 backdrop-blur-2xl border border-border p-10 md:p-14 rounded-[3rem] relative overflow-hidden shadow-2xl min-h-104 md:min-h-120"
         >
-          <div id="form-wrapper" data-visible="true" class="space-y-8 transition-all duration-500 ease-out">
-            <form id="contact-form" action="#" class="space-y-8">
+          <div
+            id="form-wrapper"
+            data-visible="true"
+            class="space-y-8 transition-all duration-500 ease-out"
+          >
+            <form
+              id="contact-form"
+              method="post"
+              action="/api/contact"
+              class="space-y-8"
+            >
               <div>
                 <label
                   for="name"
@@ -99,9 +104,17 @@ import Linkedin from "@/assets/svg/linkedin.astro";
 
               <button
                 type="submit"
-                class="btn-primary w-full bg-accent text-bg rounded-lg hover:bg-accent/90 hover:-translate-y-0.5 shadow-md hover:shadow-accent/30 transition-all duration-300"
+                class="btn-primary w-full bg-accent text-bg rounded-lg hover:bg-accent/90 hover:-translate-y-0.5 shadow-md hover:shadow-accent/30 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                aria-busy="false"
               >
-                Enviar Mensaje
+                <span class="inline-flex items-center justify-center gap-3">
+                  <span class="btn-label">Enviar Mensaje</span>
+
+                  <span class="btn-loading hidden items-center gap-3">
+                    <span class="spinner" aria-hidden="true"></span>
+                    <span>Enviando...</span>
+                  </span>
+                </span>
               </button>
             </form>
           </div>
@@ -123,12 +136,14 @@ import Linkedin from "@/assets/svg/linkedin.astro";
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M20 6L9 17l-5-5" />
+                <path d="M20 6L9 17l-5-5"></path>
               </svg>
             </div>
 
             <div class="space-y-3">
-              <h2 class="text-3xl font-bold text-primary">¡Mensaje recibido!</h2>
+              <h2 class="text-3xl font-bold text-primary">
+                ¡Mensaje recibido!
+              </h2>
               <p class="text-lg text-secondary">
                 Analizaré tu propuesta y te contactaré lo antes posible.
               </p>
@@ -147,63 +162,19 @@ import Linkedin from "@/assets/svg/linkedin.astro";
   </div>
 </section>
 
-<script is:inline>
-  const form = document.querySelector('#contact-form');
-  const formWrapper = document.querySelector('#form-wrapper');
-  const successScreen = document.querySelector('#success-screen');
-  const sendAnotherBtn = document.querySelector('#send-another');
+<script>
+  import { initContactForm } from "@/scripts/contactForm";
 
-  const toggleSuccess = (visible) => {
-    formWrapper?.setAttribute('data-visible', visible ? 'false' : 'true');
-    successScreen?.setAttribute('data-visible', visible ? 'true' : 'false');
-    if (visible) {
-      sendAnotherBtn?.setAttribute('data-animate', 'true');
-      setTimeout(() => sendAnotherBtn?.removeAttribute('data-animate'), 600);
-    }
-  };
-
-  form?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-    const payload = {
-      name: String(formData.get('name') ?? '').trim(),
-      email: String(formData.get('email') ?? '').trim(),
-      message: String(formData.get('message') ?? '').trim(),
-    };
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json().catch(() => null);
-      if (!response.ok) {
-        throw new Error(result?.error || 'No se pudo enviar el mensaje.');
-      }
-
-      toggleSuccess(true);
-    } catch (error) {
-      console.error(error);
-      alert('No se pudo enviar el mensaje. Intenta de nuevo en unos minutos.');
-    }
-  });
-
-  sendAnotherBtn?.addEventListener('click', (event) => {
-    event.preventDefault();
-    form?.reset();
-    toggleSuccess(false);
-  });
+  document.addEventListener("astro:page-load", initContactForm);
+  document.addEventListener("astro:after-swap", initContactForm);
 </script>
 
 <style is:inline>
   #form-wrapper,
   #success-screen {
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
   }
 
   #form-wrapper[data-visible="false"] {
@@ -235,11 +206,28 @@ import Linkedin from "@/assets/svg/linkedin.astro";
   }
 
   #send-another {
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
   }
 
   #send-another[data-animate="true"] {
     animation: successButtonPop 0.55s ease;
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-top-color: rgba(0, 0, 0, 0.85);
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   @keyframes successButtonPop {
