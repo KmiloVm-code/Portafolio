@@ -8,9 +8,12 @@ import Hero from "../sections/Hero.astro";
 import Projects from "../sections/Projects.astro";
 import Contact from "@/sections/contact.astro";
 import Footer from "@/sections/Footer.astro";
+
+const title = "Portafolio de Andrés Camilo | Desarrollador Full Stack";
+const description = "Bienvenido a mi portafolio. Soy Andrés Camilo, un desarrollador Full Stack apasionado por crear soluciones web innovadoras y eficientes. Explora mis proyectos y experiencia profesional.";
 ---
 
-<Layout title="Home">
+<Layout title={title} description={description}>
     <Header />
     <Hero />
     <Aboutme />
