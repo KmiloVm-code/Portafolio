@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "../**/*.{astro,html,js,ts,jsx,tsx,md,mdx}";
+
+/* ================================
+  VARIABLES: PALETA DE COLORES
+=================================== */
+@theme {
+/* Fondo */
+  --color-bg: #040a14;
+  --color-bg-alt: #070D18;
+  --color-card: #0f172b;
+
+  /* Texto */
+  --color-primary: #F8FAFC;
+  --color-secondary: #CBD5E0;
+  --color-tertiary: #83d5d3;
+
+  /* Acentos */
+  --color-accent: #00BCD4;
+  --color-accent-hover: #26C6DA;
+
+  /* Líneas / Bordes */
+  --color-border: #1d293d;
+  --color-border-alt: #00c951;
+
+  /* Iconos */
+  --color-icon: #E2E8F0;
+  --color-icon-secondary: #00BCD4;
+  --color-icon-tertiary: #040a14;
+}
+
+/* ================================
+  RESET MÍNIMO
+=================================== */
+html,
+body {
+  height: 100%;
+  font-family: 'Inter', 'Open Sans', 'Roboto', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  /* scroll-behavior: smooth; */
+}
+
+/* Títulos grandes */
+h1, .heading-xl {
+  font-family: 'Montserrat', 'Poppins', 'Inter', sans-serif;
+}
+
+/* Encabezados y subtítulos */
+h2, h3, h4 {
+  font-family: 'Inter', 'Open Sans', 'Lato', sans-serif;
+}
+
+/* Texto del cuerpo */
+p, span, li, a, input, label, textarea {
+  font-family: 'Inter', 'Open Sans', 'Roboto', sans-serif;
+}
+
+/* Texto destacado */
+strong, b {
+  font-family: 'Montserrat', 'Poppins', 'Inter', sans-serif;
+}
+
+textarea {
+  field-sizing: content;
+}
+
+/* ================================
+  CLASES UTILITARIAS PERSONALIZADAS
+=================================== */
+@layer components {
+  .btn-primary {
+    @apply px-5 py-4 rounded-lg font-semibold uppercase cursor-pointer;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .btn-secondary {
+    @apply px-5 py-4 rounded-lg font-semibold uppercase cursor-pointer;
+    background-color: var(--color-accent-gold);
+    color: var(--color-bg);
+  }
+
+  .btn-line {
+    @apply px-5 py-4 rounded-lg font-semibold uppercase cursor-pointer border transition-all duration-300 bg-transparent;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .card {
+    @apply p-6;
+    background-color: var(--color-card);
+  }
+}

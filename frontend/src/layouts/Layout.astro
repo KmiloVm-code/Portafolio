@@ -1,0 +1,49 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+
+const { title = "Portafolio de Camilo" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <ClientRouter />
+  </head>
+  <body>
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <script>
+      // Handle scroll after View Transitions
+        document.addEventListener("astro:after-swap", () => {
+        const pendingSection = sessionStorage.getItem("scrollToSection");
+        if (pendingSection) {
+          sessionStorage.removeItem("scrollToSection");
+          const targetElement = document.getElementById(pendingSection);
+          if (targetElement) {
+            // Scroll instantáneo para no interferir con la View Transition
+            targetElement.scrollIntoView({
+              behavior: "instant",
+              block: "start",
+            });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+---
+const items = [
+  { name: "Sobre mí", href: "#sobre-mi", section: "sobre-mi" },
+  { name: "Experiencia", href: "#experiencia", section: "experiencia" },
+  { name: "Proyectos", href: "#proyectos", section: "proyectos" },
+  { name: "Estudios", href: "#studies", section: "studies" },
+  { name: "Contacto", href: "#contacto", section: "contacto" },
+];
+---
+
+<header
+  class="fixed top-0 left-0 w-full px-6 md:px-10 shadow-md z-20 transition-colors backdrop-blur-md bg-bg/30"
+>
+  <div
+    class="container relative mx-auto max-w-7xl flex items-center justify-between py-4 bg-transparent"
+  >
+    <a href="/" id="logo" class="text-xl font-bold" data-section="hero">
+      Andrés <span class="text-accent">Camilo</span>
+    </a>
+
+    <nav
+      class="menu hidden md:flex fixed md:static top-[60px] md:top-0 left-0 flex-col md:flex-row h-screen md:h-auto w-full md:w-auto gap-6 text-primary font-medium bg-bg md:bg-transparent p-6 md:p-0 items-center justify-start md:justify-center pt-10 md:pt-0 z-50"
+    >
+      {
+        items.map((item) => (
+          <a
+            href="/"
+            data-section={item.section}
+            class="nav-item hover:text-accent-hover text-lg md:text-base transition-colors duration-300"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      id="mobile-menu-button"
+      class="md:hidden cursor-pointer"
+      aria-label="Menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-primary md:hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  document.addEventListener("astro:page-load", () => {
+    const button = document.getElementById("mobile-menu-button");
+    const menu = document.querySelector(".menu");
+    const header = document.querySelector("header");
+    const icon = button?.querySelector("svg");
+    const navItems = document.querySelectorAll(".nav-item");
+    const logo = document.getElementById("logo");
+
+    // Sections to observe for active state
+    const sectionIds = ["hero", "sobre-mi", "experiencia", "proyectos", "studies", "contacto"];
+    let currentSection = "hero";
+
+    function closeMenu() {
+      if (menu) {
+        menu.classList.add("hidden");
+        menu.classList.remove("flex");
+      }
+
+      if (icon) {
+        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+      }
+
+      if (header) {
+        header.classList.remove("bg-bg/90");
+      }
+    }
+
+    // Function to update the navbar active state
+    function updateActiveNav(sectionId: string) {
+      currentSection = sectionId;
+      navItems.forEach((item) => {
+        const itemSection = item.getAttribute("data-section");
+        if (itemSection === sectionId) {
+          item.classList.add("text-accent", "font-semibold");
+        } else {
+          item.classList.remove("text-accent", "font-semibold");
+        }
+      });
+    }
+
+    // Smooth scroll to section without changing the URL
+    function scrollToSection(sectionId: string) {
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        updateActiveNav(sectionId);
+      }
+    }
+
+    // Handle clicks on navigation items
+    navItems.forEach((item) => {
+      item.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const sectionId = item.getAttribute("data-section");
+        
+        // Si estamos en la página principal, solo hacer scroll
+        if (window.location.pathname === "/" || window.location.pathname === "") {
+          if (sectionId) {
+            scrollToSection(sectionId);
+            closeMenu();
+          }
+        } else {
+          // Si estamos en otra página, navegar a la principal con View Transitions
+          if (sectionId) {
+            sessionStorage.setItem("scrollToSection", sectionId);
+            await navigate("/");
+          }
+        }
+      });
+    });
+
+    // Handle click on the logo
+    logo?.addEventListener("click", async (e) => {
+      e.preventDefault();
+      
+      if (window.location.pathname === "/" || window.location.pathname === "") {
+        scrollToSection("hero");
+        closeMenu();
+      } else {
+        sessionStorage.setItem("scrollToSection", "hero");
+        await navigate("/");
+      }
+    });
+
+    // Intersection Observer to detect visible section and update active state
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          updateActiveNav(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) {
+        sectionObserver.observe(section);
+      }
+    });
+
+    // Handle mobile menu
+    button?.addEventListener("click", () => {
+      if (menu) {
+        menu.classList.toggle("hidden");
+        menu.classList.toggle("flex");
+      }
+
+      if (icon) {
+        const isMenuOpen = !menu?.classList.contains("hidden");
+        icon.innerHTML = isMenuOpen
+          ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>`
+          : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`;
+      }
+
+      if (header) {
+        if (!menu?.classList.contains("hidden")) {
+          header.classList.add("bg-bg/90");
+        } else {
+          header.classList.remove("bg-bg/90");
+        }
+      }
+    });
+
+    // Clean up observer when the page changes (View Transitions)
+    document.addEventListener("astro:before-swap", () => {
+      sectionObserver.disconnect();
+    });
+  });
+</script>
