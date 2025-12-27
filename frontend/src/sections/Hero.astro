@@ -39,13 +39,11 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
       Full-Stack Developer
     </h2>
     <p
-      class="text-primary leading-relaxed mt-2 mb-8 text-[clamp(1rem,1.2vw,1.25rem)] w-full sm:w-4/5 lg:w-1/2 max-w-[65ch]"
+      class="prose prose-invert mt-2 mb-8 text-[clamp(1rem,1.2vw,1.25rem)] w-full sm:w-4/5 lg:w-1/2 max-w-[65ch]"
     >
-      Desarrollador web especializado en aplicaciones web y móviles, enfocado en
-      diseñar experiencias de usuario intuitivas, rendimiento eficiente y
-      soluciones escalables. Combino diseño centrado en el usuario y buenas
-      prácticas de ingeniería para convertir ideas en productos digitales
-      atractivos y robustos.
+      Desarrollo aplicaciones web escalables con React y Node.js, experiencia en
+      Cloud (AWS/Azure) e IA aplicada al desarrollo para mejorar calidad y
+      productividad.
     </p>
     <div class="flex flex-col sm:flex-row sm:items-center gap-4">
       <a
@@ -66,10 +64,10 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
 </section>
 
 <script>
-  document.querySelectorAll('a[data-section]').forEach((anchor) => {
-    anchor.addEventListener('click', (event) => {
+  document.querySelectorAll("a[data-section]").forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
       event.preventDefault();
-      const sectionId = anchor.getAttribute('data-section');
+      const sectionId = anchor.getAttribute("data-section");
       if (!sectionId) return;
 
       scrollToSection(sectionId);

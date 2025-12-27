@@ -15,7 +15,7 @@ const experience = defineCollection({
     title: z.string(),
     company: z.string(),
     start_date: z.number(),
-    end_date: z.number().optional(),
+    end_date: z.union([z.string(), z.number()]).optional(),
     technologies: z.string(),
     description: z.string(),
   }),
@@ -29,6 +29,8 @@ const projects = defineCollection({
     project_url: z.string().url().optional(),
     description: z.string(),
     images: z.array(z.string()).optional(),
+    challenges: z.string().optional(),
+    result: z.string().optional(),
   }),
 });
 
@@ -37,7 +39,7 @@ const studies = defineCollection({
     tittle: z.string(),
     university: z.string(),
     year_start: z.number(),
-    year_end: z.number().optional(),
+    year_end: z.union([z.string(), z.number()]).optional(),
     finish: z.boolean(),
   }),
 });

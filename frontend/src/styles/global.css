@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@source "../**/*.{astro,html,js,ts,jsx,tsx,md,mdx}";
 
 /* ================================
   VARIABLES: PALETA DE COLORES

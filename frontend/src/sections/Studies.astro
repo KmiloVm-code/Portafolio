@@ -13,12 +13,12 @@ const certifiedItems = await getCollection("certifications");
 
 <section id="studies" class="py-16 md:py-32 bg-bg-alt relative overflow-hidden">
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10">
-    <div class="flex flex-col items-center mb-10 md:mb-20 text-center">
-      <h1 class="text-4xl font-bold mb-4 text-center">
+    <div class="mx-auto prose prose-invert mb-10 md:mb-20 text-center">
+      <h1 class="text-4xl font-bold">
         Formación Académica y Cursos
       </h1>
       <p
-        class="text-lg text-center max-w-2xl mx-auto prose text-secondary text-pretty"
+        class="text-lg"
       >
         Un vistazo a mi trayectoria educativa y los cursos que he completado
         para fortalecer mis habilidades.
@@ -112,7 +112,7 @@ const certifiedItems = await getCollection("certifications");
         >
           <ul class="space-y-8 relative">
             {
-              studiesItems.map((item) => (
+              studiesItems.sort((a, b) => b.data.year_start - a.data.year_start).map((item) => (
                 <li class="flex flex-col sm:flex-row sm:items-center border border-border rounded-xl p-8 bg-card/30 backdrop-blur-sm justify-between gap-4 pl-10 relative group/studyItem hover:border-accent-hover select-none transition-all duration-300">
                   <div class="flex items-start gap-4">
                     <span class="p-3 bg-accent/10 rounded-xl shrink-0 mt-1 group-hover/studyItem:bg-accent-hover/30 transition-all duration-300">
@@ -155,7 +155,7 @@ const certifiedItems = await getCollection("certifications");
         >
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
-              certifiedItems.map((item) => (
+              certifiedItems.sort((a, b) => b.data.date_issued - a.data.date_issued).map((item) => (
                 <li class="flex border border-b border-border rounded-xl p-6 bg-card/30 hover:bg-card/60 hover:border-accent-hover/80 transition-all duration-300 backdrop-blur-sm group/certItem select-none">
                   <div class="flex items-center justify-center w-20 h-20 p-1 border border-border shrink-0 rounded-xl group-hover/certItem:border-accent-hover/80 transition-all duration-300">
                     <img
@@ -196,7 +196,7 @@ const certifiedItems = await getCollection("certifications");
         >
           <ul class="space-y-6">
             {
-              coursesItems.map((item) => (
+              coursesItems.sort((a, b) => b.data.year - a.data.year).map((item) => (
                 <li class="border border-border rounded-xl p-6 bg-linear-to-r from-card/60 to-transparent hover:from-card hover:border-accent-hover/80 transition-all duration-300 backdrop-blur-sm group/courseItem select-none">
                   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div class="flex items-center gap-4">

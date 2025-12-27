@@ -6,11 +6,11 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
 
 <section id="proyectos" class="py-16 md:py-32 bg-bg relative overflow-hidden">
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10">
-    <div class="flex flex-col items-center mb-10 md:mb-20 text-center">
+    <div class="mx-auto prose prose-invert mb-10 md:mb-20 text-center">
       <!-- Section Header -->
-      <h1 class="text-4xl font-bold mb-4 text-center">Proyectos Destacados</h1>
+      <h1 class="text-4xl font-bold">Proyectos Destacados</h1>
       <p
-        class="text-lg text-center max-w-2xl mx-auto prose text-secondary text-pretty"
+        class="text-lg"
       >
         Una selección de proyectos que demuestran mis habilidades y experiencia
         en desarrollo web.
@@ -35,15 +35,15 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
                   class="w-full h-48 object-cover object-top transform group-hover:scale-105 transition-transform duration-300"
                   transition:name={`image-${slug}`}
                 />
-                <div class="p-6 flex flex-col grow">
+                <div class="p-6 flex flex-col grow prose prose-invert">
                   <h2
                     transition:name={`title-${slug}`}
-                    class="text-xl font-bold mb-2 group-hover:text-accent-hover transition-colors duration-300"
+                    class="text-xl font-bold group-hover:text-accent-hover transition-colors duration-300"
                   >
                     {title}
                   </h2>
                   <p
-                    class="text-sm text-secondary paragraph mb-4"
+                    class="text-sm"
                     transition:name={`description-${slug}`}
                   >
                     {description}
