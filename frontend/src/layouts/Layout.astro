@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import Analytics from '@vercel/analytics/astro';
 import "../styles/global.css";
 
 interface Props {
@@ -22,6 +23,7 @@ const { title = "Portafolio de Camilo" } = Astro.props;
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
     <ClientRouter />
+    <Analytics />
   </head>
   <body>
     <main id="main-content">
