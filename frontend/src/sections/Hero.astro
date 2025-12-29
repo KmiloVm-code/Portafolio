@@ -1,6 +1,10 @@
 ---
 import Console from "../components/Console.astro";
 import ArrowRight from "@/assets/svg/arrow-right.astro";
+import BrainCircuit from "@/assets/svg/brain-circuit.astro";
+import Database from "@/assets/svg/database.astro";
+import Terminal from "@/assets/svg/terminal.astro";
+import CodeXml from "@/assets/svg/code-xml.astro";
 ---
 
 <section
@@ -45,7 +49,7 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
       Cloud (AWS/Azure) e IA aplicada al desarrollo para mejorar calidad y
       productividad.
     </p>
-    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-16">
       <a
         href="/"
         data-section="proyectos"
@@ -56,6 +60,60 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
           class="stroke-2 text-icon-secondary group-hover:text-icon-tertiary group-hover:translate-x-1 transition-all duration-300"
         />
       </a>
+      <a
+        href="/"
+        data-section="contacto"
+        class="btn-primary w-full sm:w-auto text-center bg-accent hover:bg-accent-hover text-bg px-6 py-3 font-semibold transition-all duration-300"
+        >Contáctame
+      </a>
+    </div>
+
+    {/* Skills Icons */}
+    <div class="flex items-center gap-6 mx-auto justify-center sm:justify-start">
+      <div class="flex flex-col items-center gap-2 group select-none">
+        <CodeXml
+          size="24"
+          class="text-icon group-hover:text-icon-secondary transition-all duration-300"
+        />
+        <span
+          class="text-xs text-secondary group-hover:text-accent transition-all duration-300"
+        >
+          Frontend
+        </span>
+      </div>
+      <div class="w-px h-6 md:h-8 bg-slate-800"></div>
+      <div class="flex flex-col items-center gap-2 group select-none">
+        <Database
+          size="24"
+          class="text-icon group-hover:text-icon-secondary transition-all duration-300"
+        />
+        <span
+          class="text-xs text-secondary group-hover:text-accent transition-all duration-300"
+          >Backend
+        </span>
+      </div>
+      <div class="w-px h-6 md:h-8 bg-slate-800"></div>
+      <div class="flex flex-col items-center gap-2 group select-none">
+        <Terminal
+          size="24"
+          class="text-icon group-hover:text-icon-secondary transition-all duration-300"
+        />
+        <span
+          class="text-xs text-secondary group-hover:text-accent transition-all duration-300"
+          >Devops
+        </span>
+      </div>
+      <div class="w-px h-6 md:h-8 bg-slate-800"></div>
+      <div class="flex flex-col items-center gap-2 group select-none">
+        <BrainCircuit
+          size="24"
+          class="text-icon group-hover:text-icon-secondary transition-all duration-300"
+        />
+        <span
+          class="text-xs text-secondary group-hover:text-accent transition-all duration-300"
+          >AI Developer
+        </span>
+      </div>
     </div>
 
     {/* Code Overlay Layer (Decorative) */}
