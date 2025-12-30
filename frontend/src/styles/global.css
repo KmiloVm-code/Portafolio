@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @source "../**/*.{astro,html,js,ts,jsx,tsx,md,mdx}";
+@plugin '@midudev/tailwind-animations';
 
 /* ================================
   VARIABLES: PALETA DE COLORES
