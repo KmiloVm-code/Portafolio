@@ -12,14 +12,13 @@ const certifiedItems = await getCollection("certifications");
 ---
 
 <section id="studies" class="py-16 md:py-32 bg-bg-alt relative overflow-hidden">
-  <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10">
-    <div class="mx-auto prose prose-invert mb-10 md:mb-20 text-center">
-      <h1 class="text-4xl font-bold">
-        Formación Académica y Cursos
-      </h1>
-      <p
-        class="text-lg"
-      >
+  <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10 select-none">
+    <div
+      class="mx-auto prose prose-invert mb-10 md:mb-20 text-center font-bold opacity-0 motion-reduce:opacity-100"
+      data-animate="animate-fade-in-up"
+    >
+      <h1 class="text-4xl font-bold">Formación Académica y Cursos</h1>
+      <p class="text-lg">
         Un vistazo a mi trayectoria educativa y los cursos que he completado
         para fortalecer mis habilidades.
       </p>
@@ -112,36 +111,38 @@ const certifiedItems = await getCollection("certifications");
         >
           <ul class="space-y-8 relative">
             {
-              studiesItems.sort((a, b) => b.data.year_start - a.data.year_start).map((item) => (
-                <li class="flex flex-col sm:flex-row sm:items-center border border-border rounded-xl p-8 bg-card/30 backdrop-blur-sm justify-between gap-4 pl-10 relative group/studyItem hover:border-accent-hover select-none transition-all duration-300">
-                  <div class="flex items-start gap-4">
-                    <span class="p-3 bg-accent/10 rounded-xl shrink-0 mt-1 group-hover/studyItem:bg-accent-hover/30 transition-all duration-300">
-                      <GraduationCap
-                        size="24"
-                        class="text-accent group-hover/studyItem:text-accent-hover/80 transition-all duration-300"
-                      />
-                    </span>
-                    <div>
-                      <h3 class="text-xl font-bold mb-1 group-hover/studyItem:text-accent-hover transition-colors duration-300">
-                        {item.data.tittle}
-                      </h3>
-                      <p class="font-medium text-secondary">
-                        {item.data.university}
-                      </p>
+              studiesItems
+                .sort((a, b) => b.data.year_start - a.data.year_start)
+                .map((item) => (
+                  <li class="flex flex-col sm:flex-row sm:items-center border border-border rounded-xl p-8 bg-card/30 backdrop-blur-sm justify-between gap-4 pl-10 relative group/studyItem hover:border-accent-hover transition-hover duration-300 animate-fade-in">
+                    <div class="flex items-start gap-4">
+                      <span class="p-3 bg-accent/10 rounded-xl shrink-0 mt-1 group-hover/studyItem:bg-accent-hover/30 transition-all duration-300">
+                        <GraduationCap
+                          size="24"
+                          class="text-accent group-hover/studyItem:text-accent-hover/80 transition-all duration-300"
+                        />
+                      </span>
+                      <div>
+                        <h3 class="text-xl font-bold mb-1 group-hover/studyItem:text-accent-hover transition-colors duration-300">
+                          {item.data.tittle}
+                        </h3>
+                        <p class="font-medium text-secondary">
+                          {item.data.university}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="flex flex-col sm:items-end gap-2 pl-16 sm:pl-0">
-                    <p class="text-xs sm:text-sm font-mono font-bold text-accent tracking-widest">
-                      {item.data.year_start} -{" "}
-                      {item.data.year_end ? item.data.year_end : "Presente"}
-                    </p>
-                    <small class="inline-flex w-fit items-center text-xs font-bold border rounded-full px-2 py-0.5 bg-border-alt/10 text-green-500 border-border-alt/20 tracking-wider">
-                      <CircleCheck size="12" class="inline-block mr-1" />
-                      {item.data.finish ? "Graduado" : "En curso"}
-                    </small>
-                  </div>
-                </li>
-              ))
+                    <div class="flex flex-col sm:items-end gap-2 pl-16 sm:pl-0">
+                      <p class="text-xs sm:text-sm font-mono font-bold text-accent tracking-widest">
+                        {item.data.year_start} -{" "}
+                        {item.data.year_end ? item.data.year_end : "Presente"}
+                      </p>
+                      <small class="inline-flex w-fit items-center text-xs font-bold border rounded-full px-2 py-0.5 bg-border-alt/10 text-green-500 border-border-alt/20 tracking-wider">
+                        <CircleCheck size="12" class="inline-block mr-1" />
+                        {item.data.finish ? "Graduado" : "En curso"}
+                      </small>
+                    </div>
+                  </li>
+                ))
             }
           </ul>
         </div>
@@ -155,35 +156,37 @@ const certifiedItems = await getCollection("certifications");
         >
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
-              certifiedItems.sort((a, b) => b.data.date_issued - a.data.date_issued).map((item) => (
-                <li class="flex border border-b border-border rounded-xl p-6 bg-card/30 hover:bg-card/60 hover:border-accent-hover/80 transition-all duration-300 backdrop-blur-sm group/certItem select-none">
-                  <div class="flex items-center justify-center w-20 h-20 p-1 border border-border shrink-0 rounded-xl group-hover/certItem:border-accent-hover/80 transition-all duration-300">
-                    <img
-                      src={item.data.badge_url}
-                      alt={`${item.data.title} badge`}
-                      class="w-full h-full object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="grow ml-6 flex flex-col justify-center">
-                    <h4 class="text-primary font-bold leading-tight mb-1 group-hover/certItem:text-accent-hover transition-colors duration-300">
-                      {item.data.title}
-                    </h4>
-                    <span class="text-xs font-medium uppercase text-secondary mb-3">
-                      {item.data.company}
-                    </span>
-                    <a
-                      href={item.data.certificate_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:text-accent-hover/80 transition-colors duration-300"
-                    >
-                      Ver certificado
-                      <ExternalLink size="12" />
-                    </a>
-                  </div>
-                </li>
-              ))
+              certifiedItems
+                .sort((a, b) => b.data.date_issued - a.data.date_issued)
+                .map((item) => (
+                  <li class="flex border border-b border-border rounded-xl p-6 bg-card/30 hover:bg-card/60 hover:border-accent-hover/80 transition-hover duration-300 backdrop-blur-sm group/certItem animate-fade-in">
+                    <div class="flex items-center justify-center w-20 h-20 p-1 border border-border shrink-0 rounded-xl group-hover/certItem:border-accent-hover/80 transition-all duration-300">
+                      <img
+                        src={item.data.badge_url}
+                        alt={`${item.data.title} badge`}
+                        class="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="grow ml-6 flex flex-col justify-center">
+                      <h4 class="text-primary font-bold leading-tight mb-1 group-hover/certItem:text-accent-hover transition-colors duration-300">
+                        {item.data.title}
+                      </h4>
+                      <span class="text-xs font-medium uppercase text-secondary mb-3">
+                        {item.data.company}
+                      </span>
+                      <a
+                        href={item.data.certificate_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:text-accent-hover/80 transition-colors duration-300"
+                      >
+                        Ver certificado
+                        <ExternalLink size="12" />
+                      </a>
+                    </div>
+                  </li>
+                ))
             }
           </ul>
         </div>
@@ -197,45 +200,47 @@ const certifiedItems = await getCollection("certifications");
         >
           <ul class="space-y-6">
             {
-              coursesItems.sort((a, b) => b.data.year - a.data.year).map((item) => (
-                <li class="border border-border rounded-xl p-6 bg-linear-to-r from-card/60 to-transparent hover:from-card hover:border-accent-hover/80 transition-all duration-300 backdrop-blur-sm group/courseItem select-none">
-                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                      <BookText
-                        size="48"
-                        class="text-accent shrink-0 group-hover/courseItem:text-accent-hover/80 bg-accent/10 p-3 rounded-full group-hover/courseItem:bg-accent-hover/30 transition-all duration-300"
-                      />
-                      <div>
-                        <h4 class="font-bold text-primary group-hover/courseItem:text-accent-hover transition-colors duration-300">
-                          {item.data.title}
-                        </h4>
-                        <span class="text-xs font-semibold text-secondary">
-                          {item.data.university}
-                        </span>
+              coursesItems
+                .sort((a, b) => b.data.year - a.data.year)
+                .map((item) => (
+                  <li class="border border-border rounded-xl p-6 bg-linear-to-r from-card/60 to-transparent hover:from-card hover:border-accent-hover/80 transition-hover duration-300 backdrop-blur-sm group/courseItem animate-fade-in">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div class="flex items-center gap-4">
+                        <BookText
+                          size="48"
+                          class="text-accent shrink-0 group-hover/courseItem:text-accent-hover/80 bg-accent/10 p-3 rounded-full group-hover/courseItem:bg-accent-hover/30 transition-all duration-300"
+                        />
+                        <div>
+                          <h4 class="font-bold text-primary group-hover/courseItem:text-accent-hover transition-colors duration-300">
+                            {item.data.title}
+                          </h4>
+                          <span class="text-xs font-semibold text-secondary">
+                            {item.data.university}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="flex items-center pl-16 sm:pl-0 gap-6">
+                        <div class="flex flex-col items-end">
+                          <span class="text-xs font-bold tracking-tighter uppercase text-secondary">
+                            Duración
+                          </span>
+                          <span class="text-xs text-secondary">
+                            {item.data.hours ? `${item.data.hours} horas` : ""}
+                          </span>
+                        </div>
+                        <div class="h-8 w-px bg-slate-800 hidden sm:block" />
+                        <div class="flex flex-col items-end">
+                          <span class="text-xs font-bold tracking-tighter uppercase text-secondary">
+                            Año
+                          </span>
+                          <span class="text-xs text-secondary">
+                            {item.data.year}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <div class="flex items-center pl-16 sm:pl-0 gap-6">
-                      <div class="flex flex-col items-end">
-                        <span class="text-xs font-bold tracking-tighter uppercase text-secondary">
-                          Duración
-                        </span>
-                        <span class="text-xs text-secondary">
-                          {item.data.hours ? `${item.data.hours} horas` : ""}
-                        </span>
-                      </div>
-                      <div class="h-8 w-px bg-slate-800 hidden sm:block" />
-                      <div class="flex flex-col items-end">
-                        <span class="text-xs font-bold tracking-tighter uppercase text-secondary">
-                          Año
-                        </span>
-                        <span class="text-xs text-secondary">
-                          {item.data.year}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              ))
+                  </li>
+                ))
             }
           </ul>
         </div>
@@ -243,3 +248,10 @@ const certifiedItems = await getCollection("certifications");
     </div>
   </div>
 </section>
+
+<script>
+  import { initAnimateOnScroll } from "@/utils/animateOnScroll";
+  initAnimateOnScroll({
+    scopeSelector: "#studies",
+  });
+</script>
