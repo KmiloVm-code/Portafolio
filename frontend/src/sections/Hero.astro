@@ -122,16 +122,9 @@ import CodeXml from "@/assets/svg/code-xml.astro";
 </section>
 
 <script>
-  document.querySelectorAll("a[data-section]").forEach((anchor) => {
-    anchor.addEventListener("click", (event) => {
-      event.preventDefault();
-      const sectionId = anchor.getAttribute("data-section");
-      if (!sectionId) return;
+  import { navigate } from "astro:transitions/client";
 
-      scrollToSection(sectionId);
-    });
-  });
-  // Smooth scroll to section without changing the URL
+  // Función para manejar el scroll suave a una sección
   function scrollToSection(sectionId: string) {
     const targetElement = document.getElementById(sectionId);
     if (targetElement) {
@@ -141,4 +134,36 @@ import CodeXml from "@/assets/svg/code-xml.astro";
       });
     }
   }
+
+  // Función para configurar los event listeners
+  function setupHeroLinks() {
+    document.querySelectorAll("a[data-section]").forEach((anchor) => {
+      anchor.addEventListener("click", async (event) => {
+        event.preventDefault();
+        const sectionId = anchor.getAttribute("data-section");
+        if (!sectionId) return;
+
+        // Si estamos en la página principal, solo hacer scroll
+        if (window.location.pathname === "/" || window.location.pathname === "") {
+          scrollToSection(sectionId);
+        } else {
+          // Si estamos en otra página, navegar a la principal con View Transitions
+          sessionStorage.setItem("scrollToSection", sectionId);
+          await navigate("/");
+        }
+      });
+    });
+  }
+
+  // Ejecutar en la carga inicial y después de cada navegación
+  document.addEventListener("astro:page-load", () => {
+    setupHeroLinks();
+
+    // Si hay una sección guardada en sessionStorage, hacer scroll a ella
+    const sectionToScroll = sessionStorage.getItem("scrollToSection");
+    if (sectionToScroll) {
+      sessionStorage.removeItem("scrollToSection");
+      setTimeout(() => scrollToSection(sectionToScroll), 100);
+    }
+  });
 </script>
