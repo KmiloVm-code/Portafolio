@@ -33,23 +33,23 @@ import CodeXml from "@/assets/svg/code-xml.astro";
   <!-- Content -->
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10">
     <h1
-      class="font-bold text-tertiary tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4.5rem)]"
+      class="font-bold text-tertiary tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4.5rem)] animate-fade-in-up"
     >
       Andrés Camilo
     </h1>
     <h2
-      class="font-light text-secondary leading-snug mb-4 text-[clamp(1.5rem,3.6vw,3rem)]"
+      class="font-light text-secondary leading-snug mb-4 text-[clamp(1.5rem,3.6vw,3rem)] animate-fade-in-up animate-delay-100"
     >
       Full-Stack Developer
     </h2>
     <p
-      class="prose prose-invert mt-2 mb-8 text-[clamp(1rem,1.2vw,1.25rem)] w-full sm:w-4/5 lg:w-1/2 max-w-[65ch]"
+      class="prose prose-invert mt-2 mb-8 text-[clamp(1rem,1.2vw,1.25rem)] w-full sm:w-4/5 lg:w-1/2 max-w-[65ch] animate-fade-in-up animate-delay-200"
     >
       Desarrollo aplicaciones web escalables con React y Node.js, experiencia en
       Cloud (AWS/Azure) e IA aplicada al desarrollo para mejorar calidad y
       productividad.
     </p>
-    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-16">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-16 animate-fade-in-up animate-delay-300">
       <a
         href="/"
         data-section="proyectos"
@@ -69,7 +69,7 @@ import CodeXml from "@/assets/svg/code-xml.astro";
     </div>
 
     {/* Skills Icons */}
-    <div class="flex items-center gap-6 mx-auto justify-center sm:justify-start">
+    <div class="flex items-center gap-6 mx-auto justify-center sm:justify-start animate-fade-in-up animate-delay-400">
       <div class="flex flex-col items-center gap-2 group select-none">
         <CodeXml
           size="24"
@@ -122,16 +122,9 @@ import CodeXml from "@/assets/svg/code-xml.astro";
 </section>
 
 <script>
-  document.querySelectorAll("a[data-section]").forEach((anchor) => {
-    anchor.addEventListener("click", (event) => {
-      event.preventDefault();
-      const sectionId = anchor.getAttribute("data-section");
-      if (!sectionId) return;
+  import { navigate } from "astro:transitions/client";
 
-      scrollToSection(sectionId);
-    });
-  });
-  // Smooth scroll to section without changing the URL
+  // Función para manejar el scroll suave a una sección
   function scrollToSection(sectionId: string) {
     const targetElement = document.getElementById(sectionId);
     if (targetElement) {
@@ -141,4 +134,36 @@ import CodeXml from "@/assets/svg/code-xml.astro";
       });
     }
   }
+
+  // Función para configurar los event listeners
+  function setupHeroLinks() {
+    document.querySelectorAll("a[data-section]").forEach((anchor) => {
+      anchor.addEventListener("click", async (event) => {
+        event.preventDefault();
+        const sectionId = anchor.getAttribute("data-section");
+        if (!sectionId) return;
+
+        // Si estamos en la página principal, solo hacer scroll
+        if (window.location.pathname === "/" || window.location.pathname === "") {
+          scrollToSection(sectionId);
+        } else {
+          // Si estamos en otra página, navegar a la principal con View Transitions
+          sessionStorage.setItem("scrollToSection", sectionId);
+          await navigate("/");
+        }
+      });
+    });
+  }
+
+  // Ejecutar en la carga inicial y después de cada navegación
+  document.addEventListener("astro:page-load", () => {
+    setupHeroLinks();
+
+    // Si hay una sección guardada en sessionStorage, hacer scroll a ella
+    const sectionToScroll = sessionStorage.getItem("scrollToSection");
+    if (sectionToScroll) {
+      sessionStorage.removeItem("scrollToSection");
+      setTimeout(() => scrollToSection(sectionToScroll), 100);
+    }
+  });
 </script>
