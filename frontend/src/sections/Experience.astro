@@ -7,14 +7,13 @@ const experienceItems = await getCollection("experience");
 
 <section
   id="experiencia"
-  class="py-16 md:py-32 bg-bg-alt relative overflow-hidden"
+  class="py-16 md:py-32 bg-bg-alt relative"
 >
   <div
-    class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10 select-none"
+    class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 select-none"
   >
     <div
-      class="mx-auto prose prose-invert mb-10 md:mb-20 text-center opacity-0 motion-reduce:opacity-100"
-      data-animate="animate-fade-in-up"
+      class="mx-auto prose prose-invert mb-10 md:mb-20 text-center opacity-0 motion-reduce:opacity-100 animate-fill-mode-both scroll-view scroll-trigger scroll-fallback-visible animate-fade-in-up"
     >
       <!-- Section Header -->
       <h1 class="text-4xl font-bold">Trayectoria Profesional</h1>
@@ -35,8 +34,7 @@ const experienceItems = await getCollection("experience");
         experienceItems
           .sort((a, b) => b.data.start_date - a.data.start_date)
           .map((item) => (
-            <div class="relative grid grid-cols-[40px_1fr] md:grid-cols-[140px_72px_1fr] items-start group font-bold opacity-0 motion-reduce:opacity-100"
-            data-animate="animate-fade-in-up">
+            <div class="relative grid grid-cols-[40px_1fr] md:grid-cols-[140px_72px_1fr] items-start group font-bold opacity-0 motion-reduce:opacity-100 animate-fill-mode-both scroll-view scroll-trigger scroll-fallback-visible animate-fade-in-up">
               {/* Timeline Date Desktop */}
               <div class="hidden md:flex justify-end pt-2.5 pr-8">
                 <span class="font-bold text-accent font-mono tracking-tighter text-right">
@@ -89,10 +87,3 @@ const experienceItems = await getCollection("experience");
     </div>
   </div>
 </section>
-
-<script>
-  import { initAnimateOnScroll } from "@/utils/animateOnScroll.js";
-  initAnimateOnScroll({
-    scopeSelector: "#experiencia",
-  });
-</script>
