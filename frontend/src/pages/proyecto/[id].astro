@@ -196,16 +196,12 @@ export const prerender = true;
   </section>
 
   <script>
-    import { navigate } from "astro:transitions/client";
-
     document.addEventListener("astro:page-load", () => {
       const backBtn = document.getElementById("back-button");
 
       if (backBtn) {
-        backBtn.addEventListener("click", async () => {
-          // Always navigate to the home page with View Transitions and scroll to projects
-          sessionStorage.setItem("scrollToSection", "proyectos");
-          await navigate("/");
+        backBtn.addEventListener("click", () => {
+          history.back();
         });
       }
     });

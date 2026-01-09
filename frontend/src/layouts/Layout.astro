@@ -134,17 +134,26 @@ const jsonLd = {
       // Handle scroll after View Transitions
       document.addEventListener("astro:after-swap", () => {
         const pendingSection = sessionStorage.getItem("scrollToSection");
+        
+        // If there's a pending section in sessionStorage, it means this is programmatic navigation
+        // (from header or hero navigation to a specific section)
         if (pendingSection) {
           sessionStorage.removeItem("scrollToSection");
-          const targetElement = document.getElementById(pendingSection);
-          if (targetElement) {
-            // Scroll instantáneo para no interferir con la View Transition
-            targetElement.scrollIntoView({
-              behavior: "instant",
-              block: "start",
-            });
-          }
+          
+          // Small delay to ensure the DOM is ready
+          requestAnimationFrame(() => {
+            const targetElement = document.getElementById(pendingSection);
+            if (targetElement) {
+              // Instant scroll to avoid interfering with the View Transition
+              targetElement.scrollIntoView({
+                behavior: "instant",
+                block: "start",
+              });
+            }
+          });
         }
+        
+        // If there is NO pending section, the browser handles scroll restoration automatically
       });
     </script>
   </body>

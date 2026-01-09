@@ -126,8 +126,12 @@ const items = [
         } else {
           // Si estamos en otra página, navegar a la principal con View Transitions
           if (sectionId) {
+            // clear any previous pending section
+            sessionStorage.removeItem("scrollToSection");
+            // set the new pending section
             sessionStorage.setItem("scrollToSection", sectionId);
             await navigate("/");
+            closeMenu();
           }
         }
       });
@@ -141,8 +145,10 @@ const items = [
         scrollToSection("hero");
         closeMenu();
       } else {
+        sessionStorage.removeItem("scrollToSection");
         sessionStorage.setItem("scrollToSection", "hero");
         await navigate("/");
+        closeMenu();
       }
     });
 
