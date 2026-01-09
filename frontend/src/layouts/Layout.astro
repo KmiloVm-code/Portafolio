@@ -132,19 +132,32 @@ const jsonLd = {
 
     <script>
       // Handle scroll after View Transitions
-      document.addEventListener("astro:after-swap", () => {
+      document.addEventListener("astro:after-swap", (event) => {
+        const direction = document.documentElement.dataset.astroTransition;
         const pendingSection = sessionStorage.getItem("scrollToSection");
+        
+        // If there's a pending section in sessionStorage, it means this is programmatic navigation
+        // (from the Back button or header navigation)
         if (pendingSection) {
           sessionStorage.removeItem("scrollToSection");
-          const targetElement = document.getElementById(pendingSection);
-          if (targetElement) {
-            // Scroll instantáneo para no interferir con la View Transition
-            targetElement.scrollIntoView({
-              behavior: "instant",
-              block: "start",
-            });
-          }
+          
+          // Small delay to ensure the DOM is ready
+          requestAnimationFrame(() => {
+        const targetElement = document.getElementById(pendingSection);
+        if (targetElement) {
+          // Instant scroll to avoid interfering with the View Transition
+          targetElement.scrollIntoView({
+            behavior: "instant",
+            block: "start",
+          });
         }
+          });
+          return;
+        }
+        
+        // If there is NO pending section AND this is browser back/forward navigation,
+        // let the browser handle scroll restoration automatically
+        // (do nothing; the browser will restore the original position)
       });
     </script>
   </body>
