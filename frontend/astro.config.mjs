@@ -13,6 +13,9 @@ export default defineConfig({
       enabled: true,
     },
   }),
+  build: {
+    inlineStylesheets: 'always',
+  },
   vite: {
     plugins: [tailwindcss()],
   },
