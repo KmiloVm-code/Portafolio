@@ -94,26 +94,3 @@ textarea {
     background-color: var(--color-card);
   }
 }
-
-/* ================================
-  ANIMACIONES Y TRANSICIONES
-=================================== */
-@layer utilities {
-  @supports (animation-timeline: view()) {
-    .scroll-view {
-      animation-timeline: view();
-    }
-
-    .scroll-trigger {
-      animation-range: entry 15% cover 20%;
-    }
-  }
-
-  @supports not (animation-timeline: view()) {
-    .scroll-fallback-visible {
-      opacity: 1 !important;
-      transform: none !important;
-      animation: none !important;
-    }
-  }
-}
