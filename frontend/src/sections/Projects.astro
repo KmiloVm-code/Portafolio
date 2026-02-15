@@ -26,7 +26,6 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
           return (
             <article
               class="border border-border/30 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 hover:scale-[1.02] hover:border-accent-hover/50 transition-hover duration-300 bg-card/30 backdrop-blur-sm cursor-pointer group timeline-view animate-fade-in-left animate-range-entry"
-              transition:name={`project-${slug}`}
             >
               <a class="flex flex-col h-full" href={`/proyecto/${slug}`}>
                 <img
@@ -43,10 +42,7 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
                   >
                     {title}
                   </h2>
-                  <p
-                    class="text-sm"
-                    transition:name={`description-${slug}`}
-                  >
+                  <p class="text-sm line-clamp-4">
                     {description}
                   </p>
                   <div class="mt-auto text-sm text-transparent group-hover:text-accent-hover transition-colors duration-300 font-medium">
