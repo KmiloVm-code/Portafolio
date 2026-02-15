@@ -30,8 +30,10 @@ const techStack = [
   },
   { name: "HTML5/CSS", icon: "devicon-html5-plain", category: "frontend" },
   { name: "GraphQL", icon: "devicon-graphql-plain", category: "backend" },
+  { name: "MCP", icon: "/icons/mcp.svg", category: "tools" },
+  { name: "N8N", icon: "/icons/n8n.svg", category: "tools" },
+  { name: "Agents / LLMs", icon: "/icons/bot.svg", category: "tools" },
   { name: "GitHub", icon: "devicon-github-plain", category: "tools" },
-  { name: "Git", icon: "devicon-git-plain", category: "tools" },
 ];
 
 const categoryOrder = ["frontend", "backend", "database", "devops", "tools"];
@@ -132,9 +134,28 @@ const groupedTech = categories.reduce(
                 <div class="flex flex-col gap-4 md:gap-10 mt-4 justify-center">
                   {groupedTech[category].map((tech) => (
                     <div class="flex flex-col items-center space-y-2 group">
-                      <i
-                        class={`${tech.icon} text-5xl text-icon group-hover:text-accent-hover transition-colors duration-300`}
-                      />
+                        {
+                        tech.icon.startsWith("devicon-") ? (
+                          <i
+                          class={`${tech.icon} text-4xl text-icon group-hover:text-accent-hover transition-colors duration-300`}
+                          aria-hidden="true"
+                          />
+                        ) : tech.icon.endsWith(".svg") ? (
+                          <span
+                          class="w-9 h-9 bg-icon group-hover:bg-accent-hover transition-colors duration-300"
+                          style={`-webkit-mask: url('${tech.icon}') center / contain no-repeat; mask: url('${tech.icon}') center / contain no-repeat;`}
+                          aria-hidden="true"
+                          />
+                        ) : (
+                          <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          class="w-9 h-9 object-contain group-hover:scale-110 transition-transform duration-300"
+                          loading="lazy"
+                          decoding="async"
+                          />
+                        )
+                        }
                       <span class="text-sm text-center font-medium text-secondary select-none group-hover:text-primary transition-colors duration-300">
                         {tech.name}
                       </span>
