@@ -4,6 +4,7 @@ import BadgeCheck from "@/assets/svg/badge-check.astro";
 import GraduationCap from "@/assets/svg/graduation-cap.astro";
 import BookText from "@/assets/svg/book-text.astro";
 import CircleCheck from "@/assets/svg/circle-check.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
 import { getCollection } from "astro:content";
 
 const studiesItems = await getCollection("studies");
@@ -13,130 +14,70 @@ const certifiedItems = await getCollection("certifications");
 
 <section id="studies" class="py-16 md:py-32 bg-bg-alt relative">
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 select-none">
-    <div
-      class="mx-auto prose prose-invert mb-10 md:mb-20 text-center font-bold timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%]"
-    >
-      <h1 class="text-4xl font-bold">Formación Académica y Cursos</h1>
-      <p class="text-lg">
-        Un vistazo a mi trayectoria educativa y los cursos que he completado
-        para fortalecer mis habilidades.
-      </p>
-    </div>
+    <SectionHeader
+      badge="Learning"
+      title="Formación académica y cursos"
+      subtitle="Un vistazo a mi trayectoria educativa y actualización continua en tecnologías clave."
+    />
 
-    <!-- CSS-only tabs (sin #hash, sin JS) -->
     <div class="group/tabs">
-      <!-- TAB LIST -->
       <div
         role="tablist"
         aria-label="Formación"
-        class="flex p-1 bg-card/50 border border-border rounded-2xl backdrop-blur-md mb-12 flex-wrap justify-center gap-3 mx-auto w-fit"
+        class="studies-tabs p-1.5 border border-border rounded-2xl mb-12 mx-auto w-full max-w-2xl"
       >
-        <!-- STUDIES TAB -->
-        <div class="inline-flex">
-          <input
-            id="tab-studies"
-            type="radio"
-            name="formation-tabs"
-            class="sr-only"
-            checked
-          />
-          <label
-            for="tab-studies"
-            role="tab"
-            aria-controls="panel-studies"
-            class="inline-flex items-center justify-center rounded-xl w-12 h-12 text-xs font-bold text-secondary hover:bg-slate-800 transition-all duration-300 focus-visible:outline focus-visible:outline-accent group-has-[#tab-studies:checked]/tabs:text-slate-900 group-has-[#tab-studies:checked]/tabs:border-accent-hover/80 group-has-[#tab-studies:checked]/tabs:bg-accent cursor-pointer md:w-56 md:h-auto md:px-6 md:py-3 md:gap-2 md:text-sm md:justify-center md:whitespace-nowrap"
-          >
-            <GraduationCap
-              size="20"
-              class="text-accent group-has-[#tab-studies:checked]/tabs:text-slate-900 transition-all duration-300"
-            />
-            <span class="hidden md:inline">Estudios</span>
+        <div>
+          <input id="tab-studies" type="radio" name="formation-tabs" class="sr-only" checked />
+          <label for="tab-studies" role="tab" aria-controls="panel-studies" class="study-tab">
+            <GraduationCap size="18" class="transition-colors duration-300" />
+            <span class="tab-label-full">Estudios</span>
+            <span class="tab-label-short">Estudios</span>
           </label>
         </div>
 
-        <!-- CERTIFICATIONS TAB -->
-        <div class="inline-flex">
-          <input
-            id="tab-certifications"
-            type="radio"
-            name="formation-tabs"
-            class="sr-only"
-          />
-          <label
-            for="tab-certifications"
-            role="tab"
-            aria-controls="panel-certifications"
-            class="inline-flex items-center justify-center rounded-xl w-12 h-12 text-xs font-bold text-secondary hover:bg-slate-800 transition-all duration-300 focus-visible:outline focus-visible:outline-accent group-has-[#tab-certifications:checked]/tabs:text-slate-900 group-has-[#tab-certifications:checked]/tabs:border-accent-hover/80 group-has-[#tab-certifications:checked]/tabs:bg-accent cursor-pointer md:w-56 md:h-auto md:px-6 md:py-3 md:gap-2 md:text-sm md:justify-center md:whitespace-nowrap"
-          >
-            <BadgeCheck
-              size="20"
-              class="text-accent group-has-[#tab-certifications:checked]/tabs:text-slate-900 transition-all duration-300"
-            />
-            <span class="hidden md:inline">Certificaciones</span>
+        <div>
+          <input id="tab-certifications" type="radio" name="formation-tabs" class="sr-only" />
+          <label for="tab-certifications" role="tab" aria-controls="panel-certifications" class="study-tab">
+            <BadgeCheck size="18" class="transition-colors duration-300" />
+            <span class="tab-label-full">Certificaciones</span>
+            <span class="tab-label-short">Certifs</span>
           </label>
         </div>
 
-        <!-- COURSES TAB -->
-        <div class="inline-flex">
-          <input
-            id="tab-courses"
-            type="radio"
-            name="formation-tabs"
-            class="sr-only"
-          />
-          <label
-            for="tab-courses"
-            role="tab"
-            aria-controls="panel-courses"
-            class="inline-flex items-center justify-center rounded-xl w-12 h-12 text-xs font-bold text-secondary hover:bg-slate-800 transition-all duration-300 focus-visible:outline focus-visible:outline-accent group-has-[#tab-courses:checked]/tabs:text-slate-900 group-has-[#tab-courses:checked]/tabs:border-accent-hover/80 group-has-[#tab-courses:checked]/tabs:bg-accent cursor-pointer md:w-56 md:h-auto md:px-6 md:py-3 md:gap-2 md:text-sm md:justify-center md:whitespace-nowrap"
-          >
-            <BookText
-              size="20"
-              class="text-accent group-has-[#tab-courses:checked]/tabs:text-slate-900 transition-all duration-300"
-            />
-            <span class="hidden md:inline">Cursos & Bootcamps</span>
+        <div>
+          <input id="tab-courses" type="radio" name="formation-tabs" class="sr-only" />
+          <label for="tab-courses" role="tab" aria-controls="panel-courses" class="study-tab">
+            <BookText size="18" class="transition-colors duration-300" />
+            <span class="tab-label-full">Cursos</span>
+            <span class="tab-label-short">Cursos</span>
           </label>
         </div>
       </div>
 
-      <!-- PANELS -->
       <div class="tab-panels">
-        <!-- STUDIES PANEL -->
-        <div
-          id="panel-studies"
-          role="tabpanel"
-          aria-labelledby="tab-studies"
-          class="mt-10 w-full hidden group-has-[#tab-studies:checked]/tabs:block"
-        >
-          <ul class="space-y-8 relative">
+        <div id="panel-studies" role="tabpanel" aria-labelledby="tab-studies" class="tab-panel hidden group-has-[#tab-studies:checked]/tabs:block">
+          <ul class="space-y-6">
             {
               studiesItems
                 .sort((a, b) => b.data.year_start - a.data.year_start)
                 .map((item) => (
-                  <li class="flex flex-col sm:flex-row sm:items-center border border-border rounded-xl p-8 bg-card/30 backdrop-blur-sm justify-between gap-4 pl-10 relative group/studyItem hover:border-accent-hover transition-hover duration-300 animate-fade-in">
-                    <div class="flex items-start gap-4">
-                      <span class="p-3 bg-accent/10 rounded-xl shrink-0 mt-1 group-hover/studyItem:bg-accent-hover/30 transition-all duration-300">
-                        <GraduationCap
-                          size="24"
-                          class="text-accent group-hover/studyItem:text-accent-hover/80 transition-all duration-300"
-                        />
+                  <li class="study-card flex flex-col sm:flex-row sm:items-center rounded-2xl p-6 md:p-7 justify-between gap-4 group/studyItem">
+                    <div class="flex items-start gap-3 sm:gap-4 min-w-0">
+                      <span class="icon-wrap">
+                        <GraduationCap size="24" class="text-accent" />
                       </span>
-                      <div>
-                        <h3 class="text-xl font-bold mb-1 group-hover/studyItem:text-accent-hover transition-colors duration-300">
-                          {item.data.tittle}
-                        </h3>
-                        <p class="font-medium text-secondary">
-                          {item.data.university}
-                        </p>
+                      <div class="min-w-0">
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 break-words">{item.data.tittle}</h3>
+                        <p class="font-medium text-secondary break-words">{item.data.university}</p>
                       </div>
                     </div>
-                    <div class="flex flex-col sm:items-end gap-2 pl-16 sm:pl-0">
-                      <p class="text-xs sm:text-sm font-mono font-bold text-accent tracking-widest">
-                        {item.data.year_start} -{" "}
-                        {item.data.year_end ? item.data.year_end : "Presente"}
+
+                    <div class="flex flex-col sm:items-end gap-2 pl-0 sm:pl-0">
+                      <p class="text-xs sm:text-sm font-mono font-bold text-accent tracking-[0.08em] break-words">
+                        {item.data.year_start} - {item.data.year_end ? item.data.year_end : "Presente"}
                       </p>
-                      <small class="inline-flex w-fit items-center text-xs font-bold border rounded-full px-2 py-0.5 bg-border-alt/10 text-green-500 border-border-alt/20 tracking-wider">
-                        <CircleCheck size="12" class="inline-block mr-1" />
+                      <small class="inline-flex w-fit items-center gap-1.5 text-xs font-bold border rounded-full px-3 py-1 bg-border-alt/10 text-green-300 border-border-alt/35 tracking-[0.08em] uppercase">
+                        <CircleCheck size="12" class="verified-icon" />
                         {item.data.finish ? "Graduado" : "En curso"}
                       </small>
                     </div>
@@ -146,43 +87,30 @@ const certifiedItems = await getCollection("certifications");
           </ul>
         </div>
 
-        <!-- CERTIFICATIONS PANEL -->
-        <div
-          id="panel-certifications"
-          role="tabpanel"
-          aria-labelledby="tab-certifications"
-          class="mt-10 w-full hidden group-has-[#tab-certifications:checked]/tabs:block"
-        >
+        <div id="panel-certifications" role="tabpanel" aria-labelledby="tab-certifications" class="tab-panel hidden group-has-[#tab-certifications:checked]/tabs:block">
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
               certifiedItems
                 .sort((a, b) => b.data.date_issued - a.data.date_issued)
                 .map((item) => (
-                  <li class="flex border border-b border-border rounded-xl p-6 bg-card/30 hover:bg-card/60 hover:border-accent-hover/80 transition-hover duration-300 backdrop-blur-sm group/certItem animate-fade-in">
-                    <div class="flex items-center justify-center w-20 h-20 p-1 border border-border shrink-0 rounded-xl group-hover/certItem:border-accent-hover/80 transition-all duration-300">
-                      <img
-                        src={item.data.badge_url}
-                        alt={`${item.data.title} badge`}
-                        class="w-full h-full object-contain"
-                        loading="lazy"
-                      />
+                  <li class="study-card flex flex-col sm:flex-row rounded-2xl p-5 sm:p-6 gap-4 group/certItem">
+                    <div class="flex items-center justify-center w-20 h-20 p-2 border border-border shrink-0 rounded-xl bg-bg/50">
+                      <img src={item.data.badge_url} alt={`${item.data.title} badge`} class="w-full h-full object-contain" loading="lazy" />
                     </div>
-                    <div class="grow ml-6 flex flex-col justify-center">
-                      <h4 class="text-primary font-bold leading-tight mb-1 group-hover/certItem:text-accent-hover transition-colors duration-300">
-                        {item.data.title}
-                      </h4>
-                      <span class="text-xs font-medium uppercase text-secondary mb-3">
-                        {item.data.company}
-                      </span>
-                      <a
-                        href={item.data.certificate_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:text-accent-hover/80 transition-colors duration-300"
-                      >
-                        Ver certificado
-                        <ExternalLink size="12" />
-                      </a>
+                    <div class="grow sm:ml-5 flex flex-col justify-center min-w-0">
+                      <h4 class="text-primary font-bold leading-tight mb-1 break-words">{item.data.title}</h4>
+                      <span class="text-xs font-medium uppercase tracking-[0.12em] text-secondary mb-3">{item.data.company}</span>
+                      {item.data.certificate_url && (
+                        <a
+                          href={item.data.certificate_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:text-accent-hover transition-colors duration-300"
+                        >
+                          Ver certificado
+                          <ExternalLink size="12" />
+                        </a>
+                      )}
                     </div>
                   </li>
                 ))
@@ -190,51 +118,30 @@ const certifiedItems = await getCollection("certifications");
           </ul>
         </div>
 
-        <!-- COURSES PANEL -->
-        <div
-          id="panel-courses"
-          role="tabpanel"
-          aria-labelledby="tab-courses"
-          class="mt-10 w-full hidden group-has-[#tab-courses:checked]/tabs:block"
-        >
+        <div id="panel-courses" role="tabpanel" aria-labelledby="tab-courses" class="tab-panel hidden group-has-[#tab-courses:checked]/tabs:block">
           <ul class="space-y-6">
             {
               coursesItems
                 .sort((a, b) => b.data.year - a.data.year)
                 .map((item) => (
-                  <li class="border border-border rounded-xl p-6 bg-linear-to-r from-card/60 to-transparent hover:from-card hover:border-accent-hover/80 transition-hover duration-300 backdrop-blur-sm group/courseItem animate-fade-in">
+                  <li class="study-card rounded-2xl p-6 md:p-7 group/courseItem">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div class="flex items-center gap-4">
-                        <BookText
-                          size="48"
-                          class="text-accent shrink-0 group-hover/courseItem:text-accent-hover/80 bg-accent/10 p-3 rounded-full group-hover/courseItem:bg-accent-hover/30 transition-all duration-300"
-                        />
+                        <BookText size="44" class="text-accent shrink-0 bg-accent/12 p-2.5 rounded-full" />
                         <div>
-                          <h4 class="font-bold text-primary group-hover/courseItem:text-accent-hover transition-colors duration-300">
-                            {item.data.title}
-                          </h4>
-                          <span class="text-xs font-semibold text-secondary">
-                            {item.data.university}
-                          </span>
+                          <h4 class="font-bold text-primary">{item.data.title}</h4>
+                          <span class="text-xs font-semibold text-secondary">{item.data.university}</span>
                         </div>
                       </div>
-                      <div class="flex items-center pl-16 sm:pl-0 gap-6">
-                        <div class="flex flex-col items-end">
-                          <span class="text-xs font-bold tracking-tighter uppercase text-secondary">
-                            Duración
-                          </span>
-                          <span class="text-xs text-secondary">
-                            {item.data.hours ? `${item.data.hours} horas` : ""}
-                          </span>
+                      <div class="flex items-center gap-4 sm:gap-5 pl-0 sm:pl-0">
+                        <div class="flex flex-col items-start sm:items-end">
+                          <span class="text-[11px] font-bold uppercase tracking-[0.1em] text-secondary">Duración</span>
+                          <span class="text-xs text-secondary">{item.data.hours ? `${item.data.hours} horas` : "--"}</span>
                         </div>
-                        <div class="h-8 w-px bg-slate-800 hidden sm:block" />
-                        <div class="flex flex-col items-end">
-                          <span class="text-xs font-bold tracking-tighter uppercase text-secondary">
-                            Año
-                          </span>
-                          <span class="text-xs text-secondary">
-                            {item.data.year}
-                          </span>
+                        <div class="h-8 w-px bg-slate-800 hidden sm:block"></div>
+                        <div class="flex flex-col items-start sm:items-end">
+                          <span class="text-[11px] font-bold uppercase tracking-[0.1em] text-secondary">Año</span>
+                          <span class="text-xs text-secondary">{item.data.year}</span>
                         </div>
                       </div>
                     </div>
@@ -248,3 +155,154 @@ const certifiedItems = await getCollection("certifications");
   </div>
 </section>
 
+<style>
+  .studies-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    background: rgba(12, 20, 36, 0.65);
+    backdrop-filter: blur(14px);
+  }
+
+  .study-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 188, 212, 0.18);
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 1rem;
+    color: #b4c6d9;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: rgba(7, 14, 28, 0.56);
+  }
+
+  .study-tab svg {
+    color: #88deea;
+  }
+
+  input[id="tab-studies"]:checked + .study-tab,
+  input[id="tab-certifications"]:checked + .study-tab,
+  input[id="tab-courses"]:checked + .study-tab {
+    color: #ebfcff;
+    border-color: rgba(0, 188, 212, 0.72);
+    background: linear-gradient(130deg, rgba(0, 188, 212, 0.34), rgba(0, 188, 212, 0.18));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 24px rgba(0, 188, 212, 0.2);
+  }
+
+  input[id="tab-studies"]:checked + .study-tab svg,
+  input[id="tab-certifications"]:checked + .study-tab svg,
+  input[id="tab-courses"]:checked + .study-tab svg {
+    color: #ebfcff;
+  }
+
+  .tab-label-short {
+    display: none;
+  }
+
+  @media (max-width: 639px) {
+    .study-tab {
+      height: 42px;
+      padding: 0 0.65rem;
+      font-size: 0.66rem;
+      letter-spacing: 0.07em;
+      gap: 0.35rem;
+    }
+
+    .study-tab span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+  }
+
+  .study-tab:hover {
+    color: #dff8ff;
+    border-color: rgba(0, 188, 212, 0.35);
+    background: rgba(0, 188, 212, 0.08);
+  }
+
+  @media (max-width: 430px) {
+    .study-tab {
+      font-size: 0.61rem;
+      letter-spacing: 0.05em;
+      padding: 0 0.45rem;
+      gap: 0.24rem;
+    }
+
+    .study-tab svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .tab-label-full {
+      display: none;
+    }
+
+    .tab-label-short {
+      display: inline;
+    }
+  }
+
+  .tab-panel {
+    animation: panelFade 0.35s ease;
+  }
+
+  .study-card {
+    border: 1px solid rgba(84, 109, 139, 0.5);
+    background: linear-gradient(135deg, rgba(15, 23, 43, 0.58), rgba(11, 17, 30, 0.45));
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .study-card:hover {
+    border-color: rgba(0, 188, 212, 0.55);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.28), 0 0 24px rgba(0, 188, 212, 0.16);
+  }
+
+  .icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(0, 188, 212, 0.1);
+    border: 1px solid rgba(0, 188, 212, 0.25);
+  }
+
+  .verified-icon {
+    animation: verifiedPop 2.4s ease-in-out infinite;
+  }
+
+  @keyframes panelFade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes verifiedPop {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+  }
+</style>

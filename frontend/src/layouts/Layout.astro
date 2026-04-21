@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
 import SpeedInsights from '@vercel/speed-insights/astro';
+import ScrollToTop from "@/components/ScrollToTop.astro";
 
 interface Props {
   title?: string;
@@ -127,10 +128,11 @@ const jsonLd = {
     <Analytics />
     <SpeedInsights />
   </head>
-  <body>
+  <body class="site-bg-pattern">
     <main id="main-content">
       <slot />
     </main>
+    <ScrollToTop />
 
     <script>
       // Handle scroll after View Transitions
@@ -158,5 +160,25 @@ const jsonLd = {
         // If there is NO pending section, the browser handles scroll restoration automatically
       });
     </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 320ms;
+        animation-timing-function: ease;
+      }
+
+      ::view-transition-old(root) {
+        opacity: 1;
+      }
+
+      ::view-transition-new(root) {
+        opacity: 1;
+      }
+    </style>
   </body>
 </html>

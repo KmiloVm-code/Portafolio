@@ -1,13 +1,35 @@
----
+<footer class="bg-bg-alt text-white pt-12 pb-8 relative overflow-hidden">
+  <div class="absolute inset-x-0 top-0 h-[2px] bg-[image:var(--gradient-border)]"></div>
 
----
-
-<footer class="bg-bg-alt text-white py-4 md:py-8">
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl relative z-10">
-    <div class="flex flex-col md:flex-row justify-center items-center">
-      <div class="mb-4 md:mb-0">
-        <p class="text-sm">© 2025 Andrés Vélez. All rights reserved.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
+      <div class="sm:col-span-2 lg:col-span-1">
+        <p class="text-lg font-bold text-primary mb-2">Andrés Camilo</p>
+        <p class="text-sm text-secondary max-w-sm">Desarrollador Full Stack enfocado en productos web robustos, escalables y con gran experiencia de usuario.</p>
       </div>
+
+      <div>
+        <p class="text-sm uppercase tracking-[0.18em] text-accent font-semibold mb-3">Navegación</p>
+        <ul class="space-y-2 text-sm text-secondary">
+          <li><a href="#sobre-mi" class="hover:text-primary transition-colors duration-300">Sobre mí</a></li>
+          <li><a href="#proyectos" class="hover:text-primary transition-colors duration-300">Proyectos</a></li>
+          <li><a href="#studies" class="hover:text-primary transition-colors duration-300">Estudios</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-sm uppercase tracking-[0.18em] text-accent font-semibold mb-3">Redes</p>
+        <ul class="space-y-2 text-sm text-secondary">
+          <li><a href="https://github.com/KmiloVm-code" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors duration-300">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/andrescamilovelezmejia/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors duration-300">LinkedIn</a></li>
+          <li><a href="mailto:andrescamilovelez@gmail.com" class="hover:text-primary transition-colors duration-300">Email</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-border/70 pt-5 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-sm text-secondary">© 2026 Andrés Vélez. Todos los derechos reservados.</p>
+      <p class="text-sm text-secondary inline-flex items-center gap-1.5 text-center md:text-right">Hecho con <span class="text-red-400 animate-pulse">❤</span> y Astro</p>
     </div>
   </div>
 </footer>
