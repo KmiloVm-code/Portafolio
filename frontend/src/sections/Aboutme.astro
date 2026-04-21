@@ -6,15 +6,31 @@ const techStack = [
   { name: "React", icon: "devicon-react-original", category: "frontend" },
   { name: "Node.js", icon: "devicon-nodejs-plain", category: "backend" },
   { name: "Express", icon: "devicon-express-original", category: "backend" },
-  { name: "PostgreSQL", icon: "devicon-postgresql-plain", category: "database" },
-  { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark", category: "devops" },
+  {
+    name: "PostgreSQL",
+    icon: "devicon-postgresql-plain",
+    category: "database",
+  },
+  {
+    name: "AWS",
+    icon: "devicon-amazonwebservices-plain-wordmark",
+    category: "devops",
+  },
   { name: "Azure", icon: "devicon-azure-plain", category: "devops" },
   { name: "Python", icon: "devicon-python-plain", category: "backend" },
   { name: "MongoDB", icon: "devicon-mongodb-plain", category: "database" },
   { name: "Docker", icon: "devicon-docker-plain", category: "devops" },
   { name: "MySQL", icon: "devicon-mysql-plain", category: "database" },
-  { name: "JavaScript", icon: "devicon-javascript-plain", category: "frontend" },
-  { name: "TypeScript", icon: "devicon-typescript-plain", category: "frontend" },
+  {
+    name: "JavaScript",
+    icon: "devicon-javascript-plain",
+    category: "frontend",
+  },
+  {
+    name: "TypeScript",
+    icon: "devicon-typescript-plain",
+    category: "frontend",
+  },
   { name: "HTML5/CSS", icon: "devicon-html5-plain", category: "frontend" },
   { name: "GraphQL", icon: "devicon-graphql-plain", category: "backend" },
   { name: "MCP", icon: "/icons/mcp.svg", category: "tools" },
@@ -25,7 +41,7 @@ const techStack = [
 
 const categoryOrder = ["frontend", "backend", "database", "devops", "tools"];
 const categories = [...new Set(techStack.map((t) => t.category))].sort(
-  (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b)
+  (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b),
 );
 
 const groupedTech = categories.reduce(
@@ -33,7 +49,7 @@ const groupedTech = categories.reduce(
     acc[category] = techStack.filter((tech) => tech.category === category);
     return acc;
   },
-  {} as Record<string, typeof techStack>
+  {} as Record<string, typeof techStack>,
 );
 ---
 
@@ -42,11 +58,14 @@ const groupedTech = categories.reduce(
     <SectionHeader
       badge="Perfil"
       title="Acerca de mí"
-      subtitle="Conoce mi enfoque técnico, mi experiencia en entornos críticos y cómo uso IA para acelerar resultados sin perder calidad." />
+      subtitle="Conoce mi enfoque técnico, mi experiencia en entornos críticos y cómo uso IA para acelerar resultados sin perder calidad."
+    />
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-14 xl:gap-20 items-start">
       <div class="space-y-8">
-        <div class="relative aspect-video w-full rounded-2xl overflow-hidden p-[2px] bg-[length:220%_220%] bg-[image:var(--gradient-border)] animate-[shimmer_8s_linear_infinite]">
+        <div
+          class="relative aspect-video w-full rounded-2xl overflow-hidden p-[2px] bg-[length:220%_220%] bg-[image:var(--gradient-border)] animate-[shimmer_8s_linear_infinite]"
+        >
           <div class="relative h-full w-full rounded-2xl overflow-hidden bg-bg">
             <img
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
@@ -58,25 +77,43 @@ const groupedTech = categories.reduce(
           </div>
         </div>
 
-        <div class="glass-card p-6 md:p-7 space-y-5 prose prose-invert max-w-none">
-          <h3 class="text-2xl md:text-3xl font-bold text-primary mb-0">Hola, soy Andrés Camilo</h3>
+        <div
+          class="glass-card p-6 md:p-7 space-y-5 prose prose-invert max-w-none"
+        >
+          <h3 class="text-2xl md:text-3xl font-bold text-primary">
+            Hola, soy Andrés Camilo
+          </h3>
 
-          <p class="text-base md:text-lg text-secondary mb-0">
-            Soy Desarrollador Full Stack con experiencia en React, Node.js y bases
-            de datos relacionales, con fuerte background en operación,
+          <p class="text-base md:text-lg text-secondary">
+            Soy Desarrollador Full Stack con experiencia en React, Node.js y
+            bases de datos relacionales, con fuerte background en operación,
             observabilidad y cloud (AWS y Azure).
           </p>
 
-          <p class="text-base md:text-lg text-secondary mb-0">
+          <p class="text-base md:text-lg text-secondary">
             Utilizo IA como apoyo activo al desarrollo para mejorar calidad de
             código, refactorización, debugging, documentación y automatización.
           </p>
 
-          <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 pt-2">
-            <div class="rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 min-w-[140px]">
-              <p class="mb-0 text-[11px] uppercase tracking-[0.2em] text-accent">Experiencia</p>
-              <p class="mb-0 text-3xl font-extrabold text-primary"><span id="experience-counter">0</span>+</p>
-              <p class="mb-0 text-xs text-secondary">Años en TI</p>
+          <div
+            class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 pt-2"
+          >
+            <div
+              class="rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 min-w-[140px]"
+            >
+              <h4 class="uppercase tracking-[0.2em] text-accent mt-0">
+                Experiencia
+              </h4>
+              <span class="flex items-baseline gap-0.5">
+                <span
+                  class="text-3xl font-extrabold text-primary"
+                  id="experience-counter"
+                >
+                  0
+                </span>
+                +</span
+              >
+              <small class="text-xs text-secondary">Años en TI</small>
             </div>
 
             <a
@@ -99,43 +136,104 @@ const groupedTech = categories.reduce(
           align="left"
         />
 
-        <div class="space-y-5">
-          {
-            categories.map((category) => (
-              <div class="glass-card p-5">
-                <h4 class="text-[11px] font-bold text-accent uppercase tracking-[0.22em] border-b border-border pb-3 mb-4">
-                  {category}
-                </h4>
+        <div class="skills-switcher glass-card p-4 md:p-5">
+          <div class="skills-tabs" role="tablist" aria-label="Capacidades técnicas">
+            <input id="skill-frontend" type="radio" name="skill-tabs" class="sr-only" checked />
+            <label for="skill-frontend" class="skill-tab">Frontend</label>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {groupedTech[category].map((tech) => (
-                    <div class="tech-item group relative flex items-center gap-2 rounded-xl border border-border/60 bg-bg/35 px-3 py-2.5">
-                      {
-                        tech.icon.startsWith("devicon-") ? (
-                          <i class={`${tech.icon} text-2xl text-icon transition-transform duration-300`} aria-hidden="true" />
-                        ) : tech.icon.endsWith(".svg") ? (
-                          <span
-                            class="w-7 h-7 bg-icon transition-transform duration-300"
-                            style={`-webkit-mask: url('${tech.icon}') center / contain no-repeat; mask: url('${tech.icon}') center / contain no-repeat;`}
-                            aria-hidden="true"
-                          />
-                        ) : (
-                          <img
-                            src={tech.icon}
-                            alt={tech.name}
-                            class="w-7 h-7 object-contain transition-transform duration-300"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        )
-                      }
-                      <span class="text-xs font-medium text-secondary transition-colors duration-300">{tech.name}</span>
-                    </div>
-                  ))}
+            <input id="skill-backend" type="radio" name="skill-tabs" class="sr-only" />
+            <label for="skill-backend" class="skill-tab">Backend</label>
+
+            <input id="skill-data" type="radio" name="skill-tabs" class="sr-only" />
+            <label for="skill-data" class="skill-tab">Data</label>
+
+            <input id="skill-ops" type="radio" name="skill-tabs" class="sr-only" />
+            <label for="skill-ops" class="skill-tab">Ops + AI</label>
+          </div>
+
+          <div class="mt-5 skill-panels">
+            <article class="skill-panel is-active" data-panel="frontend">
+              <div class="skill-panel-head">
+                <div>
+                  <span class="eyebrow">Core capability</span>
+                  <h4>Frontend</h4>
                 </div>
+                <i class="devicon-react-original capability-icon" aria-hidden="true"></i>
               </div>
-            ))
-          }
+              <p>
+                Interfaces rápidas, escalables y con foco en experiencia visual.
+                Conecto diseño y funcionalidad para que la navegación se sienta sólida y moderna.
+              </p>
+              <div class="capability-chip-row">
+                <span class="capability-chip">React</span>
+                <span class="capability-chip">JavaScript</span>
+                <span class="capability-chip">TypeScript</span>
+                <span class="capability-chip">HTML5/CSS</span>
+              </div>
+            </article>
+
+            <article class="skill-panel" data-panel="backend">
+              <div class="skill-panel-head">
+                <div>
+                  <span class="eyebrow">Core capability</span>
+                  <h4>Backend</h4>
+                </div>
+                <i class="devicon-nodejs-plain capability-icon" aria-hidden="true"></i>
+              </div>
+              <p>
+                APIs y lógica de negocio robusta para productos que escalan. Me
+                enfoco en estructuras claras, mantenibles y listas para crecer.
+              </p>
+              <div class="capability-chip-row">
+                <span class="capability-chip">Node.js</span>
+                <span class="capability-chip">Express</span>
+                <span class="capability-chip">Python</span>
+                <span class="capability-chip">GraphQL</span>
+              </div>
+            </article>
+
+            <article class="skill-panel" data-panel="data">
+              <div class="skill-panel-head">
+                <div>
+                  <span class="eyebrow">Core capability</span>
+                  <h4>Data</h4>
+                </div>
+                <i class="devicon-postgresql-plain capability-icon" aria-hidden="true"></i>
+              </div>
+              <p>
+                Persistencia y modelado con bases relacionales y NoSQL. Priorizo
+                consistencia, trazabilidad y estructura preparada para crecer.
+              </p>
+              <div class="capability-chip-row">
+                <span class="capability-chip">PostgreSQL</span>
+                <span class="capability-chip">MySQL</span>
+                <span class="capability-chip">MongoDB</span>
+              </div>
+            </article>
+
+            <article class="skill-panel" data-panel="ops">
+              <div class="skill-panel-head">
+                <div>
+                  <span class="eyebrow">Core capability</span>
+                  <h4>Ops + AI</h4>
+                </div>
+                <i class="devicon-docker-plain capability-icon" aria-hidden="true"></i>
+              </div>
+              <p>
+                Infraestructura, automatización y flujos potenciados con IA.
+                Uso estas piezas para acelerar entregas sin sacrificar calidad.
+              </p>
+              <div class="capability-chip-row">
+                <span class="capability-chip">AWS</span>
+                <span class="capability-chip">Azure</span>
+                <span class="capability-chip">Docker</span>
+                <span class="capability-chip">MCP</span>
+                <span class="capability-chip">N8N</span>
+                <span class="capability-chip">Agents / LLMs</span>
+                <span class="capability-chip">GitHub</span>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </div>
@@ -143,26 +241,153 @@ const groupedTech = categories.reduce(
 </section>
 
 <style>
-  .tech-item {
-    transform-style: preserve-3d;
-    transition: transform 0.35s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  .skills-switcher {
+    position: relative;
+    overflow: hidden;
   }
 
-  .tech-item:hover {
-    border-color: rgba(0, 188, 212, 0.62);
-    box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
-    transform: perspective(560px) rotateX(4deg) rotateY(-6deg) translateY(-3px);
+  .skills-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
-  .tech-item:hover i,
-  .tech-item:hover span[aria-hidden="true"],
-  .tech-item:hover img {
-    transform: translateY(-2px) scale(1.08);
+  @media (min-width: 768px) {
+    .skills-tabs {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 
-  .tech-item:hover span {
-    color: #effbff;
+  .skill-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 245, 255, 0.18);
+    background: rgba(6, 12, 22, 0.56);
+    color: #a7c4d2;
+    padding: 0.7rem 0.8rem;
+    border-radius: 0.95rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      background 0.25s ease,
+      color 0.25s ease;
   }
+
+  .skill-tab:hover {
+    color: #effcff;
+    border-color: rgba(0, 245, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  input[name="skill-tabs"]:checked + .skill-tab {
+    color: #031b22;
+    background: linear-gradient(135deg, rgba(0, 245, 255, 0.96), rgba(102, 252, 255, 0.84));
+    border-color: rgba(0, 245, 255, 0.8);
+    box-shadow: 0 12px 24px rgba(0, 245, 255, 0.16);
+  }
+
+  .skill-panel {
+    position: relative;
+    grid-area: 1 / 1;
+    padding: 1rem;
+    border: 1px solid rgba(0, 245, 255, 0.16);
+    border-radius: 1.2rem;
+    background: linear-gradient(135deg, rgba(10, 17, 31, 0.92), rgba(6, 12, 22, 0.82));
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(14px) scale(0.985);
+    will-change: opacity, transform;
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .skill-panel.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .skill-panel {
+      padding: 1.25rem;
+    }
+  }
+
+  .skill-panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-panel h4 {
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    line-height: 0.92;
+    letter-spacing: -0.06em;
+    margin-top: 0.4rem;
+  }
+
+  .skill-panel p {
+    font-size: 0.98rem;
+    line-height: 1.68;
+    color: #c8d6df;
+    max-width: 42ch;
+  }
+
+  .skill-panels {
+    display: grid;
+  }
+
+  .capability-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .capability-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(0, 245, 255, 0.22);
+    background: rgba(0, 245, 255, 0.08);
+    color: #dffcff;
+    padding: 0.38rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .capability-icon {
+    font-size: 1.85rem;
+    color: #effcff;
+    filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.45));
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #78f8ff;
+    font-weight: 700;
+  }
+
 </style>
 
 <script>
@@ -188,4 +413,22 @@ const groupedTech = categories.reduce(
   }
 
   document.addEventListener("astro:page-load", animateCounter);
+
+  document.addEventListener("astro:page-load", () => {
+    const tabs = document.querySelectorAll<HTMLInputElement>('input[name="skill-tabs"]');
+    const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
+
+    const syncPanels = () => {
+      const active = document.querySelector<HTMLInputElement>('input[name="skill-tabs"]:checked');
+      const activeId = active?.id.replace("skill-", "");
+
+      panels.forEach((panel) => {
+        const isActive = panel.getAttribute("data-panel") === activeId;
+        panel.classList.toggle("is-active", isActive);
+      });
+    };
+
+    tabs.forEach((tab) => tab.addEventListener("change", syncPanels));
+    syncPanels();
+  });
 </script>
