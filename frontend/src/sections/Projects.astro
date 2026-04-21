@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import SectionHeader from "@/components/SectionHeader.astro";
 import ArrowRight from "@/assets/svg/arrow-right.astro";
+import ReadingCopy from "@/components/ReadingCopy.astro";
+import Chip from "@/components/Chip.astro";
 
 const projectItems = await getCollection("projects");
 ---
@@ -40,13 +42,13 @@ const projectItems = await getCollection("projects");
                   </div>
                 </div>
 
-                <div class="p-5 flex flex-col gap-4 grow prose prose-invert max-w-none">
+                <div class="p-5 flex flex-col gap-4 grow">
                   <h2 transition:name={`title-${slug}`} class="text-lg sm:text-xl font-bold mb-0 break-words">{title}</h2>
-                  <p class="text-sm text-secondary line-clamp-4 mb-0">{description}</p>
+                  <ReadingCopy size="sm" class="text-secondary line-clamp-4 mb-0">{description}</ReadingCopy>
 
                   <div class="flex flex-wrap gap-2 mt-auto">
                     {technologies.slice(0, 4).map((tech) => (
-                      <span class="tech-chip">{tech}</span>
+                      <Chip>{tech}</Chip>
                     ))}
                   </div>
 
@@ -99,19 +101,6 @@ const projectItems = await getCollection("projects");
 
   .project-card:hover .project-overlay {
     opacity: 1;
-  }
-
-  .tech-chip {
-    border: 1px solid rgba(0, 245, 255, 0.35);
-    background: rgba(0, 245, 255, 0.1);
-    color: #c8f7ff;
-    border-radius: 999px;
-    padding: 0.28rem 0.62rem;
-    font-size: 0.68rem;
-    line-height: 1.1;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
   }
 
   .project-card:hover .project-cta {

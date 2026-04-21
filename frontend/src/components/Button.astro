@@ -1,0 +1,31 @@
+---
+interface Props {
+  as?: "a" | "button";
+  variant?: "primary" | "line";
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+}
+
+const {
+  as = "a",
+  variant = "primary",
+  href,
+  type = "button",
+  class: className = "",
+  ...rest
+} = Astro.props as Props & Record<string, unknown>;
+
+const variantClass = variant === "line" ? "ui-button-line" : "ui-button-primary";
+const sizeClass = "px-6 py-3 sm:px-6 sm:py-3.5";
+---
+
+{as === "button" ? (
+  <button type={type} class={`ui-button ${sizeClass} ${variantClass} ${className}`.trim()}>
+    <slot />
+  </button>
+) : (
+  <a href={href} class={`ui-button ${sizeClass} ${variantClass} ${className}`.trim()} {...rest}>
+    <slot />
+  </a>
+)}

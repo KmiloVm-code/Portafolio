@@ -5,6 +5,9 @@ import ArrowLeft from "@/assets/svg/arrow-left.astro";
 import Images from "@/assets/svg/images.astro";
 import ExternalLink from "@/assets/svg/external-link.astro";
 import GitHubIcon from "@/assets/svg/github.astro";
+import ReadingCopy from "@/components/ReadingCopy.astro";
+import Chip from "@/components/Chip.astro";
+import Button from "@/components/Button.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -39,12 +42,7 @@ export const prerender = true;
 
     <header class="relative h-[48vh] min-h-[340px] md:h-[58vh] w-full mb-14 md:mb-16 overflow-hidden" transition:name={`image-${slug}`}>
       <div class="absolute top-4 left-4 md:top-8 md:left-8 z-30">
-        <button
-          id="back-button"
-          class="back-btn group"
-          type="button"
-          aria-label="Volver al listado"
-        >
+        <button id="back-button" class="back-btn group" type="button" aria-label="Volver al listado">
           <ArrowLeft size="16" class="transition-transform duration-300 group-hover:-translate-x-1" />
           Volver
         </button>
@@ -102,29 +100,29 @@ export const prerender = true;
           <h2 class="text-base font-bold mb-4 text-primary uppercase tracking-[0.12em]">Tecnologías</h2>
           <ul class="flex flex-wrap gap-2">
             {technologies.map((tech) => (
-              <li class="tech-chip">{tech}</li>
+              <Chip as="li">{tech}</Chip>
             ))}
           </ul>
         </div>
       </aside>
 
       <div class="space-y-8">
-        <article class="glass-card p-6 md:p-8 prose prose-invert max-w-none">
+        <article class="glass-card p-6 md:p-8">
           <h2 class="text-2xl md:text-3xl font-bold mb-4 text-shimmer">Descripción</h2>
-          <p class="text-base md:text-lg text-secondary mb-0 text-pretty">{description}</p>
+          <ReadingCopy class="text-secondary mb-0 max-w-[68ch]">{description}</ReadingCopy>
         </article>
 
         {
           hasDetails && (
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <article class="glass-card p-6 md:p-7 prose prose-invert max-w-none">
+              <article class="glass-card p-6 md:p-7">
                 <h3 class="text-xl font-bold mb-3">Desafíos superados</h3>
-                <p class="text-sm md:text-base whitespace-pre-line text-secondary mb-0">{challenges || "Sin detalles registrados."}</p>
+                <ReadingCopy size="sm" class="text-secondary mb-0 max-w-[68ch] whitespace-pre-line">{challenges || "Sin detalles registrados."}</ReadingCopy>
               </article>
 
-              <article class="glass-card p-6 md:p-7 prose prose-invert max-w-none">
+              <article class="glass-card p-6 md:p-7">
                 <h3 class="text-xl font-bold mb-3">Resultados obtenidos</h3>
-                <p class="text-sm md:text-base whitespace-pre-line text-secondary mb-0">{result || "Sin detalles registrados."}</p>
+                <ReadingCopy size="sm" class="text-secondary mb-0 max-w-[68ch] whitespace-pre-line">{result || "Sin detalles registrados."}</ReadingCopy>
               </article>
             </div>
           )
@@ -133,28 +131,18 @@ export const prerender = true;
         <div class="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2">
           {
             project_url && (
-              <a
-                href={project_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-primary flex-1 text-center inline-flex justify-center items-center gap-2"
-              >
+              <Button as="a" variant="primary" href={project_url} class="flex-1 text-center gap-2">
                 Ver Demo en Vivo
                 <ExternalLink size="18" class="stroke-2" />
-              </a>
+              </Button>
             )
           }
           {
             repository_url && (
-              <a
-                href={repository_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-line flex-1 text-center inline-flex justify-center items-center gap-2"
-              >
+              <Button as="a" variant="line" href={repository_url} class="flex-1 text-center gap-2">
                 <GitHubIcon size="18" class="stroke-2" />
                 Ver Código en GitHub
-              </a>
+              </Button>
             )
           }
         </div>
@@ -213,20 +201,6 @@ export const prerender = true;
     .gallery-item:hover {
       border-color: rgba(0, 245, 255, 0.55);
       box-shadow: 0 14px 26px rgba(0, 0, 0, 0.35), 0 0 18px rgba(0, 245, 255, 0.15);
-    }
-
-    .tech-chip {
-      list-style: none;
-      border: 1px solid rgba(0, 245, 255, 0.36);
-      background: rgba(0, 245, 255, 0.1);
-      color: #cdf7ff;
-      border-radius: 999px;
-      padding: 0.34rem 0.72rem;
-      font-size: 0.69rem;
-      line-height: 1.1;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
     }
 
     @media (max-width: 639px) {

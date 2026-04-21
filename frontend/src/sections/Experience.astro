@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Briefcase from "@/assets/svg/briefcase-business.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
+import ReadingCopy from "@/components/ReadingCopy.astro";
 
 const experienceItems = await getCollection("experience");
 ---
@@ -53,9 +54,9 @@ const experienceItems = await getCollection("experience");
                       <h3 class="text-base md:text-lg font-medium text-secondary">{item.data.company}</h3>
                     </div>
 
-                    <span class="whitespace-pre-line">
-                      <p class="prose-invert prose-sm text-pretty text-secondary/95">{item.data.description}</p>
-                    </span>
+                    <ReadingCopy size="sm" class="text-secondary/95 max-w-[68ch]">
+                      {item.data.description}
+                    </ReadingCopy>
 
                     <ul class="flex flex-wrap gap-2 border-t border-border pt-4 mt-4">
                       {technologies.map((tech) => (
