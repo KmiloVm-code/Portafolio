@@ -48,21 +48,44 @@ const experienceItems = await getCollection("experience");
                     </span>
                   </div>
 
-                  <article class="experience-card p-6 rounded-2xl border border-border bg-card/30 backdrop-blur-md">
-                    <div class="mb-4">
-                      <h2 class="text-lg sm:text-xl font-bold mb-1 transition-colors duration-300 break-words">{item.data.title}</h2>
-                      <h3 class="text-base md:text-lg font-medium text-secondary">{item.data.company}</h3>
+                    <article class="experience-card p-6 rounded-2xl border border-border bg-card/30">
+                    <div class="experience-layout gap-6 lg:gap-8 items-start">
+                      <div class="experience-main">
+                        <div class="experience-panel mb-5">
+                          <h2 class="text-lg sm:text-xl font-bold mb-1 transition-colors duration-300 break-words">{item.data.title}</h2>
+                          <h3 class="text-base md:text-lg font-medium text-secondary">{item.data.company}</h3>
+                        </div>
+
+                        <div class="experience-copy text-secondary/95 max-w-[52ch] lg:max-w-[56ch]">
+                          {item.data.description
+                            .split(/\n\s*\n/)
+                            .map((paragraph, index) => (
+                              <div class={`experience-paragraph experience-paragraph-${index + 1}`.trim()}>
+                                <span class="experience-bullet" aria-hidden="true"></span>
+                                <ReadingCopy as="p" size="sm" class="experience-paragraph-text">
+                                  {paragraph}
+                                </ReadingCopy>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      <aside class="experience-aside">
+                        <div class="experience-aside-block">
+                          <span class="experience-aside-label">Periodo</span>
+                          <span class="experience-aside-value">{item.data.start_date} - {item.data.end_date}</span>
+                        </div>
+
+                        <div class="experience-aside-block">
+                          <span class="experience-aside-label">Tecnologías</span>
+                          <ul class="experience-tags flex flex-wrap gap-2">
+                            {technologies.map((tech) => (
+                              <li class="tech-badge">{tech}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </aside>
                     </div>
-
-                    <ReadingCopy size="sm" class="text-secondary/95 max-w-[68ch]">
-                      {item.data.description}
-                    </ReadingCopy>
-
-                    <ul class="flex flex-wrap gap-2 border-t border-border pt-4 mt-4">
-                      {technologies.map((tech) => (
-                        <li class="tech-badge">{tech}</li>
-                      ))}
-                    </ul>
                   </article>
                 </div>
               </div>
@@ -84,39 +107,132 @@ const experienceItems = await getCollection("experience");
   }
 
   .group:hover .timeline-icon {
-    transform: scale(1.06);
-    border-color: rgba(0, 245, 255, 0.75);
-    box-shadow: 0 0 0 6px rgba(0, 245, 255, 0.11), 0 0 20px rgba(0, 245, 255, 0.4);
+    transform: scale(1.02);
+    border-color: rgba(0, 245, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.04);
   }
 
   .experience-card {
     position: relative;
+    isolation: isolate;
+    overflow: hidden;
     transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .experience-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    background: linear-gradient(130deg, rgba(0, 245, 255, 0.65), rgba(0, 245, 255, 0.08), rgba(0, 245, 255, 0.65));
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  .experience-layout {
+    display: grid;
   }
 
-  .group:hover .experience-card::before {
-    opacity: 1;
+  @media (min-width: 1024px) {
+    .experience-layout {
+      grid-template-columns: minmax(0, 1fr) 10rem;
+    }
   }
 
-  .group:hover .experience-card {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.36);
-    border-color: rgba(0, 245, 255, 0.5);
+  .experience-aside {
+    display: grid;
+    gap: 0.6rem;
+    padding-top: 0.15rem;
   }
 
-  .group:hover .experience-card h2 {
-    color: #aef3ff;
+  .experience-aside-block {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.7rem 0.75rem;
+    border: 1px solid rgba(0, 245, 255, 0.1);
+    border-radius: 1rem;
+    background: rgba(0, 245, 255, 0.025);
+  }
+
+  .experience-aside-label {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(132, 253, 255, 0.7);
+  }
+
+  .experience-aside-value {
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-weight: 600;
+    line-height: 1.12;
+    color: #effcff;
+    font-size: 0.9rem;
+  }
+
+  .experience-panel,
+  .experience-copy,
+  .experience-main {
+    width: min(100%, 58ch);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .experience-main {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .experience-main {
+      min-width: 0;
+      padding-right: 0.5rem;
+    }
+  }
+
+  .experience-card:hover {
+    border-color: rgba(0, 245, 255, 0.42);
+    box-shadow: 0 0 0 1px rgba(0, 245, 255, 0.08);
+  }
+
+  .experience-copy {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .experience-paragraph {
+    display: grid;
+    grid-template-columns: 0.55rem minmax(0, 1fr);
+    gap: 0.55rem;
+    align-items: start;
+  }
+
+  .experience-bullet {
+    width: 0.42rem;
+    height: 0.42rem;
+    margin-top: 0.6rem;
+    border-radius: 999px;
+    background: radial-gradient(circle at 35% 35%, #f4feff 0, rgba(132, 253, 255, 0.92) 32%, rgba(0, 245, 255, 0.76) 100%);
+    box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.04);
+    flex-shrink: 0;
+  }
+
+  .experience-paragraph-text {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .experience-card:hover {
+    border-color: rgba(0, 245, 255, 0.42);
+  }
+
+  .experience-card:hover h2 {
+    color: #7cf7ff !important;
+  }
+
+  .experience-card:hover h3 {
+    color: rgba(124, 247, 255, 0.76) !important;
+  }
+
+  .experience-card h2 {
+    line-height: 1.06;
+    letter-spacing: -0.05em;
+    transition: color 0.3s ease;
+  }
+
+  .experience-card h3 {
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+    transition: color 0.3s ease;
   }
 
   .tech-badge {
@@ -125,10 +241,23 @@ const experienceItems = await getCollection("experience");
     background: rgba(0, 245, 255, 0.1);
     color: #d0f8ff;
     border-radius: 999px;
-    padding: 0.35rem 0.72rem;
-    font-size: 0.71rem;
+    padding: 0.32rem 0.68rem;
+    font-size: 0.67rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 600;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .tech-badge:hover {
+    border-color: rgba(0, 245, 255, 0.28);
+    background: rgba(255, 255, 255, 0.04);
+    color: #e7fbff;
+  }
+
+  @media (max-width: 1023px) {
+    .experience-aside {
+      margin-top: 1rem;
+    }
   }
 </style>

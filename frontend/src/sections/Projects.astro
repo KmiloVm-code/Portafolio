@@ -43,8 +43,8 @@ const projectItems = await getCollection("projects");
                 </div>
 
                 <div class="p-5 flex flex-col gap-4 grow">
-                  <h2 transition:name={`title-${slug}`} class="text-lg sm:text-xl font-bold mb-0 break-words">{title}</h2>
-                  <ReadingCopy size="sm" class="text-secondary line-clamp-4 mb-0">{description}</ReadingCopy>
+                  <h2 transition:name={`title-${slug}`} class="project-title text-lg sm:text-xl font-bold mb-0 break-words">{title}</h2>
+                  <ReadingCopy size="sm" class="project-copy text-secondary line-clamp-4 mb-0">{description}</ReadingCopy>
 
                   <div class="flex flex-wrap gap-2 mt-auto">
                     {technologies.slice(0, 4).map((tech) => (
@@ -112,6 +112,15 @@ const projectItems = await getCollection("projects");
   }
 
   .project-card:hover h2 {
-    color: #abf4ff;
+    color: #f8fafc;
+  }
+
+  .project-title {
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+
+  .project-copy {
+    max-width: 34ch;
   }
 </style>

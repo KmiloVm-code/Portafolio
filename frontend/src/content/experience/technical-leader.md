@@ -3,7 +3,7 @@ title: Technical leader
 company: IBM - Proyecto SURA AM
 start_date: 2021
 end_date: 2023
-technologies: AW, Microsoft Azure, IBM Cloud, VMware
+technologies: AW, Azure, IBM Cloud, VMware
 description: |
   Lideré la colaboración estratégica con stakeholders para alinear los objetivos de negocio con soluciones tecnológicas, garantizando la seguridad de datos y la integridad de la infraestructura empresarial.
 

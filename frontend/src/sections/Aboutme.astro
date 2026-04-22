@@ -53,7 +53,7 @@ const groupedTech = categories.reduce(
 const panelMeta = {
   frontend: { tone: "#6ff8ff" },
   backend: { tone: "#9be7ff" },
-  data: { tone: "#7cf7c7" },
+  database: { tone: "#7cf7c7" },
   tools: { tone: "#c6d7ff" },
 } as const;
 ---
@@ -152,8 +152,7 @@ const panelMeta = {
             <label for="skill-ops" class="skill-tab">Ops + AI</label>
           </div>
 
-          <div class="mt-5 skill-panels">
-            <article class="skill-panel is-active" data-panel="frontend">
+          <article class="skill-panel is-active" data-panel="frontend">
               <div class="skill-panel-head">
                 <div>
                   <span class="eyebrow">Core capability</span>
@@ -180,9 +179,9 @@ const panelMeta = {
                   </article>
                 ))}
               </div>
-            </article>
+          </article>
 
-            <article class="skill-panel" data-panel="backend">
+          <article class="skill-panel" data-panel="backend">
               <div class="skill-panel-head">
                 <div>
                   <span class="eyebrow">Core capability</span>
@@ -209,9 +208,9 @@ const panelMeta = {
                   </article>
                 ))}
               </div>
-            </article>
+          </article>
 
-            <article class="skill-panel" data-panel="data">
+          <article class="skill-panel" data-panel="data">
               <div class="skill-panel-head">
                 <div>
                   <span class="eyebrow">Core capability</span>
@@ -225,7 +224,7 @@ const panelMeta = {
               </p>
               <div class="tech-grid">
                 {groupedTech.database.map((tech, index) => (
-                  <article class="tech-card" style={`--tech-accent:${panelMeta.data.tone}; --tech-delay:${index * 45}ms`}>
+                  <article class="tech-card" style={`--tech-accent:${panelMeta.database.tone}; --tech-delay:${index * 45}ms`}>
                     {tech.icon.startsWith("/") ? (
                       <img src={tech.icon} alt="" aria-hidden="true" class="tech-icon tech-icon-image" loading="lazy" decoding="async" />
                     ) : (
@@ -238,9 +237,9 @@ const panelMeta = {
                   </article>
                 ))}
               </div>
-            </article>
+          </article>
 
-            <article class="skill-panel" data-panel="ops">
+          <article class="skill-panel" data-panel="ops">
               <div class="skill-panel-head">
                 <div>
                   <span class="eyebrow">Core capability</span>
@@ -267,8 +266,7 @@ const panelMeta = {
                   </article>
                 ))}
               </div>
-            </article>
-          </div>
+          </article>
         </div>
       </div>
     </div>
@@ -290,6 +288,10 @@ const panelMeta = {
   @media (min-width: 768px) {
     .skills-tabs {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .skill-panel {
+      padding: 1.25rem;
     }
   }
 
@@ -330,6 +332,7 @@ const panelMeta = {
   .skill-panel {
     display: none;
     position: relative;
+    margin-top: 1.25rem;
     padding: 1rem;
     border: 1px solid rgba(0, 245, 255, 0.16);
     border-radius: 1.2rem;
@@ -339,12 +342,6 @@ const panelMeta = {
   .skill-panel.is-active {
     display: block;
     animation: panelFade 0.35s ease;
-  }
-
-  @media (min-width: 768px) {
-    .skill-panel {
-      padding: 1.25rem;
-    }
   }
 
   .skill-panel-head {
@@ -364,20 +361,16 @@ const panelMeta = {
 
   .skill-panel p {
     font-size: 0.98rem;
-    line-height: 1.68;
+    line-height: 1.74;
     color: #c8d6df;
     max-width: 42ch;
-  }
-
-  .skill-panels {
-    display: block;
   }
 
   .tech-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin-top: 1.1rem;
   }
 
   .tech-grid-tools {
@@ -487,16 +480,6 @@ const panelMeta = {
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-
-  @media (min-width: 768px) {
-    .tech-grid {
-      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-    }
-
-    .tech-grid-tools {
-      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     }
   }
 
