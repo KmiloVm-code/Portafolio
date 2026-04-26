@@ -3,6 +3,9 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import ArrowRight from "@/assets/svg/arrow-right.astro";
 import ReadingCopy from "@/components/ReadingCopy.astro";
 import Button from "@/components/Button.astro";
+import McpIcon from "@/assets/svg/mcp.astro";
+import N8nIcon from "@/assets/svg/n8n.astro";
+import BotIcon from "@/assets/svg/bot.astro";
 
 const techStack = [
   { name: "React", icon: "devicon-react-original", category: "frontend" },
@@ -28,11 +31,15 @@ const techStack = [
   },
   { name: "HTML5/CSS", icon: "devicon-html5-plain", category: "frontend" },
   { name: "GraphQL", icon: "devicon-graphql-plain", category: "backend" },
-  { name: "MCP", icon: "/icons/mcp.svg", category: "tools" },
-  { name: "N8N", icon: "/icons/n8n.svg", category: "tools" },
-  { name: "Agents / LLMs", icon: "/icons/bot.svg", category: "tools" },
+  { name: "MCP", icon: McpIcon, category: "tools" },
+  { name: "N8N", icon: N8nIcon, category: "tools" },
+  { name: "Agents / LLMs", icon: BotIcon, category: "tools" },
   { name: "GitHub", icon: "devicon-github-plain", category: "tools" },
-  { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark", category: "tools" },
+  {
+    name: "AWS",
+    icon: "devicon-amazonwebservices-plain-wordmark",
+    category: "tools",
+  },
   { name: "Azure", icon: "devicon-azure-plain", category: "tools" },
   { name: "Docker", icon: "devicon-docker-plain", category: "tools" },
 ];
@@ -69,7 +76,7 @@ const panelMeta = {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-14 xl:gap-20 items-start">
       <div class="space-y-8">
         <div
-          class="relative aspect-video w-full rounded-2xl overflow-hidden p-[2px] bg-[length:220%_220%] bg-[image:var(--gradient-border)] animate-[shimmer_8s_linear_infinite]"
+          class="relative aspect-video w-full rounded-2xl overflow-hidden p-0.5 bg-size-[220%_220%] bg-(image:--gradient-border) animate-[shimmer_8s_linear_infinite]"
         >
           <div class="relative h-full w-full rounded-2xl overflow-hidden bg-bg">
             <img
@@ -96,7 +103,8 @@ const panelMeta = {
 
             <ReadingCopy class="max-w-[62ch]">
               Utilizo IA como apoyo activo al desarrollo para mejorar calidad de
-              código, refactorización, debugging, documentación y automatización.
+              código, refactorización, debugging, documentación y
+              automatización.
             </ReadingCopy>
           </div>
 
@@ -109,7 +117,7 @@ const panelMeta = {
               <h4 class="uppercase tracking-[0.2em] text-accent mt-0">
                 Experiencia
               </h4>
-                <span class="flex items-baseline gap-0.5 compact-inline">
+              <span class="flex items-baseline gap-0.5 compact-inline">
                 <span
                   class="text-3xl font-extrabold text-primary"
                   id="experience-counter"
@@ -121,7 +129,13 @@ const panelMeta = {
               <small class="text-xs text-secondary">Años en TI</small>
             </div>
 
-            <Button as="a" variant="primary" href="/cv-andres-camilo.pdf" class="w-full sm:w-auto" download>
+            <Button
+              as="a"
+              variant="primary"
+              href="/cv-andres-camilo.pdf"
+              class="w-full sm:w-auto"
+              download
+            >
               Descargar CV
               <ArrowRight size="18" class="stroke-2" />
             </Button>
@@ -138,134 +152,230 @@ const panelMeta = {
         />
 
         <div class="skills-switcher glass-card p-4 md:p-5">
-          <div class="skills-tabs" role="tablist" aria-label="Capacidades técnicas">
-            <input id="skill-frontend" type="radio" name="skill-tabs" class="sr-only" checked />
+          <div
+            class="skills-tabs"
+            role="tablist"
+            aria-label="Capacidades técnicas"
+          >
+            <input
+              id="skill-frontend"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+              checked
+            />
             <label for="skill-frontend" class="skill-tab">Frontend</label>
 
-            <input id="skill-backend" type="radio" name="skill-tabs" class="sr-only" />
+            <input
+              id="skill-backend"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+            />
             <label for="skill-backend" class="skill-tab">Backend</label>
 
-            <input id="skill-data" type="radio" name="skill-tabs" class="sr-only" />
+            <input
+              id="skill-data"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+            />
             <label for="skill-data" class="skill-tab">Data</label>
 
-            <input id="skill-ops" type="radio" name="skill-tabs" class="sr-only" />
+            <input
+              id="skill-ops"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+            />
             <label for="skill-ops" class="skill-tab">Ops + AI</label>
           </div>
 
           <article class="skill-panel is-active" data-panel="frontend">
-              <div class="skill-panel-head">
-                <div>
-                  <span class="eyebrow">Core capability</span>
-                  <h4>Frontend</h4>
-                </div>
-                <i class="devicon-react-original capability-icon" aria-hidden="true"></i>
+            <div class="skill-panel-head">
+              <div>
+                <span class="eyebrow">Core capability</span>
+                <h4>Frontend</h4>
               </div>
-              <p>
-                Interfaces rápidas, escalables y con foco en experiencia visual.
-                Conecto diseño y funcionalidad para que la navegación se sienta sólida y moderna.
-              </p>
-              <div class="tech-grid">
-                {groupedTech.frontend.map((tech, index) => (
+              <i
+                class="devicon-react-original capability-icon"
+                aria-hidden="true"></i>
+            </div>
+            <p>
+              Interfaces rápidas, escalables y con foco en experiencia visual.
+              Conecto diseño y funcionalidad para que la navegación se sienta
+              sólida y moderna.
+            </p>
+            <div class="tech-grid">
+              {
+                groupedTech.frontend.map((tech, index) => (
                   <article class="tech-card" style={`--tech-accent:${panelMeta.frontend.tone}; --tech-delay:${index * 45}ms`}>
-                    {tech.icon.startsWith("/") ? (
-                      <img src={tech.icon} alt="" aria-hidden="true" class="tech-icon tech-icon-image" loading="lazy" decoding="async" />
-                    ) : (
-                      <i class={`tech-icon ${tech.icon}`} aria-hidden="true"></i>
-                    )}
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                    {(() => {
+                      const Icon = tech.icon;
+                      return typeof Icon === "string" && Icon.startsWith("/") ? (
+                        <img
+                          src={Icon}
+                          alt=""
+                          aria-hidden="true"
+                          class="tech-icon-mark tech-icon-image"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : typeof Icon === "string" ? (
+                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
+                      ) : (
+                        <Icon class="tech-icon-mark" aria-hidden="true" />
+                      );
+                    })()}
+                    </span>
                     <div class="tech-copy">
                       <span class="tech-label">Stack</span>
                       <strong>{tech.name}</strong>
                     </div>
                   </article>
-                ))}
-              </div>
+                ))
+              }
+            </div>
           </article>
 
           <article class="skill-panel" data-panel="backend">
-              <div class="skill-panel-head">
-                <div>
-                  <span class="eyebrow">Core capability</span>
-                  <h4>Backend</h4>
-                </div>
-                <i class="devicon-nodejs-plain capability-icon" aria-hidden="true"></i>
+            <div class="skill-panel-head">
+              <div>
+                <span class="eyebrow">Core capability</span>
+                <h4>Backend</h4>
               </div>
-              <p>
-                APIs y lógica de negocio robusta para productos que escalan. Me
-                enfoco en estructuras claras, mantenibles y listas para crecer.
-              </p>
-              <div class="tech-grid">
-                {groupedTech.backend.map((tech, index) => (
+              <i class="devicon-nodejs-plain capability-icon" aria-hidden="true"
+              ></i>
+            </div>
+            <p>
+              APIs y lógica de negocio robusta para productos que escalan. Me
+              enfoco en estructuras claras, mantenibles y listas para crecer.
+            </p>
+            <div class="tech-grid">
+              {
+                groupedTech.backend.map((tech, index) => (
                   <article class="tech-card" style={`--tech-accent:${panelMeta.backend.tone}; --tech-delay:${index * 45}ms`}>
-                    {tech.icon.startsWith("/") ? (
-                      <img src={tech.icon} alt="" aria-hidden="true" class="tech-icon tech-icon-image" loading="lazy" decoding="async" />
-                    ) : (
-                      <i class={`tech-icon ${tech.icon}`} aria-hidden="true"></i>
-                    )}
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                    {(() => {
+                      const Icon = tech.icon;
+                      return typeof Icon === "string" && Icon.startsWith("/") ? (
+                        <img
+                          src={Icon}
+                          alt=""
+                          aria-hidden="true"
+                          class="tech-icon-mark tech-icon-image"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : typeof Icon === "string" ? (
+                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
+                      ) : (
+                        <Icon class="tech-icon-mark" aria-hidden="true" />
+                      );
+                    })()}
+                    </span>
                     <div class="tech-copy">
                       <span class="tech-label">Services</span>
                       <strong>{tech.name}</strong>
                     </div>
                   </article>
-                ))}
-              </div>
+                ))
+              }
+            </div>
           </article>
 
           <article class="skill-panel" data-panel="data">
-              <div class="skill-panel-head">
-                <div>
-                  <span class="eyebrow">Core capability</span>
-                  <h4>Data</h4>
-                </div>
-                <i class="devicon-postgresql-plain capability-icon" aria-hidden="true"></i>
+            <div class="skill-panel-head">
+              <div>
+                <span class="eyebrow">Core capability</span>
+                <h4>Data</h4>
               </div>
-              <p>
-                Persistencia y modelado con bases relacionales y NoSQL. Priorizo
-                consistencia, trazabilidad y estructura preparada para crecer.
-              </p>
-              <div class="tech-grid">
-                {groupedTech.database.map((tech, index) => (
+              <i
+                class="devicon-postgresql-plain capability-icon"
+                aria-hidden="true"></i>
+            </div>
+            <p>
+              Persistencia y modelado con bases relacionales y NoSQL. Priorizo
+              consistencia, trazabilidad y estructura preparada para crecer.
+            </p>
+            <div class="tech-grid">
+              {
+                groupedTech.database.map((tech, index) => (
                   <article class="tech-card" style={`--tech-accent:${panelMeta.database.tone}; --tech-delay:${index * 45}ms`}>
-                    {tech.icon.startsWith("/") ? (
-                      <img src={tech.icon} alt="" aria-hidden="true" class="tech-icon tech-icon-image" loading="lazy" decoding="async" />
-                    ) : (
-                      <i class={`tech-icon ${tech.icon}`} aria-hidden="true"></i>
-                    )}
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                    {(() => {
+                      const Icon = tech.icon;
+                      return typeof Icon === "string" && Icon.startsWith("/") ? (
+                        <img
+                          src={Icon}
+                          alt=""
+                          aria-hidden="true"
+                          class="tech-icon-mark tech-icon-image"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : typeof Icon === "string" ? (
+                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
+                      ) : (
+                        <Icon class="tech-icon-mark" aria-hidden="true" />
+                      );
+                    })()}
+                    </span>
                     <div class="tech-copy">
                       <span class="tech-label">Storage</span>
                       <strong>{tech.name}</strong>
                     </div>
                   </article>
-                ))}
-              </div>
+                ))
+              }
+            </div>
           </article>
 
           <article class="skill-panel" data-panel="ops">
-              <div class="skill-panel-head">
-                <div>
-                  <span class="eyebrow">Core capability</span>
-                  <h4>Ops + AI</h4>
-                </div>
-                <i class="devicon-docker-plain capability-icon" aria-hidden="true"></i>
+            <div class="skill-panel-head">
+              <div>
+                <span class="eyebrow">Core capability</span>
+                <h4>Ops + AI</h4>
               </div>
-              <p>
-                Infraestructura, automatización y flujos potenciados con IA.
-                Uso estas piezas para acelerar entregas sin sacrificar calidad.
-              </p>
-              <div class="tech-grid tech-grid-tools">
-                {groupedTech.tools.map((tech, index) => (
+              <i class="devicon-docker-plain capability-icon" aria-hidden="true"
+              ></i>
+            </div>
+            <p>
+              Infraestructura, automatización y flujos potenciados con IA. Uso
+              estas piezas para acelerar entregas sin sacrificar calidad.
+            </p>
+            <div class="tech-grid tech-grid-tools">
+              {
+                groupedTech.tools.map((tech, index) => (
                   <article class="tech-card" style={`--tech-accent:${panelMeta.tools.tone}; --tech-delay:${index * 45}ms`}>
-                    {tech.icon.startsWith("/") ? (
-                      <img src={tech.icon} alt="" aria-hidden="true" class="tech-icon tech-icon-image" loading="lazy" decoding="async" />
-                    ) : (
-                      <i class={`tech-icon ${tech.icon}`} aria-hidden="true"></i>
-                    )}
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                    {(() => {
+                      const Icon = tech.icon;
+                      return typeof Icon === "string" && Icon.startsWith("/") ? (
+                        <img
+                          src={Icon}
+                          alt=""
+                          aria-hidden="true"
+                          class="tech-icon-mark tech-icon-image"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : typeof Icon === "string" ? (
+                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
+                      ) : (
+                        <Icon class="tech-icon-mark" aria-hidden="true" />
+                      );
+                    })()}
+                    </span>
                     <div class="tech-copy">
                       <span class="tech-label">Automation</span>
                       <strong>{tech.name}</strong>
                     </div>
                   </article>
-                ))}
-              </div>
+                ))
+              }
+            </div>
           </article>
         </div>
       </div>
@@ -324,7 +434,11 @@ const panelMeta = {
 
   input[name="skill-tabs"]:checked + .skill-tab {
     color: #031b22;
-    background: linear-gradient(135deg, rgba(0, 245, 255, 0.96), rgba(102, 252, 255, 0.84));
+    background: linear-gradient(
+      135deg,
+      rgba(0, 245, 255, 0.96),
+      rgba(102, 252, 255, 0.84)
+    );
     border-color: rgba(0, 245, 255, 0.8);
     box-shadow: 0 12px 24px rgba(0, 245, 255, 0.16);
   }
@@ -336,7 +450,11 @@ const panelMeta = {
     padding: 1rem;
     border: 1px solid rgba(0, 245, 255, 0.16);
     border-radius: 1.2rem;
-    background: linear-gradient(135deg, rgba(10, 17, 31, 0.92), rgba(6, 12, 22, 0.82));
+    background: linear-gradient(
+      135deg,
+      rgba(10, 17, 31, 0.92),
+      rgba(6, 12, 22, 0.82)
+    );
   }
 
   .skill-panel.is-active {
@@ -384,10 +502,15 @@ const panelMeta = {
     gap: 0.75rem;
     padding: 0.85rem 0.9rem;
     border-radius: 1rem;
-    border: 1px solid color-mix(in srgb, var(--tech-accent) 32%, rgba(24, 65, 85, 0.95));
+    border: 1px solid
+      color-mix(in srgb, var(--tech-accent) 32%, rgba(24, 65, 85, 0.95));
     background:
       linear-gradient(135deg, rgba(7, 14, 26, 0.96), rgba(10, 20, 34, 0.82)),
-      radial-gradient(circle at top right, color-mix(in srgb, var(--tech-accent) 18%, transparent), transparent 58%);
+      radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--tech-accent) 18%, transparent),
+        transparent 58%
+      );
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.05),
       0 10px 20px rgba(0, 0, 0, 0.12);
@@ -400,7 +523,11 @@ const panelMeta = {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.12), transparent 30%);
+    background: linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.12),
+      transparent 30%
+    );
     opacity: 0.6;
     pointer-events: none;
   }
@@ -410,30 +537,52 @@ const panelMeta = {
     position: absolute;
     inset: auto 0 0 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--tech-accent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--tech-accent),
+      transparent
+    );
     opacity: 0.8;
     pointer-events: none;
   }
 
   .tech-card:hover {
     transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--tech-accent) 58%, rgba(24, 65, 85, 0.95));
+    border-color: color-mix(
+      in srgb,
+      var(--tech-accent) 58%,
+      rgba(24, 65, 85, 0.95)
+    );
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.08),
       0 14px 26px rgba(0, 0, 0, 0.18),
       0 0 0 1px color-mix(in srgb, var(--tech-accent) 18%, transparent);
   }
 
-  .tech-icon {
+  .tech-icon-wrap {
     flex-shrink: 0;
-    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(
+      0 0 10px color-mix(in srgb, var(--tech-accent) 40%, transparent)
+    );
+  }
+
+  .tech-icon-mark {
+    width: 100%;
+    height: 100%;
     color: var(--tech-accent);
-    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--tech-accent) 40%, transparent));
+    fill: currentColor;
+    stroke: currentColor;
+    display: block;
+    font-size: 1.5rem;
   }
 
   .tech-icon-image {
-    width: 1.5rem;
-    height: 1.5rem;
     object-fit: contain;
   }
 
@@ -495,7 +644,6 @@ const panelMeta = {
     .tech-copy strong {
       font-size: 0.88rem;
     }
-
   }
 
   .capability-icon {
@@ -514,7 +662,6 @@ const panelMeta = {
     color: #78f8ff;
     font-weight: 700;
   }
-
 </style>
 
 <script>
@@ -542,11 +689,15 @@ const panelMeta = {
   document.addEventListener("astro:page-load", animateCounter);
 
   document.addEventListener("astro:page-load", () => {
-    const tabs = document.querySelectorAll<HTMLInputElement>('input[name="skill-tabs"]');
+    const tabs = document.querySelectorAll<HTMLInputElement>(
+      'input[name="skill-tabs"]',
+    );
     const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
 
     const syncPanels = () => {
-      const active = document.querySelector<HTMLInputElement>('input[name="skill-tabs"]:checked');
+      const active = document.querySelector<HTMLInputElement>(
+        'input[name="skill-tabs"]:checked',
+      );
       const activeId = active?.id.replace("skill-", "");
 
       panels.forEach((panel) => {
