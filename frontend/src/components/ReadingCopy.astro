@@ -1,0 +1,21 @@
+---
+interface Props {
+  size?: "base" | "sm";
+  as?: "p" | "div";
+  class?: string;
+}
+
+const { size = "base", as = "p", class: className = "" } = Astro.props as Props;
+
+const sizeClass = size === "sm" ? "reading-copy-sm text-sm md:text-base" : "reading-copy text-base md:text-lg";
+---
+
+{as === "div" ? (
+  <div class={`reading-copy-block ${sizeClass} ${className}`.trim()}>
+    <slot />
+  </div>
+) : (
+  <p class={`reading-copy-block ${sizeClass} ${className}`.trim()}>
+    <slot />
+  </p>
+)}

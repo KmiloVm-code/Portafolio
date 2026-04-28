@@ -1,0 +1,23 @@
+---
+interface Props {
+  as?: "span" | "li";
+  variant?: "default" | "accent" | "tech";
+  size?: "base" | "lg";
+  class?: string;
+}
+
+const { as = "span", variant = "default", size = "base", class: className = "" } = Astro.props as Props;
+
+const sizeClass = size === "lg" ? "ui-chip-lg" : "";
+const variantClass = variant === "tech" ? "ui-chip-tech" : variant === "accent" ? "ui-chip-accent" : "";
+---
+
+{as === "li" ? (
+  <li class={`ui-chip ${sizeClass} ${variantClass} ${className}`.trim()}>
+    <slot />
+  </li>
+) : (
+  <span class={`ui-chip ${sizeClass} ${variantClass} ${className}`.trim()}>
+    <slot />
+  </span>
+)}
