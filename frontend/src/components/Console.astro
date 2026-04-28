@@ -1,34 +1,34 @@
 <div
   class="console absolute top-1/2 right-0 -translate-y-1/2 p-4 hidden xl:block pointer-events-none z-10 text-xs overflow-hidden select-none w-[min(36vw,460px)] 2xl:w-[min(38vw,520px)]"
 >
-  <div class="rounded-2xl border border-accent/25 bg-[linear-gradient(145deg,rgba(7,13,24,0.9),rgba(5,10,20,0.72))] shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-md w-full">
-    <div class="flex items-center gap-2 px-4 py-2 border-b border-accent/20 bg-bg/55">
+  <div class="rounded-2xl border border-border bg-bg-elevated shadow-xl backdrop-blur-md w-full">
+    <div class="flex items-center gap-2 px-4 py-2 border-b border-border">
       <span class="h-2.5 w-2.5 rounded-full bg-red-400/90"></span>
       <span class="h-2.5 w-2.5 rounded-full bg-amber-300/90"></span>
       <span class="h-2.5 w-2.5 rounded-full bg-green-400/90"></span>
-      <span class="ml-2 text-[11px] uppercase tracking-[0.16em] text-secondary/80">build-log.ts</span>
+      <span class="ml-2 text-[11px] uppercase tracking-[0.16em] text-text-tertiary">build-log.ts</span>
     </div>
 
-    <pre class="font-mono text-[11px] 2xl:text-xs p-5 text-slate-200 leading-relaxed w-full"><code>
-<span class="text-cyan-300">class</span> <span class="text-emerald-300">Developer</span> <span class="text-cyan-300">{`{`}</span>
-  <span class="text-cyan-300">constructor</span>(<span class="text-orange-300">name</span>) <span class="text-cyan-300">{`{`}</span>
-    <span class="text-violet-300">this</span>.name = <span class="text-amber-200">"Andres Camilo"</span>;
-    <span class="text-violet-300">this</span>.role = <span class="text-amber-200">"Full Stack Developer"</span>;
-    <span class="text-violet-300">this</span>.stack = [
-      <span class="text-amber-200">"React"</span>, <span class="text-amber-200">"Node.js"</span>, <span class="text-amber-200">"Cloud"</span>, <span class="text-amber-200">"AI"</span>
+    <pre class="font-mono text-[11px] 2xl:text-xs p-5 text-text-secondary leading-relaxed w-full"><code>
+<span class="text-accent">class</span> <span class="text-text-primary">Developer</span> <span class="text-accent">{`{`}</span>
+  <span class="text-accent">constructor</span>(<span class="text-accent-hover">name</span>) <span class="text-accent">{`{`}</span>
+    <span class="text-text-primary">this</span>.name = <span class="text-accent">"Andres Camilo"</span>;
+    <span class="text-text-primary">this</span>.role = <span class="text-accent">"Full Stack Developer"</span>;
+    <span class="text-text-primary">this</span>.stack = [
+      <span class="text-accent">"React"</span>, <span class="text-accent">"Node.js"</span>, <span class="text-accent">"Cloud"</span>, <span class="text-accent">"AI"</span>
     ];
-  <span class="text-cyan-300">{`}`}</span>
+  <span class="text-accent">{`}`}</span>
 
-  <span class="text-cyan-300">async</span> createImpact() <span class="text-cyan-300">{`{`}</span>
-    <span class="text-cyan-300">const</span> idea = <span class="text-cyan-300">await</span> <span class="text-violet-300">this</span>.design();
-    <span class="text-cyan-300">return</span> <span class="text-violet-300">this</span>.ship(idea);
-  <span class="text-cyan-300">{`}`}</span>
+  <span class="text-accent">async</span> createImpact() <span class="text-accent">{`{`}</span>
+    <span class="text-accent">const</span> idea = <span class="text-accent">await</span> <span class="text-text-primary">this</span>.design();
+    <span class="text-accent">return</span> <span class="text-text-primary">this</span>.ship(idea);
+  <span class="text-accent">{`}`}</span>
 
-  <span class="text-slate-400">// building clean products, line by line</span>
-<span class="text-cyan-300">{`}`}</span>
+  <span class="text-text-tertiary">// building clean products, line by line</span>
+<span class="text-accent">{`}`}</span>
 
 <span class="typing-line">
-  <span class="text-cyan-300">npm</span> <span class="text-emerald-300">run</span> <span class="text-amber-200">build</span>
+  <span class="text-accent">npm</span> <span class="text-text-primary">run</span> <span class="text-accent">build</span>
   <span class="cursor">|</span>
 </span>
     </code></pre>
@@ -48,23 +48,12 @@
   }
 
   @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   @keyframes fadeTyping {
-    0% {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 </style>

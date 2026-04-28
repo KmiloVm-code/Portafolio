@@ -58,10 +58,10 @@ const groupedTech = categories.reduce(
 );
 
 const panelMeta = {
-  frontend: { tone: "#6ff8ff" },
-  backend: { tone: "#9be7ff" },
-  database: { tone: "#7cf7c7" },
-  tools: { tone: "#c6d7ff" },
+  frontend: { tone: "#00f5ff" },
+  backend: { tone: "#83d5d3" },
+  database: { tone: "#a1a1aa" },
+  tools: { tone: "#71717a" },
 } as const;
 ---
 
@@ -76,25 +76,23 @@ const panelMeta = {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-14 xl:gap-20 items-start">
       <div class="space-y-8">
         <div
-          class="relative aspect-video w-full rounded-2xl overflow-hidden p-0.5 bg-size-[220%_220%] bg-(image:--gradient-border) animate-[shimmer_8s_linear_infinite]"
+          class="aspect-video w-full rounded-2xl overflow-hidden border border-border"
         >
-          <div class="relative h-full w-full rounded-2xl overflow-hidden bg-bg">
-            <img
-              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              src="/foto.webp"
-              alt="Foto de Andrés Camilo"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+          <img
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            src="/foto.webp"
+            alt="Foto de Andrés Camilo"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
-        <div class="glass-card p-6 md:p-7 space-y-5">
-          <h3 class="text-2xl md:text-3xl font-bold text-primary">
+        <div class="card p-4 md:p-5 space-y-5">
+          <h3 class="text-2xl md:text-3xl text-text-primary font-bold">
             Hola, soy Andrés Camilo
           </h3>
 
-          <div class="space-y-4 max-w-none text-secondary">
+          <div class="space-y-4 max-w-none">
             <ReadingCopy class="max-w-[62ch]">
               Soy Desarrollador Full Stack con experiencia en React, Node.js y
               bases de datos relacionales, con fuerte background en operación,
@@ -112,21 +110,18 @@ const panelMeta = {
             class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 pt-2"
           >
             <div
-              class="rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 min-w-[140px]"
+              class="rounded-xl border border-border bg-bg-elevated px-4 py-3 min-w-[140px]"
             >
-              <h4 class="uppercase tracking-[0.2em] text-accent mt-0">
+              <h4
+                class="uppercase tracking-[0.2em] text-accent text-xs font-semibold mb-1"
+              >
                 Experiencia
               </h4>
               <span class="flex items-baseline gap-0.5 compact-inline">
-                <span
-                  class="text-3xl font-extrabold text-primary"
-                  id="experience-counter"
-                >
-                  0
-                </span>
-                +</span
-              >
-              <small class="text-xs text-secondary">Años en TI</small>
+                <span class="text-3xl font-bold" id="experience-counter">0</span
+                >+
+              </span>
+              <small class="text-xs text-text-tertiary block">Años en TI</small>
             </div>
 
             <Button
@@ -143,17 +138,20 @@ const panelMeta = {
         </div>
       </div>
 
-      <div class="space-y-7">
-        <SectionHeader
-          badge="Stack"
-          title="Mis habilidades técnicas"
-          subtitle="Tecnologías con las que diseño, construyo y escalo productos de extremo a extremo."
-          align="left"
-        />
+      <div class="space-y-3">
+        <h2
+          class="text-2xl md:text-3xl lg:text-4xl text-text-primary font-bold tracking-tighter text-balance wrap-anywhere"
+        >
+          Mis habilidades técnicas
+        </h2>
+        <p class="text-lg text-text-secondary text-pretty mb-6">
+          Tecnologías con las que diseño, construyo y escalo productos de
+          extremo a extremo.
+        </p>
 
-        <div class="skills-switcher glass-card p-4 md:p-5">
+        <div class="skills-switcher card p-4 md:p-5">
           <div
-            class="skills-tabs"
+            class="skills-tabs text-text-primary"
             role="tablist"
             aria-label="Capacidades técnicas"
           >
@@ -164,7 +162,9 @@ const panelMeta = {
               class="sr-only"
               checked
             />
-            <label for="skill-frontend" class="skill-tab">Frontend</label>
+            <label for="skill-frontend" class="skill-tab text-text-primary"
+              >Frontend</label
+            >
 
             <input
               id="skill-backend"
@@ -172,7 +172,9 @@ const panelMeta = {
               name="skill-tabs"
               class="sr-only"
             />
-            <label for="skill-backend" class="skill-tab">Backend</label>
+            <label for="skill-backend" class="skill-tab text-text-primary"
+              >Backend</label
+            >
 
             <input
               id="skill-data"
@@ -180,7 +182,9 @@ const panelMeta = {
               name="skill-tabs"
               class="sr-only"
             />
-            <label for="skill-data" class="skill-tab">Data</label>
+            <label for="skill-data" class="skill-tab text-text-primary"
+              >Data</label
+            >
 
             <input
               id="skill-ops"
@@ -188,12 +192,14 @@ const panelMeta = {
               name="skill-tabs"
               class="sr-only"
             />
-            <label for="skill-ops" class="skill-tab">Ops + AI</label>
+            <label for="skill-ops" class="skill-tab text-text-primary"
+              >Ops + AI</label
+            >
           </div>
 
           <article class="skill-panel is-active" data-panel="frontend">
             <div class="skill-panel-head">
-              <div>
+              <div class="text-text-primary">
                 <span class="eyebrow">Core capability</span>
                 <h4>Frontend</h4>
               </div>
@@ -209,25 +215,32 @@ const panelMeta = {
             <div class="tech-grid">
               {
                 groupedTech.frontend.map((tech, index) => (
-                  <article class="tech-card" style={`--tech-accent:${panelMeta.frontend.tone}; --tech-delay:${index * 45}ms`}>
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.frontend.tone}; --tech-delay:${index * 45}ms`}
+                  >
                     <span class="tech-icon-wrap" aria-hidden="true">
-                    {(() => {
-                      const Icon = tech.icon;
-                      return typeof Icon === "string" && Icon.startsWith("/") ? (
-                        <img
-                          src={Icon}
-                          alt=""
-                          aria-hidden="true"
-                          class="tech-icon-mark tech-icon-image"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      ) : typeof Icon === "string" ? (
-                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
-                      ) : (
-                        <Icon class="tech-icon-mark" aria-hidden="true" />
-                      );
-                    })()}
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
                     </span>
                     <div class="tech-copy">
                       <span class="tech-label">Stack</span>
@@ -241,7 +254,7 @@ const panelMeta = {
 
           <article class="skill-panel" data-panel="backend">
             <div class="skill-panel-head">
-              <div>
+              <div class="text-text-primary">
                 <span class="eyebrow">Core capability</span>
                 <h4>Backend</h4>
               </div>
@@ -255,25 +268,32 @@ const panelMeta = {
             <div class="tech-grid">
               {
                 groupedTech.backend.map((tech, index) => (
-                  <article class="tech-card" style={`--tech-accent:${panelMeta.backend.tone}; --tech-delay:${index * 45}ms`}>
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.backend.tone}; --tech-delay:${index * 45}ms`}
+                  >
                     <span class="tech-icon-wrap" aria-hidden="true">
-                    {(() => {
-                      const Icon = tech.icon;
-                      return typeof Icon === "string" && Icon.startsWith("/") ? (
-                        <img
-                          src={Icon}
-                          alt=""
-                          aria-hidden="true"
-                          class="tech-icon-mark tech-icon-image"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      ) : typeof Icon === "string" ? (
-                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
-                      ) : (
-                        <Icon class="tech-icon-mark" aria-hidden="true" />
-                      );
-                    })()}
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
                     </span>
                     <div class="tech-copy">
                       <span class="tech-label">Services</span>
@@ -287,9 +307,9 @@ const panelMeta = {
 
           <article class="skill-panel" data-panel="data">
             <div class="skill-panel-head">
-              <div>
+              <div class="text-text-primary">
                 <span class="eyebrow">Core capability</span>
-                <h4>Data</h4>
+                <h4 class="text-text-primary">Data</h4>
               </div>
               <i
                 class="devicon-postgresql-plain capability-icon"
@@ -302,25 +322,32 @@ const panelMeta = {
             <div class="tech-grid">
               {
                 groupedTech.database.map((tech, index) => (
-                  <article class="tech-card" style={`--tech-accent:${panelMeta.database.tone}; --tech-delay:${index * 45}ms`}>
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.database.tone}; --tech-delay:${index * 45}ms`}
+                  >
                     <span class="tech-icon-wrap" aria-hidden="true">
-                    {(() => {
-                      const Icon = tech.icon;
-                      return typeof Icon === "string" && Icon.startsWith("/") ? (
-                        <img
-                          src={Icon}
-                          alt=""
-                          aria-hidden="true"
-                          class="tech-icon-mark tech-icon-image"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      ) : typeof Icon === "string" ? (
-                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
-                      ) : (
-                        <Icon class="tech-icon-mark" aria-hidden="true" />
-                      );
-                    })()}
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
                     </span>
                     <div class="tech-copy">
                       <span class="tech-label">Storage</span>
@@ -334,9 +361,9 @@ const panelMeta = {
 
           <article class="skill-panel" data-panel="ops">
             <div class="skill-panel-head">
-              <div>
+              <div class="text-text-primary">
                 <span class="eyebrow">Core capability</span>
-                <h4>Ops + AI</h4>
+                <h4 class="text-text-primary">Ops + AI</h4>
               </div>
               <i class="devicon-docker-plain capability-icon" aria-hidden="true"
               ></i>
@@ -348,25 +375,32 @@ const panelMeta = {
             <div class="tech-grid tech-grid-tools">
               {
                 groupedTech.tools.map((tech, index) => (
-                  <article class="tech-card" style={`--tech-accent:${panelMeta.tools.tone}; --tech-delay:${index * 45}ms`}>
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.tools.tone}; --tech-delay:${index * 45}ms`}
+                  >
                     <span class="tech-icon-wrap" aria-hidden="true">
-                    {(() => {
-                      const Icon = tech.icon;
-                      return typeof Icon === "string" && Icon.startsWith("/") ? (
-                        <img
-                          src={Icon}
-                          alt=""
-                          aria-hidden="true"
-                          class="tech-icon-mark tech-icon-image"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      ) : typeof Icon === "string" ? (
-                        <i class={`tech-icon-mark ${Icon}`} aria-hidden="true" />
-                      ) : (
-                        <Icon class="tech-icon-mark" aria-hidden="true" />
-                      );
-                    })()}
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
                     </span>
                     <div class="tech-copy">
                       <span class="tech-label">Automation</span>
@@ -409,38 +443,31 @@ const panelMeta = {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(0, 245, 255, 0.18);
-    background: rgba(6, 12, 22, 0.56);
-    color: #a7c4d2;
-    padding: 0.7rem 0.8rem;
-    border-radius: 0.95rem;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-tertiary);
+    padding: 0.6rem 0.8rem;
+    border-radius: var(--radius-md);
     font-size: 0.72rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     cursor: pointer;
     transition:
-      transform 0.25s ease,
-      border-color 0.25s ease,
-      background 0.25s ease,
-      color 0.25s ease;
+      border-color 0.2s ease,
+      color 0.2s ease,
+      background 0.2s ease;
   }
 
   .skill-tab:hover {
-    color: #effcff;
-    border-color: rgba(0, 245, 255, 0.4);
-    transform: translateY(-1px);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
   }
 
   input[name="skill-tabs"]:checked + .skill-tab {
-    color: #031b22;
-    background: linear-gradient(
-      135deg,
-      rgba(0, 245, 255, 0.96),
-      rgba(102, 252, 255, 0.84)
-    );
-    border-color: rgba(0, 245, 255, 0.8);
-    box-shadow: 0 12px 24px rgba(0, 245, 255, 0.16);
+    color: var(--color-bg);
+    background: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   .skill-panel {
@@ -448,13 +475,9 @@ const panelMeta = {
     position: relative;
     margin-top: 1.25rem;
     padding: 1rem;
-    border: 1px solid rgba(0, 245, 255, 0.16);
-    border-radius: 1.2rem;
-    background: linear-gradient(
-      135deg,
-      rgba(10, 17, 31, 0.92),
-      rgba(6, 12, 22, 0.82)
-    );
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-elevated);
   }
 
   .skill-panel.is-active {
@@ -470,17 +493,17 @@ const panelMeta = {
     margin-bottom: 1rem;
   }
 
-  .skill-panel h4 {
-    font-size: clamp(1.9rem, 3.5vw, 3rem);
-    line-height: 0.92;
-    letter-spacing: -0.06em;
-    margin-top: 0.4rem;
+  .skill-panel-head h4 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-top: 0.25rem;
   }
 
   .skill-panel p {
-    font-size: 0.98rem;
-    line-height: 1.74;
-    color: #c8d6df;
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
     max-width: 42ch;
   }
 
@@ -496,68 +519,26 @@ const panelMeta = {
   }
 
   .tech-card {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 0.75rem;
     padding: 0.85rem 0.9rem;
-    border-radius: 1rem;
-    border: 1px solid
-      color-mix(in srgb, var(--tech-accent) 32%, rgba(24, 65, 85, 0.95));
-    background:
-      linear-gradient(135deg, rgba(7, 14, 26, 0.96), rgba(10, 20, 34, 0.82)),
-      radial-gradient(
-        circle at top right,
-        color-mix(in srgb, var(--tech-accent) 18%, transparent),
-        transparent 58%
-      );
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 10px 20px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-card);
+    box-shadow: var(--shadow-sm);
     animation: techReveal 0.55s ease both;
     animation-delay: var(--tech-delay, 0ms);
-  }
-
-  .tech-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      140deg,
-      rgba(255, 255, 255, 0.12),
-      transparent 30%
-    );
-    opacity: 0.6;
-    pointer-events: none;
-  }
-
-  .tech-card::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--tech-accent),
-      transparent
-    );
-    opacity: 0.8;
-    pointer-events: none;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .tech-card:hover {
     transform: translateY(-2px);
-    border-color: color-mix(
-      in srgb,
-      var(--tech-accent) 58%,
-      rgba(24, 65, 85, 0.95)
-    );
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 14px 26px rgba(0, 0, 0, 0.18),
-      0 0 0 1px color-mix(in srgb, var(--tech-accent) 18%, transparent);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
   }
 
   .tech-icon-wrap {
@@ -567,9 +548,6 @@ const panelMeta = {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(
-      0 0 10px color-mix(in srgb, var(--tech-accent) 40%, transparent)
-    );
   }
 
   .tech-icon-mark {
@@ -597,16 +575,16 @@ const panelMeta = {
 
   .tech-label {
     font-size: 0.62rem;
-    font-weight: 800;
-    letter-spacing: 0.18em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--tech-accent) 78%, white);
+    color: var(--color-text-tertiary);
   }
 
   .tech-copy strong {
-    font-size: 0.92rem;
-    line-height: 1.05;
-    color: #effcff;
+    font-size: 0.9rem;
+    line-height: 1.1;
+    color: var(--color-text-primary);
     word-break: break-word;
   }
 
@@ -636,20 +614,11 @@ const panelMeta = {
     .tech-grid {
       grid-template-columns: 1fr;
     }
-
-    .tech-card {
-      padding: 0.8rem;
-    }
-
-    .tech-copy strong {
-      font-size: 0.88rem;
-    }
   }
 
   .capability-icon {
     font-size: 1.85rem;
-    color: #effcff;
-    filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.45));
+    color: var(--color-text-primary);
   }
 
   .eyebrow {
@@ -658,8 +627,8 @@ const panelMeta = {
     gap: 0.5rem;
     font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: #78f8ff;
+    letter-spacing: 0.18em;
+    color: var(--color-accent);
     font-weight: 700;
   }
 </style>

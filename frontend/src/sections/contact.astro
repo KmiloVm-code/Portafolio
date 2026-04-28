@@ -6,9 +6,7 @@ import ReadingCopy from "@/components/ReadingCopy.astro";
 import Button from "@/components/Button.astro";
 ---
 
-<section id="contacto" class="py-16 md:py-32 bg-bg relative overflow-hidden">
-  <div class="contact-bg" aria-hidden="true"></div>
-
+<section id="contacto" class="py-16 md:py-32 bg-bg relative">
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 relative">
     <SectionHeader
       badge="Connect"
@@ -18,17 +16,17 @@ import Button from "@/components/Button.astro";
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
       <div class="mb-2 lg:mb-0 max-w-none">
-        <ReadingCopy class="text-secondary max-w-[58ch]">
-          Ya sea para un producto desde cero, una evolución técnica o una mejora en
-          rendimiento y arquitectura, puedo ayudarte a llevarlo a producción con
-          foco en calidad y resultados.
+        <ReadingCopy class="text-text-secondary max-w-[58ch]">
+          Ya sea para un producto desde cero, una evolución técnica o una mejora
+          en rendimiento y arquitectura, puedo ayudarte a llevarlo a producción
+          con foco en calidad y resultados.
         </ReadingCopy>
 
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
           <Button
             as="a"
             variant="line"
-            class="w-full hover:bg-accent-hover hover:text-bg"
+            class="w-full"
             href="https://www.linkedin.com/in/andrescamilovelezmejia/"
             target="_blank"
             rel="noopener noreferrer"
@@ -40,7 +38,7 @@ import Button from "@/components/Button.astro";
           <Button
             as="a"
             variant="line"
-            class="w-full hover:bg-accent-hover hover:text-bg"
+            class="w-full"
             href="https://github.com/KmiloVm-code"
             target="_blank"
             rel="noopener noreferrer"
@@ -52,42 +50,71 @@ import Button from "@/components/Button.astro";
       </div>
 
       <div class="w-full">
-        <div class="glass-card border-accent/25 p-6 sm:p-8 md:p-10 rounded-[1.6rem] sm:rounded-[2rem] relative overflow-hidden shadow-2xl min-h-104">
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(0,188,212,0.18),transparent_45%)]" aria-hidden="true"></div>
-
-          <div id="form-wrapper" data-visible="true" class="space-y-8 transition-all duration-500 ease-out relative z-10">
-            <form id="contact-form" method="post" action="/api/contact" class="space-y-6">
+        <div
+          class="glass-card p-6 sm:p-8 md:p-10 rounded-[1.5rem] relative min-h-112"
+        >
+          <div
+            id="form-wrapper"
+            data-visible="true"
+            class="space-y-8 transition-all duration-500 ease-out relative z-10"
+          >
+            <form
+              id="contact-form"
+              method="post"
+              action="/api/contact"
+              class="space-y-6"
+            >
               <div class="space-y-2">
-                <label for="name" class="block text-sm font-medium text-primary">Nombre</label>
-                <div class="relative">
-                  <span class="input-icon" aria-hidden="true">@</span>
-                  <input type="text" id="name" name="name" required class="input-premium" />
-                </div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-text-primary"
+                  >Nombre</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="input-premium"
+                />
               </div>
 
               <div class="space-y-2">
-                <label for="email" class="block text-sm font-medium text-primary">Correo Electrónico</label>
-                <div class="relative">
-                  <span class="input-icon" aria-hidden="true">✉</span>
-                  <input type="email" id="email" name="email" required class="input-premium" />
-                </div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-text-primary"
+                  >Correo Electrónico</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="input-premium"
+                />
               </div>
 
               <div class="space-y-2">
-                <label for="message" class="block text-sm font-medium text-primary">Mensaje</label>
-                <div class="relative">
-                  <span class="input-icon top-4" aria-hidden="true">✎</span>
-                  <textarea id="message" name="message" rows="4" required class="input-premium min-h-32"></textarea>
-                </div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-text-primary"
+                  >Mensaje</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  class="input-premium min-h-32 resize-none"></textarea>
               </div>
 
               <button
                 type="submit"
-                class="ui-button ui-button-primary w-full rounded-xl hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                class="ui-button ui-button-primary w-full rounded-xl disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                 aria-busy="false"
               >
                 <span class="inline-flex items-center justify-center gap-3">
-                  <span class="btn-label">Enviar Mensaje</span>
+                  <span class="btn-label cursor-pointer">Enviar Mensaje</span>
                   <span class="btn-loading hidden items-center gap-3">
                     <span class="spinner" aria-hidden="true"></span>
                     <span>Enviando...</span>
@@ -97,21 +124,39 @@ import Button from "@/components/Button.astro";
             </form>
           </div>
 
-          <div id="success-screen" data-visible="false" class="absolute inset-0 px-5 flex flex-col items-center justify-center gap-6 text-center text-primary">
-            <div class="flex h-24 w-24 items-center justify-center rounded-full border border-border-alt bg-border-alt/10 shadow-[0_0_25px_rgba(18,155,79,0.45)]">
-              <svg class="h-12 w-12 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <div
+            id="success-screen"
+            data-visible="false"
+            class="absolute inset-0 px-5 flex flex-col items-center justify-center gap-6 text-center"
+          >
+            <div
+              class="flex h-24 w-24 items-center justify-center rounded-full border border-success bg-success-muted"
+            >
+              <svg
+                class="h-12 w-12 text-success"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <path d="M20 6L9 17l-5-5"></path>
               </svg>
             </div>
 
             <div class="space-y-3">
-              <h2 class="text-2xl sm:text-3xl font-bold text-primary">Mensaje recibido</h2>
-              <p class="text-base sm:text-lg text-secondary">Analizaré tu propuesta y te contactaré lo antes posible.</p>
+              <h2 class="text-2xl sm:text-3xl font-bold text-text-primary">
+                Mensaje recibido
+              </h2>
+              <p class="text-base sm:text-lg text-text-secondary">
+                Analizaré tu propuesta y te contactaré lo antes posible.
+              </p>
             </div>
 
             <button
               id="send-another"
-              class="text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] sm:tracking-[0.32em] text-accent hover:text-accent-hover hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+              class="text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-accent hover:text-accent-hover transition-all cursor-pointer"
             >
               Enviar otro mensaje
             </button>
@@ -129,30 +174,12 @@ import Button from "@/components/Button.astro";
   document.addEventListener("astro:after-swap", initContactForm);
 </script>
 
-<style is:inline>
-  .contact-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 14% 24%, rgba(0, 245, 255, 0.16), transparent 32%),
-      radial-gradient(circle at 88% 78%, rgba(102, 252, 255, 0.12), transparent 38%);
-    transform: translateZ(0);
-    animation: parallaxFloat 16s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  .input-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.84rem;
-    color: rgba(143, 224, 235, 0.7);
-    pointer-events: none;
-  }
-
+<style>
   #form-wrapper,
   #success-screen {
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
   }
 
   #form-wrapper[data-visible="false"] {
@@ -183,10 +210,6 @@ import Button from "@/components/Button.astro";
     pointer-events: auto;
   }
 
-  #send-another[data-animate="true"] {
-    animation: successButtonPop 0.55s ease;
-  }
-
   .spinner {
     width: 18px;
     height: 18px;
@@ -199,30 +222,6 @@ import Button from "@/components/Button.astro";
   @keyframes spin {
     to {
       transform: rotate(360deg);
-    }
-  }
-
-  @keyframes successButtonPop {
-    0% {
-      opacity: 0;
-      transform: translateY(8px) scale(0.95);
-    }
-    70% {
-      opacity: 1;
-      transform: translateY(0) scale(1.08);
-    }
-    100% {
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  @keyframes parallaxFloat {
-    0%,
-    100% {
-      transform: translate3d(0, 0, 0);
-    }
-    50% {
-      transform: translate3d(-8px, -14px, 0);
     }
   }
 </style>

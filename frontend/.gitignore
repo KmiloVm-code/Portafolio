@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# frontend build/runtime output
+.vercel/
+.next/
+.astro/

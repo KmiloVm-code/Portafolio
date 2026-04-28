@@ -23,7 +23,7 @@ const projectItems = await getCollection("projects");
           const { title, description, images, technologies } = data;
 
           return (
-            <article class="project-card group rounded-2xl overflow-hidden border border-border/50 bg-card/30 backdrop-blur-sm">
+            <article class="project-card group rounded-2xl overflow-hidden border border-border bg-bg-card">
               <a class="flex flex-col h-full" href={`/proyecto/${slug}`}>
                 <div class="relative overflow-hidden">
                   <img
@@ -43,8 +43,18 @@ const projectItems = await getCollection("projects");
                 </div>
 
                 <div class="p-5 flex flex-col gap-4 grow">
-                  <h2 transition:name={`title-${slug}`} class="project-title text-lg sm:text-xl font-bold mb-0 break-words">{title}</h2>
-                  <ReadingCopy size="sm" class="project-copy text-secondary line-clamp-4 mb-0">{description}</ReadingCopy>
+                  <h2
+                    transition:name={`title-${slug}`}
+                    class="project-title text-lg sm:text-xl text-text-primary font-bold mb-0 wrap-break-word"
+                  >
+                    {title}
+                  </h2>
+                  <ReadingCopy
+                    size="sm"
+                    class="project-copy text-text-secondary line-clamp-4 mb-0"
+                  >
+                    {description}
+                  </ReadingCopy>
 
                   <div class="flex flex-wrap gap-2 mt-auto">
                     {technologies.slice(0, 4).map((tech) => (
@@ -54,7 +64,10 @@ const projectItems = await getCollection("projects");
 
                   <div class="project-cta text-sm font-semibold text-accent inline-flex items-center gap-2">
                     Ver proyecto
-                    <ArrowRight size="12" class="transition-transform duration-300" />
+                    <ArrowRight
+                      size="12"
+                      class="transition-transform duration-300 group-hover:translate-x-1"
+                    />
                   </div>
                 </div>
               </a>
@@ -69,34 +82,30 @@ const projectItems = await getCollection("projects");
 <style>
   .project-card {
     position: relative;
-    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-  }
-
-  .project-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    background: linear-gradient(120deg, rgba(0, 245, 255, 0.72), rgba(0, 245, 255, 0.12), rgba(0, 245, 255, 0.72));
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-  }
-
-  .project-card:hover::before {
-    opacity: 1;
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .project-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0, 245, 255, 0.55);
-    box-shadow: 0 20px 36px rgba(0, 0, 0, 0.35), 0 0 30px rgba(0, 245, 255, 0.18);
+    transform: translateY(-4px);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-xl);
+
+    h2 {
+      color: var(--color-accent-hover);
+    }
   }
 
   .project-overlay {
-    background: linear-gradient(to top, rgba(3, 9, 19, 0.85), rgba(3, 9, 19, 0.08));
+    background: linear-gradient(
+      to top,
+      rgba(3, 9, 19, 0.85),
+      rgba(3, 9, 19, 0.08)
+    );
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.3s ease;
   }
 
   .project-card:hover .project-overlay {
@@ -104,20 +113,12 @@ const projectItems = await getCollection("projects");
   }
 
   .project-card:hover .project-cta {
-    color: #e8fdff;
-  }
-
-  .project-card:hover .project-cta svg {
-    transform: translateX(3px);
-  }
-
-  .project-card:hover h2 {
-    color: #f8fafc;
+    color: var(--color-accent-hover);
   }
 
   .project-title {
     line-height: 1.1;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
   }
 
   .project-copy {

@@ -12,8 +12,10 @@ const coursesItems = await getCollection("courses");
 const certifiedItems = await getCollection("certifications");
 ---
 
-<section id="studies" class="py-16 md:py-32 bg-bg-alt relative">
-  <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 select-none">
+<section id="studies" class="py-16 md:py-32 bg-bg-elevated relative">
+  <div
+    class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 select-none"
+  >
     <SectionHeader
       badge="Learning"
       title="Formación académica y cursos"
@@ -24,30 +26,61 @@ const certifiedItems = await getCollection("certifications");
       <div
         role="tablist"
         aria-label="Formación"
-        class="studies-tabs p-1.5 border border-border rounded-2xl mb-12 mx-auto w-full max-w-2xl"
+        class="studies-tabs px-2 py-1.5 border border-border rounded-full mb-12 mx-auto w-full max-w-2xl"
       >
         <div>
-          <input id="tab-studies" type="radio" name="formation-tabs" class="sr-only" checked />
-          <label for="tab-studies" role="tab" aria-controls="panel-studies" class="study-tab">
-            <GraduationCap size="18" class="transition-colors duration-300" />
+          <input
+            id="tab-studies"
+            type="radio"
+            name="formation-tabs"
+            class="sr-only"
+            checked
+          />
+          <label
+            for="tab-studies"
+            role="tab"
+            aria-controls="panel-studies"
+            class="study-tab"
+          >
+            <GraduationCap size="18" />
             <span class="tab-label-full">Estudios</span>
             <span class="tab-label-short">Estudios</span>
           </label>
         </div>
 
         <div>
-          <input id="tab-certifications" type="radio" name="formation-tabs" class="sr-only" />
-          <label for="tab-certifications" role="tab" aria-controls="panel-certifications" class="study-tab">
-            <BadgeCheck size="18" class="transition-colors duration-300" />
+          <input
+            id="tab-certifications"
+            type="radio"
+            name="formation-tabs"
+            class="sr-only"
+          />
+          <label
+            for="tab-certifications"
+            role="tab"
+            aria-controls="panel-certifications"
+            class="study-tab"
+          >
+            <BadgeCheck size="18" />
             <span class="tab-label-full">Certificaciones</span>
             <span class="tab-label-short">Certifs</span>
           </label>
         </div>
 
         <div>
-          <input id="tab-courses" type="radio" name="formation-tabs" class="sr-only" />
-          <label for="tab-courses" role="tab" aria-controls="panel-courses" class="study-tab">
-            <BookText size="18" class="transition-colors duration-300" />
+          <input
+            id="tab-courses"
+            type="radio"
+            name="formation-tabs"
+            class="sr-only"
+          />
+          <label
+            for="tab-courses"
+            role="tab"
+            aria-controls="panel-courses"
+            class="study-tab"
+          >
+            <BookText size="18" />
             <span class="tab-label-full">Cursos</span>
             <span class="tab-label-short">Cursos</span>
           </label>
@@ -55,31 +88,41 @@ const certifiedItems = await getCollection("certifications");
       </div>
 
       <div class="tab-panels">
-        <div id="panel-studies" role="tabpanel" aria-labelledby="tab-studies" class="tab-panel hidden group-has-[#tab-studies:checked]/tabs:block">
+        <div
+          id="panel-studies"
+          role="tabpanel"
+          aria-labelledby="tab-studies"
+          class="tab-panel hidden group-has-[#tab-studies:checked]/tabs:block"
+        >
           <ul class="space-y-6">
             {
               studiesItems
                 .sort((a, b) => b.data.year_start - a.data.year_start)
                 .map((item) => (
-                  <li class="study-card flex flex-col sm:flex-row sm:items-center rounded-2xl p-6 md:p-7 justify-between gap-4 group/studyItem">
+                  <li class="study-card flex flex-col sm:flex-row sm:items-center rounded-2xl p-6 md:p-7 justify-between gap-4">
                     <div class="flex items-start gap-3 sm:gap-4 min-w-0">
                       <span class="icon-wrap shrink-0">
                         <GraduationCap size="24" class="text-accent" />
                       </span>
                       <div class="min-w-0 flex-1">
-                        <h3 class="text-lg sm:text-xl font-bold mb-1 leading-tight break-words text-balance">{item.data.tittle}</h3>
-                        <p class="font-medium text-secondary leading-snug break-words">{item.data.university}</p>
+                        <h2 class="text-lg sm:text-xl text-text-primary font-bold mb-1 leading-tight wrap-break-word text-balance">
+                          {item.data.tittle}
+                        </h2>
+                        <h3 class="text-sm sm:text-base font-medium text-text-secondary leading-snug wrap-break-word uppercase">
+                          {item.data.university}
+                        </h3>
                       </div>
                     </div>
 
                     <div class="flex flex-col sm:items-end gap-2 pl-0 sm:pl-0">
-                      <p class="text-xs sm:text-sm font-mono font-bold text-accent tracking-[0.08em] break-words">
-                        {item.data.year_start} - {item.data.year_end ? item.data.year_end : "Presente"}
-                      </p>
-                      <small class="inline-flex w-fit items-center gap-1.5 text-xs font-bold border rounded-full px-3 py-1 bg-border-alt/10 text-green-300 border-border-alt/35 tracking-[0.08em] uppercase">
-                        <CircleCheck size="12" class="verified-icon" />
+                      <div class="text-xs sm:text-sm font-mono font-bold text-accent tracking-[0.08em] wrap-break-word">
+                        {item.data.year_start} -{" "}
+                        {item.data.year_end ? item.data.year_end : "Presente"}
+                      </div>
+                      <div class="inline-flex w-fit items-center gap-1.5 text-xs font-bold border rounded-full px-3 py-1 bg-success-muted text-success border-success/20 tracking-[0.08em] uppercase">
+                        <CircleCheck size="12" />
                         {item.data.finish ? "Graduado" : "En curso"}
-                      </small>
+                      </div>
                     </div>
                   </li>
                 ))
@@ -87,25 +130,39 @@ const certifiedItems = await getCollection("certifications");
           </ul>
         </div>
 
-        <div id="panel-certifications" role="tabpanel" aria-labelledby="tab-certifications" class="tab-panel hidden group-has-[#tab-certifications:checked]/tabs:block">
+        <div
+          id="panel-certifications"
+          role="tabpanel"
+          aria-labelledby="tab-certifications"
+          class="tab-panel hidden group-has-[#tab-certifications:checked]/tabs:block"
+        >
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
               certifiedItems
                 .sort((a, b) => b.data.date_issued - a.data.date_issued)
                 .map((item) => (
-                  <li class="study-card flex flex-col sm:flex-row rounded-2xl p-5 sm:p-6 gap-4 group/certItem">
-                    <div class="flex items-center justify-center w-20 h-20 p-2 border border-border shrink-0 rounded-xl bg-bg/50">
-                      <img src={item.data.badge_url} alt={`${item.data.title} badge`} class="w-full h-full object-contain" loading="lazy" />
+                  <li class="study-card flex flex-col sm:flex-row rounded-2xl p-5 sm:p-6 gap-4">
+                    <div class="flex items-center justify-center w-20 h-20 p-2 border border-border shrink-0 rounded-xl bg-bg-elevated">
+                      <img
+                        src={item.data.badge_url}
+                        alt={`${item.data.title} badge`}
+                        class="w-full h-full object-contain"
+                        loading="lazy"
+                      />
                     </div>
                     <div class="grow sm:ml-5 flex flex-col justify-center min-w-0">
-                      <h4 class="text-primary font-bold leading-tight mb-1 break-words">{item.data.title}</h4>
-                      <span class="text-xs font-medium uppercase tracking-[0.12em] text-secondary mb-3">{item.data.company}</span>
+                      <h2 class="text-lg sm:text-xl text-text-primary font-bold leading-tight mb-1 wrap-break-word">
+                        {item.data.title}
+                      </h2>
+                      <h3 class="text-sm sm:text-base font-medium uppercase tracking-[0.12em] text-text-secondary mb-3">
+                        {item.data.company}
+                      </h3>
                       {item.data.certificate_url && (
                         <a
                           href={item.data.certificate_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:text-accent-hover transition-colors duration-300"
+                          class="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:text-accent-hover transition-colors"
                         >
                           Ver certificado
                           <ExternalLink size="12" />
@@ -118,30 +175,52 @@ const certifiedItems = await getCollection("certifications");
           </ul>
         </div>
 
-        <div id="panel-courses" role="tabpanel" aria-labelledby="tab-courses" class="tab-panel hidden group-has-[#tab-courses:checked]/tabs:block">
+        <div
+          id="panel-courses"
+          role="tabpanel"
+          aria-labelledby="tab-courses"
+          class="tab-panel hidden group-has-[#tab-courses:checked]/tabs:block"
+        >
           <ul class="space-y-6">
             {
               coursesItems
                 .sort((a, b) => b.data.year - a.data.year)
                 .map((item) => (
-                  <li class="study-card rounded-2xl p-6 md:p-7 group/courseItem">
+                  <li class="study-card rounded-2xl p-6 md:p-7">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div class="flex items-center gap-4">
-                        <BookText size="44" class="text-accent shrink-0 bg-accent/12 p-2.5 rounded-full" />
+                        <BookText
+                          size="44"
+                          class="text-accent shrink-0 bg-accent-subtle p-2.5 rounded-full"
+                        />
                         <div>
-                          <h4 class="font-bold text-primary leading-tight break-words text-balance">{item.data.title}</h4>
-                          <span class="text-xs font-semibold text-secondary leading-snug break-words">{item.data.university}</span>
+                          <h2 class="text-lg sm:text-xl text-text-primary font-bold leading-tight wrap-break-word text-balance">
+                            {item.data.title}
+                          </h2>
+                          <h3 class="text-sm sm:text-base font-medium text-text-tertiary leading-snug wrap-break-word">
+                            {item.data.university}
+                          </h3>
                         </div>
                       </div>
                       <div class="flex items-center gap-4 sm:gap-5 pl-0 sm:pl-0">
                         <div class="flex flex-col items-start sm:items-end">
-                          <span class="text-[11px] font-bold uppercase tracking-[0.1em] text-secondary">Duración</span>
-                          <span class="text-xs text-secondary">{item.data.hours ? `${item.data.hours} horas` : "--"}</span>
+                          <span class="text-[11px] font-bold uppercase tracking-widest text-text-tertiary">
+                            Duración
+                          </span>
+                          <span class="text-xs text-text-secondary">
+                            {item.data.hours
+                              ? `${item.data.hours} horas`
+                              : "--"}
+                          </span>
                         </div>
-                        <div class="h-8 w-px bg-slate-800 hidden sm:block"></div>
+                        <div class="h-8 w-px bg-border hidden sm:block" />
                         <div class="flex flex-col items-start sm:items-end">
-                          <span class="text-[11px] font-bold uppercase tracking-[0.1em] text-secondary">Año</span>
-                          <span class="text-xs text-secondary">{item.data.year}</span>
+                          <span class="text-[11px] font-bold uppercase tracking-widest text-text-tertiary">
+                            Año
+                          </span>
+                          <span class="text-xs text-text-secondary">
+                            {item.data.year}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -160,8 +239,7 @@ const certifiedItems = await getCollection("certifications");
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.5rem;
-    background: rgba(12, 20, 36, 0.65);
-    backdrop-filter: blur(14px);
+    background: var(--color-bg);
   }
 
   .study-tab {
@@ -170,38 +248,38 @@ const certifiedItems = await getCollection("certifications");
     justify-content: center;
     gap: 0.45rem;
     border-radius: 999px;
-    border: 1px solid rgba(0, 245, 255, 0.18);
+    border: 1px solid var(--color-border);
     width: 100%;
     min-width: 0;
     height: 44px;
     padding: 0 1rem;
-    color: #b4c6d9;
+    color: var(--color-text-tertiary);
     font-size: 0.76rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
-    background: rgba(7, 14, 28, 0.56);
+    background: transparent;
   }
 
   .study-tab svg {
-    color: #88deea;
+    color: var(--color-text-tertiary);
+    transition: color 0.2s ease;
   }
 
   input[id="tab-studies"]:checked + .study-tab,
   input[id="tab-certifications"]:checked + .study-tab,
   input[id="tab-courses"]:checked + .study-tab {
-    color: #ebfcff;
-    border-color: rgba(0, 245, 255, 0.72);
-    background: linear-gradient(130deg, rgba(0, 245, 255, 0.34), rgba(0, 245, 255, 0.18));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 24px rgba(0, 245, 255, 0.2);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+    background: var(--color-accent);
   }
 
   input[id="tab-studies"]:checked + .study-tab svg,
   input[id="tab-certifications"]:checked + .study-tab svg,
   input[id="tab-courses"]:checked + .study-tab svg {
-    color: #ebfcff;
+    color: var(--color-bg);
   }
 
   .tab-label-short {
@@ -226,9 +304,8 @@ const certifiedItems = await getCollection("certifications");
   }
 
   .study-tab:hover {
-    color: #dff8ff;
-    border-color: rgba(0, 245, 255, 0.35);
-    background: rgba(0, 245, 255, 0.08);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
   }
 
   @media (max-width: 430px) {
@@ -258,16 +335,18 @@ const certifiedItems = await getCollection("certifications");
   }
 
   .study-card {
-    border: 1px solid rgba(84, 109, 139, 0.5);
-    background: linear-gradient(135deg, rgba(15, 23, 43, 0.58), rgba(11, 17, 30, 0.45));
-    backdrop-filter: blur(12px);
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-card);
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .study-card:hover {
-    border-color: rgba(0, 245, 255, 0.55);
-    transform: translateY(-3px);
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.28), 0 0 24px rgba(0, 245, 255, 0.16);
+    border-color: var(--color-border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
   }
 
   .icon-wrap {
@@ -277,12 +356,8 @@ const certifiedItems = await getCollection("certifications");
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background: rgba(0, 245, 255, 0.1);
-    border: 1px solid rgba(0, 245, 255, 0.25);
-  }
-
-  .verified-icon {
-    animation: verifiedPop 2.4s ease-in-out infinite;
+    background: var(--color-accent-subtle);
+    border: 1px solid var(--color-border);
   }
 
   @keyframes panelFade {
@@ -293,16 +368,6 @@ const certifiedItems = await getCollection("certifications");
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-
-  @keyframes verifiedPop {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.15);
     }
   }
 </style>

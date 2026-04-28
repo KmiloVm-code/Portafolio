@@ -6,20 +6,26 @@ interface Props {
   align?: "left" | "center";
 }
 
-const {
-  badge,
-  title,
-  subtitle,
-  align = "center",
-} = Astro.props;
+const { badge, title, subtitle, align = "center" } = Astro.props;
 
-const alignClass = align === "left" ? "text-center sm:text-left mx-auto sm:mx-0" : "text-center mx-auto";
+const alignClass =
+  align === "left"
+    ? "text-center sm:text-left mx-auto sm:mx-0"
+    : "text-center mx-auto";
 const lineClass = align === "left" ? "mx-auto sm:mx-0" : "mx-auto";
 ---
 
 <header class={`section-header ${alignClass}`}>
   {badge && <span class="section-badge">{badge}</span>}
-  <h2 class="section-title tracking-[-0.07em] sm:tracking-[-0.08em]">{title}</h2>
-  {subtitle && <p class="section-subtitle">{subtitle}</p>}
+  <h1
+    class="text-3xl md:text-4xl lg:text-5xl text-text-primary font-bold tracking-tighter text-balance wrap-anywhere"
+  >
+    {title}
+  </h1>
+  {
+    subtitle && (
+      <p class="text-lg text-text-secondary text-pretty mt-2">{subtitle}</p>
+    )
+  }
   <div class={`section-line ${lineClass}`} aria-hidden="true"></div>
 </header>

@@ -7,8 +7,10 @@ import ReadingCopy from "@/components/ReadingCopy.astro";
 const experienceItems = await getCollection("experience");
 ---
 
-<section id="experiencia" class="py-16 md:py-32 bg-bg-alt relative">
-  <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 select-none">
+<section id="experiencia" class="py-16 md:py-32 bg-bg-elevated relative">
+  <div
+    class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 select-none"
+  >
     <SectionHeader
       badge="Career"
       title="Trayectoria profesional"
@@ -16,7 +18,10 @@ const experienceItems = await getCollection("experience");
     />
 
     <div class="relative space-y-8">
-      <div class="timeline-line absolute left-5 md:left-44 top-0 bottom-0 w-[2px]"></div>
+      <div
+        class="timeline-line absolute left-5 md:left-44 top-0 bottom-0 w-0.5"
+      >
+      </div>
 
       {
         experienceItems
@@ -28,41 +33,52 @@ const experienceItems = await getCollection("experience");
               .filter(Boolean);
 
             return (
-              <div class="relative grid grid-cols-[40px_1fr] md:grid-cols-[140px_72px_1fr] items-start group timeline-view animate-fade-in-left animate-range-entry">
+              <div class="relative grid grid-cols-[40px_1fr] md:grid-cols-[140px_72px_1fr] items-start group timeline-view">
                 <div class="hidden md:flex justify-end pt-2.5 pr-8">
-                  <span class="font-bold text-accent font-mono tracking-tighter text-right">
+                  <span class="font-bold text-accent font-mono tracking-tight text-right">
                     {item.data.start_date} - {item.data.end_date}
                   </span>
                 </div>
 
                 <div class="flex justify-center z-10">
-                  <div class="timeline-icon w-10 h-10 flex items-center justify-center border border-border/40 rounded-full bg-bg z-10">
-                    <Briefcase size="18" class="text-icon/70" />
+                  <div class="timeline-icon w-10 h-10 flex items-center justify-center border border-border rounded-full bg-bg">
+                    <Briefcase size="18" class="text-text-secondary" />
                   </div>
                 </div>
 
                 <div class="pl-4 md:pl-10">
                   <div class="md:hidden flex items-center h-auto min-h-10 mb-4">
-                    <span class="text-[11px] font-bold text-cyan-500/90 font-mono tracking-[0.1em] uppercase break-words">
+                    <span class="text-[11px] font-bold text-accent font-mono tracking-widest uppercase wrap-break-word">
                       {item.data.start_date} - {item.data.end_date}
                     </span>
                   </div>
 
-                    <article class="experience-card p-6 rounded-2xl border border-border bg-card/30">
+                  <article class="experience-card p-6 rounded-2xl border border-border bg-bg-card">
                     <div class="experience-layout gap-6 lg:gap-8 items-start">
                       <div class="experience-main">
                         <div class="experience-panel mb-5">
-                          <h2 class="text-lg sm:text-xl font-bold mb-1 transition-colors duration-300 break-words">{item.data.title}</h2>
-                          <h3 class="text-base md:text-lg font-medium text-secondary">{item.data.company}</h3>
+                          <h2 class="text-lg sm:text-xl text-text-primary font-bold mb-1 wrap-break-word">
+                            {item.data.title}
+                          </h2>
+                          <h3 class="text-base md:text-lg font-medium text-text-secondary group">
+                            {item.data.company}
+                          </h3>
                         </div>
 
-                        <div class="experience-copy text-secondary/95 max-w-[52ch] lg:max-w-[56ch]">
+                        <div class="experience-copy text-text-secondary max-w-[52ch] lg:max-w-[56ch]">
                           {item.data.description
                             .split(/\n\s*\n/)
-                            .map((paragraph, index) => (
-                              <div class={`experience-paragraph experience-paragraph-${index + 1}`.trim()}>
-                                <span class="experience-bullet" aria-hidden="true"></span>
-                                <ReadingCopy as="p" size="sm" class="experience-paragraph-text">
+                            .map((paragraph) => (
+                              <div class="experience-paragraph">
+                                <span
+                                  class="experience-bullet"
+                                  aria-hidden="true"
+                                />
+                                <ReadingCopy
+                                  as="p"
+                                  size="sm"
+                                  class="experience-paragraph-text"
+                                >
                                   {paragraph}
                                 </ReadingCopy>
                               </div>
@@ -73,11 +89,15 @@ const experienceItems = await getCollection("experience");
                       <aside class="experience-aside">
                         <div class="experience-aside-block">
                           <span class="experience-aside-label">Periodo</span>
-                          <span class="experience-aside-value">{item.data.start_date} - {item.data.end_date}</span>
+                          <span class="experience-aside-value">
+                            {item.data.start_date} - {item.data.end_date}
+                          </span>
                         </div>
 
                         <div class="experience-aside-block">
-                          <span class="experience-aside-label">Tecnologías</span>
+                          <span class="experience-aside-label">
+                            Tecnologías
+                          </span>
                           <ul class="experience-tags flex flex-wrap gap-2">
                             {technologies.map((tech) => (
                               <li class="tech-badge">{tech}</li>
@@ -98,25 +118,44 @@ const experienceItems = await getCollection("experience");
 
 <style>
   .timeline-line {
-    background: linear-gradient(to bottom, transparent, rgba(0, 245, 255, 0.75), transparent);
-    filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.5));
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--color-accent),
+      transparent
+    );
   }
 
   .timeline-icon {
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .group:hover .timeline-icon {
-    transform: scale(1.02);
-    border-color: rgba(0, 245, 255, 0.2);
-    box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.04);
+    transform: scale(1.05);
+    border-color: var(--color-accent);
   }
 
   .experience-card {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .experience-card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-lg);
+    h2 {
+      color: var(--color-accent-hover);
+    }
+    h3 {
+      color: var(--color-accent-soft);
+    }
   }
 
   .experience-layout {
@@ -139,33 +178,25 @@ const experienceItems = await getCollection("experience");
     display: grid;
     gap: 0.35rem;
     padding: 0.7rem 0.75rem;
-    border: 1px solid rgba(0, 245, 255, 0.1);
-    border-radius: 1rem;
-    background: rgba(0, 245, 255, 0.025);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
   }
 
   .experience-aside-label {
     font-size: 0.58rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(132, 253, 255, 0.7);
+    color: var(--color-accent);
   }
 
   .experience-aside-value {
     font-family: "Satoshi", "Inter", sans-serif;
     font-weight: 600;
     line-height: 1.12;
-    color: #effcff;
+    color: var(--color-text-primary);
     font-size: 0.9rem;
-  }
-
-  .experience-panel,
-  .experience-copy,
-  .experience-main {
-    width: min(100%, 58ch);
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .experience-main {
@@ -177,11 +208,6 @@ const experienceItems = await getCollection("experience");
       min-width: 0;
       padding-right: 0.5rem;
     }
-  }
-
-  .experience-card:hover {
-    border-color: rgba(0, 245, 255, 0.42);
-    box-shadow: 0 0 0 1px rgba(0, 245, 255, 0.08);
   }
 
   .experience-copy {
@@ -201,8 +227,7 @@ const experienceItems = await getCollection("experience");
     height: 0.42rem;
     margin-top: 0.6rem;
     border-radius: 999px;
-    background: radial-gradient(circle at 35% 35%, #f4feff 0, rgba(132, 253, 255, 0.92) 32%, rgba(0, 245, 255, 0.76) 100%);
-    box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.04);
+    background: var(--color-accent);
     flex-shrink: 0;
   }
 
@@ -211,48 +236,35 @@ const experienceItems = await getCollection("experience");
     text-wrap: pretty;
   }
 
-  .experience-card:hover {
-    border-color: rgba(0, 245, 255, 0.42);
-  }
-
-  .experience-card:hover h2 {
-    color: #7cf7ff !important;
-  }
-
-  .experience-card:hover h3 {
-    color: rgba(124, 247, 255, 0.76) !important;
-  }
-
   .experience-card h2 {
-    line-height: 1.06;
-    letter-spacing: -0.05em;
-    transition: color 0.3s ease;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 
   .experience-card h3 {
     line-height: 1.15;
     margin-bottom: 0.6rem;
-    transition: color 0.3s ease;
   }
 
   .tech-badge {
     list-style: none;
-    border: 1px solid rgba(0, 245, 255, 0.35);
-    background: rgba(0, 245, 255, 0.1);
-    color: #d0f8ff;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-secondary);
     border-radius: 999px;
     padding: 0.32rem 0.68rem;
     font-size: 0.67rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     font-weight: 600;
-    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
   }
 
   .tech-badge:hover {
-    border-color: rgba(0, 245, 255, 0.28);
-    background: rgba(255, 255, 255, 0.04);
-    color: #e7fbff;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
   }
 
   @media (max-width: 1023px) {

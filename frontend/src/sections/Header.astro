@@ -10,21 +10,21 @@ const items = [
 
 <header class="fixed top-0 left-0 w-full z-30 px-4 md:px-8 lg:px-10 pt-3">
   <div class="mx-auto max-w-7xl">
-    <div class="glass-card border-accent/20 px-4 md:px-6 py-3 md:py-4">
+    <div class="header-nav px-4 md:px-6 py-3 md:py-4">
       <div class="flex items-center justify-between gap-4">
         <a
           href="/"
           id="logo"
-          class="text-base md:text-xl font-bold tracking-tight text-primary"
+          class="text-base md:text-xl font-bold tracking-tight"
           data-section="hero"
         >
-          Andrés <span class="text-shimmer">Camilo</span>
+          Andrés <span class="text-accent">Camilo</span>
         </a>
 
         <button
           id="mobile-menu-button"
           type="button"
-          class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-bg/80 text-primary"
+          class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors"
           aria-label="Abrir menú"
         >
           <svg
@@ -44,16 +44,15 @@ const items = [
           </svg>
         </button>
 
-        <nav class="hidden md:flex items-center gap-2" aria-label="Principal">
+        <nav class="hidden md:flex items-center gap-1" aria-label="Principal">
           {
             items.map((item) => (
               <a
                 href="/"
                 data-section={item.section}
-                class="nav-item relative px-3 py-2 text-sm font-medium text-secondary transition-colors duration-300 hover:text-primary"
+                class="nav-item px-3 py-2 text-sm font-medium text-text-tertiary hover:text-text-primary transition-colors duration-200"
               >
-                <span class="relative z-10">{item.name}</span>
-                <span class="nav-dot" aria-hidden="true"></span>
+                {item.name}
               </a>
             ))
           }
@@ -64,11 +63,11 @@ const items = [
 
   <div
     id="mobile-menu-overlay"
-    class="fixed inset-0 bg-black/45 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden z-40"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden z-40"
   ></div>
   <nav
     id="mobile-menu"
-    class="fixed top-0 right-0 h-dvh w-[min(84vw,320px)] bg-bg-alt/95 border-l border-accent/25 shadow-2xl p-6 sm:p-8 pt-20 flex flex-col gap-2 sm:gap-3 translate-x-full transition-transform duration-300 md:hidden z-50"
+    class="fixed top-0 right-0 h-dvh w-[min(84vw,320px)] bg-bg-elevated border-l border-border p-6 sm:p-8 pt-20 flex flex-col gap-2 sm:gap-3 translate-x-full transition-transform duration-300 md:hidden z-50"
     aria-label="Principal móvil"
   >
     {
@@ -76,7 +75,7 @@ const items = [
         <a
           href="/"
           data-section={item.section}
-          class="nav-item block rounded-xl px-4 py-3 text-base font-medium text-secondary hover:text-primary hover:bg-card/60 transition-all duration-300"
+          class="nav-item block rounded-xl px-4 py-3 text-base font-medium text-text-secondary hover:text-text-primary hover:bg-bg-card transition-all duration-200"
         >
           {item.name}
         </a>
@@ -88,6 +87,13 @@ const items = [
 </header>
 
 <style>
+  .header-nav {
+    background: rgba(12, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
   .scroll-progress {
     position: fixed;
     top: 0;
@@ -95,27 +101,12 @@ const items = [
     width: 0;
     height: 2px;
     z-index: 35;
-    background: var(--gradient-primary);
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+    background: var(--color-accent);
     transition: width 0.1s linear;
   }
 
   .nav-item {
-    isolation: isolate;
     position: relative;
-  }
-
-  .nav-dot {
-    display: none;
-  }
-
-  .nav-item.is-active .nav-dot {
-    transform: translateY(-50%) scale(1);
-    box-shadow: 0 0 10px rgba(121, 246, 255, 0.7);
-  }
-
-  .nav-item.is-active {
-    color: #ecfeff;
   }
 
   @media (min-width: 768px) {
@@ -124,29 +115,25 @@ const items = [
       position: absolute;
       left: 0.75rem;
       right: 0.75rem;
-      bottom: 0.4rem;
+      bottom: 0.3rem;
       height: 2px;
-      background: var(--gradient-primary);
+      background: var(--color-accent);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease;
+      border-radius: 999px;
+    }
+
+    .nav-item:hover {
+      color: var(--color-text-primary);
     }
 
     .nav-item:hover::after {
       transform: scaleX(1);
     }
 
-    .nav-dot {
-      display: block;
-      width: 0.34rem;
-      height: 0.34rem;
-      border-radius: 999px;
-      background: #79f6ff;
-      position: absolute;
-      left: 0.15rem;
-      top: 50%;
-      transform: translateY(-50%) scale(0);
-      transition: transform 0.25s ease;
+    .nav-item.is-active {
+      color: var(--color-text-primary);
     }
 
     .nav-item.is-active::after {
