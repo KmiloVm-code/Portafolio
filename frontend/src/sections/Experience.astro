@@ -1,86 +1,275 @@
 ---
 import { getCollection } from "astro:content";
 import Briefcase from "@/assets/svg/briefcase-business.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import ReadingCopy from "@/components/ReadingCopy.astro";
 
 const experienceItems = await getCollection("experience");
 ---
 
-<section id="experiencia" class="py-16 md:py-32 bg-bg-alt relative">
+<section id="experiencia" class="py-16 md:py-32 bg-bg-elevated relative">
   <div
     class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10 select-none"
   >
-    <div
-      class="mx-auto prose prose-invert mb-10 md:mb-20 text-center timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%]"
-    >
-      <!-- Section Header -->
-      <h1 class="text-4xl font-bold">Trayectoria Profesional</h1>
-      <p class="text-lg">
-        Un recorrido por los hitos que han definido mi carrera y el valor
-        aportado en cada etapa.
-      </p>
-    </div>
+    <SectionHeader
+      badge="Career"
+      title="Trayectoria profesional"
+      subtitle="Un recorrido por los hitos que han definido mi carrera y el impacto generado en cada etapa."
+    />
 
-    <!-- Timeline Container -->
     <div class="relative space-y-8">
-      <!-- Timeline Divider -->
       <div
-        class="absolute left-5 md:left-44 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-slate-800 to-transparent"
+        class="timeline-line absolute left-5 md:left-44 top-0 bottom-0 w-0.5"
       >
       </div>
+
       {
         experienceItems
           .sort((a, b) => b.data.start_date - a.data.start_date)
-          .map((item) => (
-            <div class="relative grid grid-cols-[40px_1fr] md:grid-cols-[140px_72px_1fr] items-start group timeline-view animate-fade-in-left animate-range-entry">
-              {/* Timeline Date Desktop */}
-              <div class="hidden md:flex justify-end pt-2.5 pr-8">
-                <span class="font-bold text-accent font-mono tracking-tighter text-right">
-                  {item.data.start_date} - {item.data.end_date}
-                </span>
-              </div>
+          .map((item) => {
+            const technologies = item.data.technologies
+              .split(",")
+              .map((tech) => tech.trim())
+              .filter(Boolean);
 
-              {/* Timeline Icon */}
-              <div class="flex justify-center z-10">
-                <div class="w-10 h-10 flex items-center justify-center border border-border/40 rounded-full bg-bg group-hover:border-accent-hover shadow-[0_0_10px_rgba(0,0,0,0.5)] z-10 group-hover:shadow-accent-hover transition-all duration-300">
-                  <Briefcase
-                    size="20"
-                    class="text-icon/30 group-hover:text-accent-hover transition-colors duration-300"
-                  />
-                </div>
-              </div>
-
-              {/* TimeLine Date Mobile */}
-              <div class="pl-4 md:pl-10">
-                <div class="md:hidden flex items-center h-10 mb-4">
-                  <span class="text-xs font-bold text-cyan-500/80 font-mono tracking-widest uppercase">
+            return (
+              <div class="relative grid grid-cols-[40px_1fr] md:grid-cols-[140px_72px_1fr] items-start group timeline-view">
+                <div class="hidden md:flex justify-end pt-2.5 pr-8">
+                  <span class="font-bold text-accent font-mono tracking-tight text-right">
                     {item.data.start_date} - {item.data.end_date}
                   </span>
                 </div>
 
-                {/* Timeline Content */}
-                <article class="p-6 rounded-xl border border-border bg-card/30 hover:bg-card/60 hover:border-accent-hover/80 transition-all duration-300 backdrop-blur-sm">
-                  <div class="mb-4">
-                    <h2 class="text-xl font-bold group-hover:text-accent-hover transition-colors duration-300 mb-1">
-                      {item.data.title}
-                    </h2>
-                    <h3 class="text-lg font-medium text-secondary">
-                      {item.data.company}
-                    </h3>
+                <div class="flex justify-center z-10">
+                  <div class="timeline-icon w-10 h-10 flex items-center justify-center border border-border rounded-full bg-bg">
+                    <Briefcase size="18" class="text-text-secondary" />
                   </div>
-                  <span class="whitespace-pre-line">
-                    <p class="prose-invert prose-sm text-pretty">{item.data.description}</p>
-                  </span>
-                  <ul class="list-disc list-inside space-y-2 border-t border-border pt-4 mt-4">
-                    <li class="text-sm text-secondary/40 marker:text-accent">
-                      <strong class="font-semibold">Tecnologías:</strong>{" "}
-                      {item.data.technologies}
-                    </li>
-                  </ul>
-                </article>
+                </div>
+
+                <div class="pl-4 md:pl-10">
+                  <div class="md:hidden flex items-center h-auto min-h-10 mb-4">
+                    <span class="text-[11px] font-bold text-accent font-mono tracking-widest uppercase wrap-break-word">
+                      {item.data.start_date} - {item.data.end_date}
+                    </span>
+                  </div>
+
+                  <article class="experience-card p-6 rounded-2xl border border-border bg-bg-card">
+                    <div class="experience-layout gap-6 lg:gap-8 items-start">
+                      <div class="experience-main">
+                        <div class="experience-panel mb-5">
+                          <h2 class="text-lg sm:text-xl text-text-primary font-bold mb-1 wrap-break-word">
+                            {item.data.title}
+                          </h2>
+                          <h3 class="text-base md:text-lg font-medium text-text-secondary group">
+                            {item.data.company}
+                          </h3>
+                        </div>
+
+                        <div class="experience-copy text-text-secondary max-w-[52ch] lg:max-w-[56ch]">
+                          {item.data.description
+                            .split(/\n\s*\n/)
+                            .map((paragraph) => (
+                              <div class="experience-paragraph">
+                                <span
+                                  class="experience-bullet"
+                                  aria-hidden="true"
+                                />
+                                <ReadingCopy
+                                  as="p"
+                                  size="sm"
+                                  class="experience-paragraph-text"
+                                >
+                                  {paragraph}
+                                </ReadingCopy>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      <aside class="experience-aside">
+                        <div class="experience-aside-block">
+                          <span class="experience-aside-label">Periodo</span>
+                          <span class="experience-aside-value">
+                            {item.data.start_date} - {item.data.end_date}
+                          </span>
+                        </div>
+
+                        <div class="experience-aside-block">
+                          <span class="experience-aside-label">
+                            Tecnologías
+                          </span>
+                          <ul class="experience-tags flex flex-wrap gap-2">
+                            {technologies.map((tech) => (
+                              <li class="tech-badge">{tech}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </aside>
+                    </div>
+                  </article>
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
       }
     </div>
   </div>
 </section>
+
+<style>
+  .timeline-line {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--color-accent),
+      transparent
+    );
+  }
+
+  .timeline-icon {
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .group:hover .timeline-icon {
+    transform: scale(1.05);
+    border-color: var(--color-accent);
+  }
+
+  .experience-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .experience-card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-lg);
+    h2 {
+      color: var(--color-accent-hover);
+    }
+    h3 {
+      color: var(--color-accent-soft);
+    }
+  }
+
+  .experience-layout {
+    display: grid;
+  }
+
+  @media (min-width: 1024px) {
+    .experience-layout {
+      grid-template-columns: minmax(0, 1fr) 10rem;
+    }
+  }
+
+  .experience-aside {
+    display: grid;
+    gap: 0.6rem;
+    padding-top: 0.15rem;
+  }
+
+  .experience-aside-block {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.7rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+  }
+
+  .experience-aside-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .experience-aside-value {
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-weight: 600;
+    line-height: 1.12;
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+  }
+
+  .experience-main {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .experience-main {
+      min-width: 0;
+      padding-right: 0.5rem;
+    }
+  }
+
+  .experience-copy {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .experience-paragraph {
+    display: grid;
+    grid-template-columns: 0.55rem minmax(0, 1fr);
+    gap: 0.55rem;
+    align-items: start;
+  }
+
+  .experience-bullet {
+    width: 0.42rem;
+    height: 0.42rem;
+    margin-top: 0.6rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .experience-paragraph-text {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .experience-card h2 {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .experience-card h3 {
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+  }
+
+  .tech-badge {
+    list-style: none;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-secondary);
+    border-radius: 999px;
+    padding: 0.32rem 0.68rem;
+    font-size: 0.67rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .tech-badge:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 1023px) {
+    .experience-aside {
+      margin-top: 1rem;
+    }
+  }
+</style>

@@ -1,4 +1,13 @@
 ---
+import SectionHeader from "@/components/SectionHeader.astro";
+import ArrowRight from "@/assets/svg/arrow-right.astro";
+import ExternalLink from "@/assets/svg/external-link.astro";
+import ReadingCopy from "@/components/ReadingCopy.astro";
+import Button from "@/components/Button.astro";
+import McpIcon from "@/assets/svg/mcp.astro";
+import N8nIcon from "@/assets/svg/n8n.astro";
+import BotIcon from "@/assets/svg/bot.astro";
+
 const techStack = [
   { name: "React", icon: "devicon-react-original", category: "frontend" },
   { name: "Node.js", icon: "devicon-nodejs-plain", category: "backend" },
@@ -8,15 +17,8 @@ const techStack = [
     icon: "devicon-postgresql-plain",
     category: "database",
   },
-  {
-    name: "AWS",
-    icon: "devicon-amazonwebservices-plain-wordmark",
-    category: "devops",
-  },
-  { name: "Azure", icon: "devicon-azure-plain", category: "devops" },
   { name: "Python", icon: "devicon-python-plain", category: "backend" },
   { name: "MongoDB", icon: "devicon-mongodb-plain", category: "database" },
-  { name: "Docker", icon: "devicon-docker-plain", category: "devops" },
   { name: "MySQL", icon: "devicon-mysql-plain", category: "database" },
   {
     name: "JavaScript",
@@ -30,15 +32,22 @@ const techStack = [
   },
   { name: "HTML5/CSS", icon: "devicon-html5-plain", category: "frontend" },
   { name: "GraphQL", icon: "devicon-graphql-plain", category: "backend" },
-  { name: "MCP", icon: "/icons/mcp.svg", category: "tools" },
-  { name: "N8N", icon: "/icons/n8n.svg", category: "tools" },
-  { name: "Agents / LLMs", icon: "/icons/bot.svg", category: "tools" },
+  { name: "MCP", icon: McpIcon, category: "tools" },
+  { name: "N8N", icon: N8nIcon, category: "tools" },
+  { name: "Agents / LLMs", icon: BotIcon, category: "tools" },
   { name: "GitHub", icon: "devicon-github-plain", category: "tools" },
+  {
+    name: "AWS",
+    icon: "devicon-amazonwebservices-plain-wordmark",
+    category: "tools",
+  },
+  { name: "Azure", icon: "devicon-azure-plain", category: "tools" },
+  { name: "Docker", icon: "devicon-docker-plain", category: "tools" },
 ];
 
-const categoryOrder = ["frontend", "backend", "database", "devops", "tools"];
+const categoryOrder = ["frontend", "backend", "database", "tools"];
 const categories = [...new Set(techStack.map((t) => t.category))].sort(
-  (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b)
+  (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b),
 );
 
 const groupedTech = categories.reduce(
@@ -46,127 +55,637 @@ const groupedTech = categories.reduce(
     acc[category] = techStack.filter((tech) => tech.category === category);
     return acc;
   },
-  {} as Record<string, typeof techStack>
+  {} as Record<string, typeof techStack>,
 );
+
+const panelMeta = {
+  frontend: { tone: "#00f5ff" },
+  backend: { tone: "#83d5d3" },
+  database: { tone: "#a1a1aa" },
+  tools: { tone: "#71717a" },
+} as const;
 ---
 
 <section id="sobre-mi" class="py-16 md:py-32 bg-bg relative">
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10">
-    <div
-      class="mx-auto prose prose-invert text-center mb-10 md:mb-20 timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%]"
-    >
-      <h1 class="text-4xl font-bold">Acerca de mí</h1>
-      <p class="text-lg">
-        Conoce más sobre mi experiencia, habilidades técnicas y pasiones que me
-        impulsan como Desarrollador Full Stack.
-      </p>
-    </div>
+    <SectionHeader
+      badge="Perfil"
+      title="Acerca de mí"
+      subtitle="Conoce mi enfoque técnico, mi experiencia en entornos críticos y cómo uso IA para acelerar resultados sin perder calidad."
+    />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-      <div
-        class="space-y-8" 
-      >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-14 xl:gap-20 items-start">
+      <div class="space-y-8">
         <div
-          class="relative aspect-video w-full mx-auto md:mx-0 rounded-2xl overflow-hidden shadow-sm/60 shadow-accent bg-bg hover:shadow-md/60 transition-shadow duration-300 timeline-view animate-fade-in-right animate-range-entry"
+          class="aspect-video w-full rounded-2xl overflow-hidden border border-border"
         >
           <img
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             src="/foto.webp"
             alt="Foto de Andrés Camilo"
             loading="lazy"
             decoding="async"
-            onload="this.classList.remove('opacity-0')"
-            onerror="this.classList.remove('opacity-0')"
           />
         </div>
 
-        <div class="space-y-8 prose prose-invert timeline-view animate-fade-in-up animate-range-entry">
-          <h3 class="text-2xl font-bold text-primary mb-4">
+        <div class="card p-4 md:p-5 space-y-5">
+          <h3 class="text-2xl md:text-3xl text-text-primary font-bold">
             Hola, soy Andrés Camilo
           </h3>
 
-          <p class="text-lg">
-            Soy Desarrollador Full Stack con experiencia en React, Node.js y
-            bases de datos relacionales, y un fuerte background en operación,
-            observabilidad y cloud (AWS y Azure).
-          </p>
+          <div class="space-y-4 max-w-none">
+            <ReadingCopy class="max-w-[62ch]">
+              Soy Desarrollador Full Stack con experiencia en React, Node.js y
+              bases de datos relacionales, con fuerte background en operación,
+              observabilidad y cloud (AWS y Azure).
+            </ReadingCopy>
 
-          <p class="text-lg">
-            Utilizo IA como apoyo activo al desarrollo para mejorar calidad de
-            código, refactorización, debugging, documentación y automatización,
-            acelerando entregas sin sacrificar buenas prácticas.
-          </p>
+            <ReadingCopy class="max-w-[62ch]">
+              Utilizo IA como apoyo activo al desarrollo para mejorar calidad de
+              código, refactorización, debugging, documentación y
+              automatización.
+            </ReadingCopy>
+          </div>
 
-          <p class="text-lg">
-            He trabajado en entornos productivos y de alta criticidad,
-            analizando incidentes con Dynatrace y Splunk, y desarrollando
-            aplicaciones web completas como e-commerce y apps de finanzas
-            personales, enfocadas en rendimiento y escalabilidad.
-          </p>
+          <div
+            class="grid grid-cols-2 gap-3 sm:gap-4 pt-2"
+          >
+            <div
+              class="rounded-xl border border-border bg-bg-elevated px-4 py-3 flex flex-col items-center justify-center text-center"
+            >
+              <h4
+                class="uppercase tracking-[0.2em] text-accent text-[10px] font-semibold mb-1"
+              >
+                Experiencia
+              </h4>
+              <span class="flex items-baseline justify-center gap-0.5 compact-inline">
+                <span class="text-3xl font-bold" id="experience-counter">0</span
+                >+
+              </span>
+              <small class="text-[10px] text-text-tertiary">Años en TI</small>
+            </div>
 
-          <p class="text-lg">
-            Me interesa seguir creciendo en arquitectura, cloud, DevOps y
-            soluciones potenciadas con IA.
-          </p>
-
-          <button class="btn-primary hover:bg-accent-hover transition-colors">
-            Descargar CV
-          </button>
+            <a
+              href="https://www.linkedin.com/in/andrescamilovelezmejia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-xl border border-border bg-bg-elevated px-4 py-3 flex flex-col items-center justify-center gap-1.5 text-center hover:border-accent hover:bg-accent/5 transition-all duration-300 group"
+            >
+              <svg
+                class="w-5 h-5 text-accent group-hover:scale-110 transition-transform duration-300"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              <span class="text-[10px] uppercase tracking-[0.15em] text-text-secondary font-semibold">LinkedIn</span>
+              <span class="text-[9px] text-text-tertiary">Perfil</span>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div
-        class="space-y-12 timeline-view animate-fade-in-left animate-range-entry"
-      >
-        <h2 class="text-3xl font-bold text-center mb-8">
-          Mis Habilidades Técnicas
-        </h2>
-
-        <div
-          class="grid grid-cols-3 xl:grid-cols-5 gap-x-4 gap-y-10 justify-items-center"
+      <div class="space-y-3">
+        <h2
+          class="text-2xl md:text-3xl lg:text-4xl text-text-primary font-bold tracking-tighter text-balance wrap-anywhere"
         >
-          {
-            categories.map((category) => (
-              <div class="space-y-4 text-center">
-                <h4 class="text-xs font-bold text-accent uppercase tracking-wider border-b border-border pb-2">
-                  {category}
-                </h4>
-                <div class="flex flex-col gap-4 md:gap-10 mt-4 justify-center">
-                  {groupedTech[category].map((tech) => (
-                    <div class="flex flex-col items-center space-y-2 group">
-                        {
-                        tech.icon.startsWith("devicon-") ? (
-                          <i
-                          class={`${tech.icon} text-4xl text-icon group-hover:text-accent-hover transition-colors duration-300`}
-                          aria-hidden="true"
+          Mis habilidades técnicas
+        </h2>
+        <p class="text-lg text-text-secondary text-pretty mb-6">
+          Tecnologías con las que diseño, construyo y escalo productos de
+          extremo a extremo.
+        </p>
+
+        <div class="skills-switcher card p-4 md:p-5">
+          <div
+            class="skills-tabs text-text-primary"
+            role="tablist"
+            aria-label="Capacidades técnicas"
+          >
+            <input
+              id="skill-frontend"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+              checked
+            />
+            <label for="skill-frontend" class="skill-tab text-text-primary"
+              >Frontend</label
+            >
+
+            <input
+              id="skill-backend"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+            />
+            <label for="skill-backend" class="skill-tab text-text-primary"
+              >Backend</label
+            >
+
+            <input
+              id="skill-data"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+            />
+            <label for="skill-data" class="skill-tab text-text-primary"
+              >Data</label
+            >
+
+            <input
+              id="skill-ops"
+              type="radio"
+              name="skill-tabs"
+              class="sr-only"
+            />
+            <label for="skill-ops" class="skill-tab text-text-primary"
+              >Ops + AI</label
+            >
+          </div>
+
+          <article class="skill-panel is-active" data-panel="frontend">
+            <div class="skill-panel-head">
+              <div class="text-text-primary">
+                <span class="eyebrow">Core capability</span>
+                <h4>Frontend</h4>
+              </div>
+              <i
+                class="devicon-react-original capability-icon"
+                aria-hidden="true"></i>
+            </div>
+            <p>
+              Interfaces rápidas, escalables y con foco en experiencia visual.
+              Conecto diseño y funcionalidad para que la navegación se sienta
+              sólida y moderna.
+            </p>
+            <div class="tech-grid">
+              {
+                groupedTech.frontend.map((tech, index) => (
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.frontend.tone}; --tech-delay:${index * 45}ms`}
+                  >
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
                           />
-                        ) : tech.icon.endsWith(".svg") ? (
-                          <span
-                          class="w-9 h-9 bg-icon group-hover:bg-accent-hover transition-colors duration-300"
-                          style={`-webkit-mask: url('${tech.icon}') center / contain no-repeat; mask: url('${tech.icon}') center / contain no-repeat;`}
-                          aria-hidden="true"
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
                           />
                         ) : (
-                          <img
-                          src={tech.icon}
-                          alt={tech.name}
-                          class="w-9 h-9 object-contain group-hover:scale-110 transition-transform duration-300"
-                          loading="lazy"
-                          decoding="async"
-                          />
-                        )
-                        }
-                      <span class="text-sm text-center font-medium text-secondary select-none group-hover:text-primary transition-colors duration-300">
-                        {tech.name}
-                      </span>
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
+                    </span>
+                    <div class="tech-copy">
+                      <span class="tech-label">Stack</span>
+                      <strong>{tech.name}</strong>
                     </div>
-                  ))}
-                </div>
+                  </article>
+                ))
+              }
+            </div>
+          </article>
+
+          <article class="skill-panel" data-panel="backend">
+            <div class="skill-panel-head">
+              <div class="text-text-primary">
+                <span class="eyebrow">Core capability</span>
+                <h4>Backend</h4>
               </div>
-            ))
-          }
+              <i class="devicon-nodejs-plain capability-icon" aria-hidden="true"
+              ></i>
+            </div>
+            <p>
+              APIs y lógica de negocio robusta para productos que escalan. Me
+              enfoco en estructuras claras, mantenibles y listas para crecer.
+            </p>
+            <div class="tech-grid">
+              {
+                groupedTech.backend.map((tech, index) => (
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.backend.tone}; --tech-delay:${index * 45}ms`}
+                  >
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
+                    </span>
+                    <div class="tech-copy">
+                      <span class="tech-label">Services</span>
+                      <strong>{tech.name}</strong>
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          </article>
+
+          <article class="skill-panel" data-panel="data">
+            <div class="skill-panel-head">
+              <div class="text-text-primary">
+                <span class="eyebrow">Core capability</span>
+                <h4 class="text-text-primary">Data</h4>
+              </div>
+              <i
+                class="devicon-postgresql-plain capability-icon"
+                aria-hidden="true"></i>
+            </div>
+            <p>
+              Persistencia y modelado con bases relacionales y NoSQL. Priorizo
+              consistencia, trazabilidad y estructura preparada para crecer.
+            </p>
+            <div class="tech-grid">
+              {
+                groupedTech.database.map((tech, index) => (
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.database.tone}; --tech-delay:${index * 45}ms`}
+                  >
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
+                    </span>
+                    <div class="tech-copy">
+                      <span class="tech-label">Storage</span>
+                      <strong>{tech.name}</strong>
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          </article>
+
+          <article class="skill-panel" data-panel="ops">
+            <div class="skill-panel-head">
+              <div class="text-text-primary">
+                <span class="eyebrow">Core capability</span>
+                <h4 class="text-text-primary">Ops + AI</h4>
+              </div>
+              <i class="devicon-docker-plain capability-icon" aria-hidden="true"
+              ></i>
+            </div>
+            <p>
+              Infraestructura, automatización y flujos potenciados con IA. Uso
+              estas piezas para acelerar entregas sin sacrificar calidad.
+            </p>
+            <div class="tech-grid tech-grid-tools">
+              {
+                groupedTech.tools.map((tech, index) => (
+                  <article
+                    class="tech-card"
+                    style={`--tech-accent:${panelMeta.tools.tone}; --tech-delay:${index * 45}ms`}
+                  >
+                    <span class="tech-icon-wrap" aria-hidden="true">
+                      {(() => {
+                        const Icon = tech.icon;
+                        return typeof Icon === "string" &&
+                          Icon.startsWith("/") ? (
+                          <img
+                            src={Icon}
+                            alt=""
+                            aria-hidden="true"
+                            class="tech-icon-mark tech-icon-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : typeof Icon === "string" ? (
+                          <i
+                            class={`tech-icon-mark ${Icon}`}
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icon class="tech-icon-mark" aria-hidden="true" />
+                        );
+                      })()}
+                    </span>
+                    <div class="tech-copy">
+                      <span class="tech-label">Automation</span>
+                      <strong>{tech.name}</strong>
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          </article>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .skills-switcher {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skills-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .skills-tabs {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .skill-panel {
+      padding: 1.25rem;
+    }
+  }
+
+  .skill-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-tertiary);
+    padding: 0.6rem 0.8rem;
+    border-radius: var(--radius-md);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .skill-tab:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
+  }
+
+  input[name="skill-tabs"]:checked + .skill-tab {
+    color: var(--color-bg);
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .skill-panel {
+    display: none;
+    position: relative;
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-elevated);
+  }
+
+  .skill-panel.is-active {
+    display: block;
+    animation: panelFade 0.35s ease;
+  }
+
+  .skill-panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-panel-head h4 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-top: 0.25rem;
+  }
+
+  .skill-panel p {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    max-width: 42ch;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+  }
+
+  .tech-grid-tools {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+
+  .tech-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 0.9rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-card);
+    box-shadow: var(--shadow-sm);
+    animation: techReveal 0.55s ease both;
+    animation-delay: var(--tech-delay, 0ms);
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .tech-icon-wrap {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tech-icon-mark {
+    width: 100%;
+    height: 100%;
+    color: var(--tech-accent);
+    fill: currentColor;
+    stroke: currentColor;
+    display: block;
+    font-size: 1.5rem;
+  }
+
+  .tech-icon-image {
+    object-fit: contain;
+  }
+
+  .tech-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tech-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  .tech-copy strong {
+    font-size: 0.9rem;
+    line-height: 1.1;
+    color: var(--color-text-primary);
+    word-break: break-word;
+  }
+
+  @keyframes techReveal {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes panelFade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 430px) {
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .capability-icon {
+    font-size: 1.85rem;
+    color: var(--color-text-primary);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  function animateCounter() {
+    const el = document.getElementById("experience-counter");
+    if (!el || el.dataset.done === "true") return;
+
+    const target = 8;
+    let current = 0;
+    const duration = 1200;
+    const stepMs = 70;
+    const increment = Math.max(1, Math.ceil(target / (duration / stepMs)));
+
+    const interval = window.setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        window.clearInterval(interval);
+        el.dataset.done = "true";
+      }
+      el.textContent = `${current}`;
+    }, stepMs);
+  }
+
+  document.addEventListener("astro:page-load", animateCounter);
+
+  document.addEventListener("astro:page-load", () => {
+    const tabs = document.querySelectorAll<HTMLInputElement>(
+      'input[name="skill-tabs"]',
+    );
+    const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
+
+    const syncPanels = () => {
+      const active = document.querySelector<HTMLInputElement>(
+        'input[name="skill-tabs"]:checked',
+      );
+      const activeId = active?.id.replace("skill-", "");
+
+      panels.forEach((panel) => {
+        const isActive = panel.getAttribute("data-panel") === activeId;
+        panel.classList.toggle("is-active", isActive);
+      });
+    };
+
+    tabs.forEach((tab) => tab.addEventListener("change", syncPanels));
+    syncPanels();
+  });
+</script>

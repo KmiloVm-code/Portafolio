@@ -1,53 +1,73 @@
 ---
 import { getCollection } from "astro:content";
-const projectItems = await getCollection("projects");
+import SectionHeader from "@/components/SectionHeader.astro";
 import ArrowRight from "@/assets/svg/arrow-right.astro";
+import ReadingCopy from "@/components/ReadingCopy.astro";
+import Chip from "@/components/Chip.astro";
+
+const projectItems = await getCollection("projects");
 ---
 
 <section id="proyectos" class="py-16 md:py-32 bg-bg relative">
   <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl z-10">
-    <div class="mx-auto prose prose-invert mb-10 md:mb-20 text-center timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%]">
-      <!-- Section Header -->
-      <h1 class="text-4xl font-bold">Proyectos Destacados</h1>
-      <p
-        class="text-lg"
-      >
-        Una selección de proyectos que demuestran mis habilidades y experiencia
-        en desarrollo web.
-      </p>
-    </div>
+    <SectionHeader
+      badge="Work"
+      title="Proyectos destacados"
+      subtitle="Una selección de productos donde combiné estrategia, diseño y ejecución técnica para resolver problemas reales."
+    />
 
-    <!-- Projects Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         projectItems.map((item) => {
           const { data, slug } = item;
-          const { title, description, images } = data;
+          const { title, description, images, technologies } = data;
+
           return (
-            <article
-              class="border border-border/30 rounded-xl overflow-hidden shadow-lg hover:shadow-accent/30 hover:scale-[1.02] hover:border-accent-hover/50 transition-hover duration-300 bg-card/30 backdrop-blur-sm cursor-pointer group timeline-view animate-fade-in-left animate-range-entry"
-            >
+            <article class="project-card group rounded-2xl overflow-hidden border border-border bg-bg-card">
               <a class="flex flex-col h-full" href={`/proyecto/${slug}`}>
-                <img
-                  src={images ? images[0] : "/projects/default-project.webp"}
-                  alt={title}
-                  class="w-full h-48 object-cover object-top transform group-hover:scale-105 transition-transform duration-300"
-                  transition:name={`image-${slug}`}
-                  loading="lazy"
-                />
-                <div class="p-6 flex flex-col grow prose prose-invert">
+                <div class="relative overflow-hidden">
+                  <img
+                    src={images ? images[0] : "/projects/default-project.webp"}
+                    alt={title}
+                    class="w-full h-52 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    transition:name={`image-${slug}`}
+                    loading="lazy"
+                  />
+
+                  <div class="project-overlay absolute inset-0 hidden sm:flex items-end justify-between p-4">
+                    <span class="inline-flex items-center rounded-full border border-white/35 bg-black/35 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white">
+                      Ver proyecto
+                    </span>
+                    <ArrowRight size="18" class="text-white" />
+                  </div>
+                </div>
+
+                <div class="p-5 flex flex-col gap-4 grow">
                   <h2
                     transition:name={`title-${slug}`}
-                    class="text-xl font-bold group-hover:text-accent-hover transition-colors duration-300"
+                    class="project-title text-lg sm:text-xl text-text-primary font-bold mb-0 wrap-break-word"
                   >
                     {title}
                   </h2>
-                  <p class="text-sm line-clamp-4">
+                  <ReadingCopy
+                    size="sm"
+                    class="project-copy text-text-secondary line-clamp-4 mb-0"
+                  >
                     {description}
-                  </p>
-                  <div class="mt-auto text-sm text-transparent group-hover:text-accent-hover transition-colors duration-300 font-medium">
-                    Ver detalles
-                    <ArrowRight size="12" class="inline-block text-transparent group-hover:text-icon-secondary transition-colors duration-300" />
+                  </ReadingCopy>
+
+                  <div class="flex flex-wrap gap-2 mt-auto">
+                    {technologies.slice(0, 4).map((tech) => (
+                      <Chip>{tech}</Chip>
+                    ))}
+                  </div>
+
+                  <div class="project-cta text-sm font-semibold text-accent inline-flex items-center gap-2">
+                    Ver proyecto
+                    <ArrowRight
+                      size="12"
+                      class="transition-transform duration-300 group-hover:translate-x-1"
+                    />
                   </div>
                 </div>
               </a>
@@ -58,3 +78,50 @@ import ArrowRight from "@/assets/svg/arrow-right.astro";
     </div>
   </div>
 </section>
+
+<style>
+  .project-card {
+    position: relative;
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-xl);
+
+    h2 {
+      color: var(--color-accent-hover);
+    }
+  }
+
+  .project-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(3, 9, 19, 0.85),
+      rgba(3, 9, 19, 0.08)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .project-card:hover .project-cta {
+    color: var(--color-accent-hover);
+  }
+
+  .project-title {
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .project-copy {
+    max-width: 34ch;
+  }
+</style>
